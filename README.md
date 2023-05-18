@@ -61,7 +61,7 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 
 ---
 
-# Sponsorname audit details
+# Maia DAO Ecosystem audit details
 - Total Prize Pool: XXX XXX USDC (Notion: Total award pool)
   - HM awards: XXX XXX USDC (Notion: HM (main) pool)
   - QA awards: XXX XXX USDC (Notion: QA pool)
