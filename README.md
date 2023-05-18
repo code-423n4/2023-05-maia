@@ -62,20 +62,19 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 ---
 
 # Maia DAO Ecosystem audit details
-- Total Prize Pool: XXX XXX USDC (Notion: Total award pool)
-  - HM awards: XXX XXX USDC (Notion: HM (main) pool)
-  - QA awards: XXX XXX USDC (Notion: QA pool)
-  - Bot Race awards: XXX XXX USDC (Notion: Bot Race pool)
-  - Gas awards: XXX XXX USDC (Notion: Gas pool)
-  - Judge awards: XXX XXX USDC (Notion: Judge Fee)
-  - Lookout awards: XXX XXX USDC (Notion: Sum of Pre-sort fee + Pre-sort early bonus)
-  - Scout awards: $500 USDC (Notion: Scout fee - but usually $500 USDC)
-  - (this line can be removed if there is no mitigation) Mitigation Review: XXX XXX USDC (*Opportunity goes to top 3 certified wardens based on placement in this audit.*)
+- Total Prize Pool: $300,500 USDC 
+  - HM awards: $187,500 USDC 
+  - QA awards: $25,000 USDC 
+  - Bot Race awards: $25,000 USDC 
+  - Gas awards: $12,500 USDC 
+  - Judge awards: $30,000 USDC 
+  - Lookout awards: $20,000 USDC 
+  - Scout awards: $500 USDC 
 - Join [C4 Discord](https://discord.gg/code4rena) to register
-- Submit findings [using the C4 form](https://code4rena.com/contests/YYYY-MM-sponsorName-contest/submit)
+- Submit findings [using the C4 form](https://code4rena.com/contests/2023-05-maia-contest/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
-- Starts TBD XXX XXX XX 20:00 UTC (ex. `Starts March 22, 2023 20:00 UTC`)
-- Ends TBD XXX XXX XX 20:00 UTC (ex. `Ends March 30, 2023 20:00 UTC`)
+- Starts May 30, 2023 20:00 UTC
+- Ends June 20, 2023 20:00 UTC 
 
 ## Automated Findings / Publicly Known Issues
 
@@ -111,26 +110,26 @@ Automated findings output for the audit can be found [here](add link to report) 
 
 ## Scoping Details 
 ```
-- If you have a public code repo, please share it here:  
-- How many contracts are in scope?:   
-- Total SLoC for these contracts?:  
-- How many external imports are there?:  
-- How many separate interfaces and struct definitions are there for the contracts within scope?:  
-- Does most of your code generally use composition or inheritance?:   
-- How many external calls?:   
-- What is the overall line coverage percentage provided by your tests?:  
-- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:   
-- Please describe required context:   
-- Does it use an oracle?:  
-- Does the token conform to the ERC20 standard?:  
-- Are there any novel or unique curve logic or mathematical models?: 
-- Does it use a timelock function?:  
-- Is it an NFT?: 
-- Does it have an AMM?:   
-- Is it a fork of a popular project?:   
-- Does it use rollups?:   
-- Is it multi-chain?:  
-- Does it use a side-chain?: 
+- If you have a public code repo, please share it here:  [https://twitter.com/MaiaDAOEco](https://github.com/Maia-DAO/maia-ecosystem-monorepo/tree/code4rena-audit)
+- How many contracts are in scope?:   216
+- Total SLoC for these contracts?:  12334
+- How many external imports are there?:  234
+- How many separate interfaces and struct definitions are there for the contracts within scope?:  123
+- Does most of your code generally use composition or inheritance?:   Composition
+- How many external calls?:   30
+- What is the overall line coverage percentage provided by your tests?:  0
+- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:   false
+- Please describe required context:   n/a
+- Does it use an oracle?:  No
+- Does the token conform to the ERC20 standard?:  true
+- Are there any novel or unique curve logic or mathematical models?: Our implementation of the Delta Algorithm (from layerzero). Boosted Reward calculation for uniswapV3 positions from curve and uniswapV3Staker respectively.
+- Does it use a timelock function?:  true
+- Is it an NFT?: true
+- Does it have an AMM?:   true
+- Is it a fork of a popular project?:   true
+- Does it use rollups?:   true
+- Is it multi-chain?:  true
+- Does it use a side-chain?: true
 ```
 
 # Tests
