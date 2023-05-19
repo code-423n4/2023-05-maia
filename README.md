@@ -12,15 +12,7 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 
 ---
 
-# Audit setup
-
-## 🐺 C4: Set up repos
-- [ ] Add sponsor to this private repo with 'maintain' level access.
-- [ ] Send the sponsor contact the url for this repo to follow the instructions below and add contracts here. 
-- [ ] Delete this checklist.
-
 # Repo setup
-
 ## ⭐️ Sponsor: Add code to this repo
 
 - [ ] Create a PR to this repo with the below changes:
