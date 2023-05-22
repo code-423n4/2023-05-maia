@@ -58,7 +58,7 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - Submit findings [using the C4 form](https://code4rena.com/contests/2023-05-maia-contest/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
 - Starts May 30, 2023 20:00 UTC
-- Ends June 20, 2023 20:00 UTC 
+- Ends July 5, 2023 20:00 UTC 
 
 ## Automated Findings / Publicly Known Issues
 
