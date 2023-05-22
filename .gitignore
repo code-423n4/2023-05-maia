@@ -106,3 +106,7 @@ dist
 
 # Python Virtual Environment
 .venv
+
+# Foundry
+cache/
+out/
