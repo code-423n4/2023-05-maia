@@ -1,0 +1,56 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+/// @notice Interface for the `Multicall2` contract.
+struct Call {
+    address target;
+    bytes callData;
+}
+
+/**
+ * @title `VirtualAccount`
+ * @notice A VirtualAccount allows users to manage assets and perform interactions remotely. That allows hApps to keep encapsulated user balance for accounting purposes.
+ * @dev    This contract is based off Maker's `Multicall2` contract, performs a set of `Call` objects if any of the perfomed call is invalid the whole batch should revert.
+ */
+interface IVirtualAccount {
+    /**
+     * @notice Returns the address of the user that owns the VirtualAccount.
+     * @return The address of the user that owns the VirtualAccount.
+     */
+    function userAddress() external view returns (address);
+
+    /**
+     * @notice Returns the address of the local port.
+     * @return The address of the local port.
+     */
+    function localPortAddress() external view returns (address);
+
+    /**
+     * @notice Withdraws ERC20 tokens from the VirtualAccount.
+     * @param _token The address of the ERC20 token to withdraw.
+     * @param _amount The amount of tokens to withdraw.
+     */
+    function withdrawERC20(address _token, uint256 _amount) external;
+
+    /**
+     * @notice Withdraws ERC721 tokens from the VirtualAccount.
+     * @param _token The address of the ERC721 token to withdraw.
+     * @param _tokenId The id of the token to withdraw.
+     */
+    function withdrawERC721(address _token, uint256 _tokenId) external;
+
+    /**
+     * @notice
+     * @param callInput The call to make.
+     */
+    function call(Call[] calldata callInput) external returns (uint256 blockNumber, bytes[] memory);
+
+    /*///////////////////////////////////////////////////////////////
+                                ERRORS
+    //////////////////////////////////////////////////////////////*/
+
+    error CallFailed();
+
+    error UnauthorizedCaller();
+}
