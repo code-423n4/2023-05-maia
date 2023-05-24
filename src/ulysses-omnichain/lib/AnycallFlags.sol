@@ -2,6 +2,7 @@
 
 pragma solidity ^0.8.10;
 
+/// @title Anycall flags library
 library AnycallFlags {
     // call flags which can be specified by user
     uint256 public constant FLAG_NONE = 0x0;

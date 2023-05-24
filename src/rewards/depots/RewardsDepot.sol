@@ -8,7 +8,7 @@ import {ERC20} from "solmate/tokens/ERC20.sol";
 
 import {IRewardsDepot} from "../interfaces/IRewardsDepot.sol";
 
-/// @title Rewards Depot
+/// @title Rewards Depot - Base contract for reward token storage
 abstract contract RewardsDepot is IRewardsDepot {
     using SafeTransferLib for address;
 

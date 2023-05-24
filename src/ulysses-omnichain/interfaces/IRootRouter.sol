@@ -1,19 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {Ownable} from "solady/auth/Ownable.sol";
-
-import {ERC20} from "solmate/tokens/ERC20.sol";
-import {WETH9} from "../interfaces/IWETH9.sol";
-
-import {IRootPort as IPort} from "../interfaces/IRootPort.sol";
 import {DepositParams, DepositMultipleParams} from "../interfaces/IRootBridgeAgent.sol";
 
 /**
- * @title `RootRouter`
+ * @title  Root Router Contract
  * @author MaiaDAO
- * @notice Contract Interface for Root Router contracts in charge of interacting with Root Bridge Agents.
- *         This contract for deployment in Branch Chains of the Ulysses Omnichain System.
+ * @notice Base Branch Contract for interfacing with Root Bridge Agents.
+ *         This contract for deployment in the Root Chain of the Ulysses Omnichain System,
+ *         additional logic can be implemented to perform actions before sending cross-chain
+ *         requests to Branch Chains, as well as in response to remote requests.
  */
 interface IRootRouter {
     /*///////////////////////////////////////////////////////////////

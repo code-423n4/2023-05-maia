@@ -3,11 +3,13 @@ pragma solidity ^0.8.0;
 
 import {Ownable} from "solady/auth/Ownable.sol";
 
-import {RootBridgeAgent} from "./RootBridgeAgent.sol";
-import {IRootBridgeAgent, DepositParams, DepositMultipleParams} from "./interfaces/IRootBridgeAgent.sol";
-
 import {IRootRouter as IRouter} from "./interfaces/IRootRouter.sol";
+import {IRootBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
 
+import {DepositParams, DepositMultipleParams} from "./interfaces/IRootBridgeAgent.sol";
+import {RootBridgeAgent} from "./RootBridgeAgent.sol";
+
+/// @title Library for Root Bridge Agent Executor Deployment
 library DeployRootBridgeAgentExecutor {
     function deploy(address _owner) external returns (address) {
         return address(new RootBridgeAgentExecutor(_owner));
@@ -15,7 +17,7 @@ library DeployRootBridgeAgentExecutor {
 }
 
 /**
- * @title `RootBridgeAgentExecutor`
+ * @title  Root Bridge Agent Executor Contract
  * @notice This contract is used for requesting token settlement clearance and
  *         executing transaction requests from the branch chains.
  * @dev    Execution is "sandboxed" meaning upon tx failure both token settlements

@@ -1,32 +1,33 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import {Ownable} from "solady/auth/Ownable.sol";
 import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
 
-import "./interfaces/IRootRouter.sol";
+import {IMulticall2 as IMulticall} from "./interfaces/IMulticall2.sol";
 import {IRootBridgeAgent as IBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
+import {IRootRouter} from "./interfaces/IRootRouter.sol";
 import {IVirtualAccount, Call} from "./interfaces/IVirtualAccount.sol";
 
-import {IMulticall2 as IMulticall} from "./interfaces/IMulticall2.sol";
-
 import {ERC20hTokenRoot} from "./token/ERC20hTokenRoot.sol";
+import {DepositParams, DepositMultipleParams, Settlement} from "./interfaces/IRootBridgeAgent.sol";
 
 struct OutputParams {
-    address recipient;
-    address outputToken;
-    uint256 amountOut;
-    uint256 depositOut;
+    address recipient; // Address to receive the output assets.
+    address outputToken; // Address of the output hToken.
+    uint256 amountOut; // Amount of output hTokens to send.
+    uint256 depositOut; // Amount of output underlying token to send.
 }
 
 struct OutputMultipleParams {
-    address recipient;
-    address[] outputTokens;
-    uint256[] amountsOut;
-    uint256[] depositsOut;
+    address recipient; // Address to receive the output assets.
+    address[] outputTokens; // Addresses of the output hTokens.
+    uint256[] amountsOut; // Amounts of output hTokens to send.
+    uint256[] depositsOut; // Amounts of output underlying tokens to send.
 }
 
 /**
- * @title `MulticallRootRouter`
+ * @title  Multicall Root Router Contract
  * @author MaiaDAO
  * @notice Root Router implementation for interfacing with third party dApps present in the Root Omnichain Environment.
  * @dev    Func IDs for calling these  functions through messaging layer:

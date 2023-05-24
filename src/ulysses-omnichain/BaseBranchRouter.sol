@@ -3,10 +3,10 @@ pragma solidity ^0.8.0;
 
 import {Ownable} from "solady/auth/Ownable.sol";
 
-import "./interfaces/IBranchRouter.sol";
-import {IBranchBridgeAgent as IBridgeAgent} from "./interfaces/IBranchBridgeAgent.sol";
+import {IBranchRouter} from "./interfaces/IBranchRouter.sol";
 
 import {
+    IBranchBridgeAgent as IBridgeAgent,
     Deposit,
     DepositStatus,
     DepositInput,
@@ -17,7 +17,7 @@ import {
     SettlementMultipleParams
 } from "./interfaces/IBranchBridgeAgent.sol";
 
-/// @title `BaseBranchRouter`
+/// @title Base Branch Router Contract
 contract BaseBranchRouter is IBranchRouter, Ownable {
     /// @inheritdoc IBranchRouter
     address public localBridgeAgentAddress;

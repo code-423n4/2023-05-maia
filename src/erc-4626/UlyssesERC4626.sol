@@ -9,8 +9,8 @@ import {ReentrancyGuard} from "solmate/utils/ReentrancyGuard.sol";
 
 import {IUlyssesERC4626} from "./interfaces/IUlyssesERC4626.sol";
 
-/// @notice Minimal ERC4626 tokenized Vault implementation.
-/// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/mixins/ERC4626.sol)
+/// @title Minimal ERC4626 tokenized 1:1 Vault implementation
+/// @author Maia DAO (https://github.com/Maia-DAO)
 abstract contract UlyssesERC4626 is ERC20, ReentrancyGuard, IUlyssesERC4626 {
     using SafeTransferLib for address;
     using FixedPointMathLib for uint256;

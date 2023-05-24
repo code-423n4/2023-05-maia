@@ -3,11 +3,13 @@
 pragma solidity ^0.8.0;
 
 /**
- * @title `BranchPort`
+ * @title  Branch Port - Omnichain Token Management Contract
  * @author MaiaDAO
- * @notice Ulyses `Port` implementation for Branch Chain deployment.
- *         This contract is used to manage the deposit and withdrawal of assets
- *         between Branch Chain contracts and the root omnichain environment.
+ * @notice Ulyses `Port` implementation for Branch Chain deployment. This contract
+ *         is used to manage the deposit and withdrawal of underlying assets from
+ *         the Branch Chain in response to Branch Bridge Agents' requests.
+ *         Manages Bridge Agents and their factories as well as the chain's strategies and
+ *         their tokens.
  */
 interface IBranchPort {
     /*///////////////////////////////////////////////////////////////

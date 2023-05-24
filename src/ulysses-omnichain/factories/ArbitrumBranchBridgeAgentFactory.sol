@@ -1,13 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {BranchBridgeAgentFactory, IPort, WETH9} from "./BranchBridgeAgentFactory.sol";
+import {WETH9} from "../interfaces/IWETH9.sol";
+
+import {IArbitrumBranchPort as IPort} from "../interfaces/IArbitrumBranchPort.sol";
+
+import {BranchBridgeAgentFactory} from "./BranchBridgeAgentFactory.sol";
 import {ArbitrumBranchBridgeAgent, DeployArbitrumBranchBridgeAgent} from "../ArbitrumBranchBridgeAgent.sol";
 
 /**
- * @title BridgeAgentFactory.
- * @author MaiaDAO.
- * @notice This contract is used to deploy new Bridge Agents which are in charge of managing the deposit and withdrawal of assets between the branch chains and the omnichain environment.
+ * @title  Arbitrum Branch Bridge Agent Factory Contract
+ * @author MaiaDAO
+ * @notice Factory contract for allowing permissionless deployment of
+ *         new Arbitrum Branch Bridge Agents which are in charge of 
+ *         managing the deposit and withdrawal of assets between the
+ *         branch chains and the omnichain environment.
  */
 contract ArbitrumBranchBridgeAgentFactory is BranchBridgeAgentFactory {
     /**

@@ -2,9 +2,12 @@
 pragma solidity ^0.8.0;
 
 /**
- * @title IBridgeAgentFactory.
- * @author MaiaDAO.
- * @notice This contract is used to interact with the Bridge Agent Factory responsible for deploying new Bridge Agents which are in charge of managing the deposit and withdrawal of assets between the branch chains and the omnichain environment.
+ * @title  Branch Bridge Agent Factory Contract
+ * @author MaiaDAO
+ * @notice Factory contract for allowing permissionless deployment of
+ *         new Branch Bridge Agents which are in charge of managing the
+ *         deposit and withdrawal of assets between the branch chains
+ *         and the omnichain environment.
  */
 interface IBranchBridgeAgentFactory {
     /*///////////////////////////////////////////////////////////////

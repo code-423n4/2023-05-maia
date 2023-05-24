@@ -4,20 +4,20 @@ pragma solidity ^0.8.0;
 import {UlyssesPool} from "../UlyssesPool.sol";
 
 /**
- * @title Ulysses Pool
+ * @title Ulysses Pool - Single Sided Stableswap LP
  *  @author Maia DAO (https://github.com/Maia-DAO)
  *  @notice This contract is stableswap AMM that uses it's implemention of
  *          the Delta Algorithm to manage the LP's balances and transfers
- *          between chains.
+ *          between LPs.
  *  @dev NOTE: Can't remove a destination, only add new ones.
  *
- *       Input: Transaction amount t, destination chain ID d
+ *       Input: Transaction amount t, destination LP ID d
  *
  *       # On the source LP:
  *       1: aₛ ← aₛ + t
  *       2: bₛ,𝒹 ← bₛ,𝒹 − t
  *       3: for x != s do
- *       4:     diffₛ,ₓ ← max(0, lpₛ * wₛ,ₓ − lkbₓ,ₛ))
+ *       4:     diffₛ,ₓ ← max(0, lpₛ * wₛ,ₓ − lkbₓ,ₛ)
  *       5: end for
  *       6: Total ← ∑ₓ diffₛ,ₓ
  *       7: for x != s do
@@ -28,7 +28,7 @@ import {UlyssesPool} from "../UlyssesPool.sol";
  *       12:     bₛ,ₓ ← bₛ,ₓ + diffₛ,ₓ + t′ * wₛ,ₓ
  *       13: end for
  *       14: msg = (t)
- *       15: Send msg to chain d
+ *       15: Send msg to LP d
  *
  *       # On the destination LP:
  *       16: Receive (t) from a source LP
@@ -74,6 +74,10 @@ import {UlyssesPool} from "../UlyssesPool.sol";
  * ⢿⣿⠿⠋⣀⣤⠖⠀⠀⠀⠀⠀⠀⣼⣿⢏⣠⣞⣵⣿⣿⣿⣿⣿⣿⣟⣿⠁⠀⠀⠀⠀⣾⠀⠱⣼⡆⠀⢸⠹⣿⡄⣾⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠈⢻⣿⡄⠀⠀
  */
 interface IUlyssesPool {
+    /*//////////////////////////////////////////////////////////////
+                                STRUCTS
+    //////////////////////////////////////////////////////////////*/
+
     /**
      * @notice The bandwidth state of a Ulysses LP
      * @param bandwidth The available bandwidth for the given pool's ID
@@ -183,9 +187,9 @@ interface IUlyssesPool {
      */
     function swapFromPool(uint256 amount, address user) external returns (uint256 output);
 
-    /* /////////////////////////////////////////////
-                    ERRORS
-    ////////////////////////////////////////////*/
+    /*//////////////////////////////////////////////////////////////
+                                ERRORS
+    //////////////////////////////////////////////////////////////*/
 
     /// @notice Throw when trying to re-add pool or adding itself
     error InvalidPool();

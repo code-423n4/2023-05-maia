@@ -2,14 +2,17 @@
 
 pragma solidity ^0.8.0;
 
-import {ERC721} from "solmate/tokens/ERC721.sol";
 import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
+
+import {ERC721} from "solmate/tokens/ERC721.sol";
+
+import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 
 import {IVirtualAccount, Call} from "./interfaces/IVirtualAccount.sol";
 
 import {IRootPort} from "./interfaces/IRootPort.sol";
 
-/// @title `VirtualAccount`
+/// @title VirtualAccount - Contract for managing a virtual user account on the Root Chain
 contract VirtualAccount is IVirtualAccount {
     using SafeTransferLib for address;
 
@@ -47,6 +50,15 @@ contract VirtualAccount is IVirtualAccount {
             if (!success) revert CallFailed();
             returnData[i] = data;
         }
+    }
+
+    /*//////////////////////////////////////////////////////////////
+                            EXTERNAL HOOKS
+    //////////////////////////////////////////////////////////////*/
+
+    /// @inheritdoc IERC721Receiver
+    function onERC721Received(address, address, uint256, bytes calldata) external pure override returns (bytes4) {
+        return this.onERC721Received.selector;
     }
 
     /*///////////////////////////////////////////////////////////////

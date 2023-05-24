@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import {RewardsDepot, IRewardsDepot} from "./RewardsDepot.sol";
 
-/// @title Single Rewards Depot
+/// @title Single Rewards Depot - Contract for a single reward token storage
 contract SingleRewardsDepot is RewardsDepot {
     /*///////////////////////////////////////////////////////////////
                         REWARDS DEPOT STATE

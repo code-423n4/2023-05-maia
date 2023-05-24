@@ -2,11 +2,11 @@
 pragma solidity ^0.8.0;
 
 /**
- * @title `CoreBranchRouter`
+ * @title  Core Branch Router Contract
  * @author MaiaDAO
- * @notice Core Branch Router implementation for Arbitrum deployment.
- *         This contract is responsible for permissionlessly adding new
- *         tokens or Bridge Agents to the system as well as key governance
+ * @notice Core Branch Router implementation for deployment in Branch Chains.
+ *         This contract is allows users to permissionlessly add new tokens
+ *         or Bridge Agents to the system. As well as executes key governance
  *         enabled system functions (i.e. `addBridgeAgentFactory`).
  * @dev    Func IDs for calling these functions through messaging layer:
  *

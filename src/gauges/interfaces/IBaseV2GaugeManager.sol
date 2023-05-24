@@ -10,7 +10,7 @@ import {BaseV2GaugeFactory} from "../factories/BaseV2GaugeFactory.sol";
 /**
  * @title Base V2 Gauge Factory Manager
  * @notice Interface for the BaseV2GaugeManager contract that handles the
- *         management of gauges and gauge factories.~
+ *         management of gauges and gauge factories.
  *
  *         @dev Only this contract can add/remove gauges to bHermesWeight and bHermesBoost.
  * @author Maia DAO (https://github.com/Maia-DAO)

@@ -10,7 +10,7 @@ import {PoolVariables} from "./libraries/PoolVariables.sol";
 
 import {ITalosManager, AutomationCompatibleInterface} from "./interfaces/ITalosManager.sol";
 
-/// @title  Talos Strategy Manager.
+/// @title Talos Strategy Manager - Manages rebalancing and reranging of Talos Positions
 contract TalosManager is AutomationCompatibleInterface, ITalosManager {
     using PoolVariables for IUniswapV3Pool;
 

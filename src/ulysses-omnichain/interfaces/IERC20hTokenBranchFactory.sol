@@ -4,9 +4,11 @@ pragma solidity ^0.8.0;
 import {ERC20hTokenBranch} from "../token/ERC20hTokenBranch.sol";
 
 /**
- * @title ERC20hTokenBranchFactory Interface
+ * @title  ERC20hTokenBranchFactory Interface
  * @author MaiaDAO
- * @dev  Factory Interface for deployment of new ERC20hTokenBranch in Branch Chains of Ulysses Omnichain Liquidity Protocol.
+ * @notice Factory contract allowing for permissionless deployment of new Branch hTokens in Branch
+ *  	   Chains of Ulysses Omnichain Liquidity Protocol.
+ * @dev    This contract is called by the chain's Core Branch Router.
  */
 interface IERC20hTokenBranchFactory {
     /*///////////////////////////////////////////////////////////////

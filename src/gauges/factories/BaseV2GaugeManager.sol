@@ -10,7 +10,7 @@ import {BaseV2GaugeFactory} from "./BaseV2GaugeFactory.sol";
 
 import {IBaseV2GaugeManager} from "../interfaces/IBaseV2GaugeManager.sol";
 
-/// @title Base V2 Gauge Factory Manager
+/// @title Base V2 Gauge Factory Manager - Manages addition/removal of Gauge Factories to bHermes.
 contract BaseV2GaugeManager is Ownable, IBaseV2GaugeManager {
     /*///////////////////////////////////////////////////////////////
                         GAUGE MANAGER STATE

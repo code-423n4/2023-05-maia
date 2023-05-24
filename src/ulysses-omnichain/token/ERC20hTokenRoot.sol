@@ -3,11 +3,12 @@ pragma solidity ^0.8.0;
 
 import {Ownable} from "solady/auth/Ownable.sol";
 import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
+
 import {ERC20} from "solmate/tokens/ERC20.sol";
 
 import {IERC20hTokenRoot} from "../interfaces/IERC20hTokenRoot.sol";
 
-/// @title ERC20 hToken Contract for deployment in Root Chain of Hermes Omnichain Incentives System
+/// @title ERC20 hToken Contract
 contract ERC20hTokenRoot is ERC20, IERC20hTokenRoot {
     using SafeTransferLib for address;
 

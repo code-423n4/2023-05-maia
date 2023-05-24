@@ -7,19 +7,16 @@ import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
 
 import {ERC20} from "solmate/tokens/ERC20.sol";
 
-import {INonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol";
-
-import {IRootBridgeAgent as IBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
-
-import {IRootBridgeAgentFactory} from "./interfaces/IRootBridgeAgentFactory.sol";
-
 import {IERC20hTokenRootFactory} from "./interfaces/IERC20hTokenRootFactory.sol";
-
-import {IRootPort, VirtualAccount, GasPoolInfo, ICoreRootRouter} from "./interfaces/IRootPort.sol";
+import {INonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol";
+import {IRootBridgeAgent as IBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
+import {IRootBridgeAgentFactory} from "./interfaces/IRootBridgeAgentFactory.sol";
+import {IRootPort, ICoreRootRouter} from "./interfaces/IRootPort.sol";
 
 import {ERC20hTokenRoot} from "./token/ERC20hTokenRoot.sol";
+import {VirtualAccount, GasPoolInfo} from "./interfaces/IRootPort.sol";
 
-/// @title `RootPort`
+/// @title Root Port - Omnichain Token Management Contract
 contract RootPort is Ownable, IRootPort {
     using SafeTransferLib for address;
 

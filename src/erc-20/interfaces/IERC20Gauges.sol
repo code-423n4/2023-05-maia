@@ -25,6 +25,10 @@ pragma solidity ^0.8.0;
  *          This maintains the state efficiently, and global accounting is managed only on the `_totalWeight`
  */
 interface IERC20Gauges {
+    /*//////////////////////////////////////////////////////////////
+                                STRUCTS
+    //////////////////////////////////////////////////////////////*/
+
     /**
      * @notice a struct representing a user's weight allocation to a gauge
      * @param storedWeight weight allocated to a gauge at the end of the last cycle

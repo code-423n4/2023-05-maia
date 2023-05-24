@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {ERC20} from "solmate/tokens/ERC20.sol";
 
 /**
- * @title Factory responsible for managing Ulysses instances.
+ * @title Factory of new Ulysses instances
  *  @author Maia DAO (https://github.com/Maia-DAO)
  *  @notice This contract is responsible for creating new Ulysses Tokens
  *          and Ulysses Pools.

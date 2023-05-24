@@ -3,14 +3,16 @@ pragma solidity ^0.8.0;
 
 import {ERC20} from "solmate/tokens/ERC20.sol";
 
-import "./CoreBranchRouter.sol";
+import {IBranchBridgeAgent as IBridgeAgent} from "./interfaces/IBranchBridgeAgent.sol";
+import {IBranchBridgeAgentFactory as IBridgeAgentFactory} from "./interfaces/IBranchBridgeAgentFactory.sol";
+import {IERC20hTokenBranchFactory as IFactory} from "./interfaces/IERC20hTokenBranchFactory.sol";
+import {IArbitrumBranchPort as IPort} from "./interfaces/IArbitrumBranchPort.sol";
 
+import {CoreBranchRouter} from "./CoreBranchRouter.sol";
 import {ERC20hTokenBranch as ERC20hToken} from "./token/ERC20hTokenBranch.sol";
 
-import {IERC20hTokenBranchFactory as IFactory} from "./interfaces/IERC20hTokenBranchFactory.sol";
-
 /**
- * @title `ArbitrumCoreBranchRouter`
+ * @title  Arbitrum Core Branch Router Contract
  * @author MaiaDAO
  * @notice Core Branch Router implementation for Arbitrum deployment.
  *         This contract is responsible for permissionlessly adding new

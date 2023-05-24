@@ -6,15 +6,17 @@ import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
 
 import {ERC20} from "solmate/tokens/ERC20.sol";
 
+import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
+
 import {INonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol";
 
 import {bHermesBoost} from "@hermes/tokens/bHermesBoost.sol";
 import {UniswapV3Staker} from "@v3-staker/UniswapV3Staker.sol";
 
-import {IBoostAggregator, IERC721Receiver} from "../interfaces/IBoostAggregator.sol";
+import {IBoostAggregator} from "../interfaces/IBoostAggregator.sol";
 
-/// @notice Boost Aggregator for Uniswap V3 NFTs.
-contract BoostAggregator is Ownable, IERC721Receiver, IBoostAggregator {
+/// @title Boost Aggregator for Uniswap V3 NFTs
+contract BoostAggregator is Ownable, IBoostAggregator {
     using SafeTransferLib for address;
 
     /*//////////////////////////////////////////////////////////////

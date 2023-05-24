@@ -9,7 +9,7 @@ import {ERC20Gauges} from "@ERC20/ERC20Gauges.sol";
 import {IbHermesUnderlying} from "../interfaces/IbHermesUnderlying.sol";
 
 /**
- * @title bHermesGauges: Directs hermes emissions.
+ * @title bHermesGauges: Directs Hermes emissions.
  * @author Maia DAO (https://github.com/Maia-DAO)
  *  @notice Represents the underlying emission direction power of a bHermes token.
  *          bHermesGauges is an ERC-4626 compliant bHermes token which:

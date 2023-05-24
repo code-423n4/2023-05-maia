@@ -9,7 +9,7 @@ import {INonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/inter
 // TODO: The INIT_CODE_HASH needs to be updated to the values that are live on the chain of it's deployment.
 import {PoolAddress} from "@uniswap/v3-periphery/contracts/libraries/PoolAddress.sol";
 
-/// @dev Encapsulates the logic for getting info about a NFT token ID
+/// @title Encapsulates the logic for getting info about a NFT token ID
 library NFTPositionInfo {
     /// @param factory The address of the Uniswap V3 Factory used in computing the pool address
     /// @param nonfungiblePositionManager The address of the nonfungible position manager to query

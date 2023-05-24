@@ -14,9 +14,9 @@ import {IFlywheelInstantRewards} from "./interfaces/IFlywheelInstantRewards.sol"
 import {IFlywheelRewards} from "./interfaces/IFlywheelRewards.sol";
 
 /**
- * @title Flywheel Core Incentives Manager
+ * @title Flywheel Core Incentives Manager - Manages instant incentives distribution under the Flywheel Core system
  *  @notice Flywheel is a general framework for managing token incentives.
- *          It takes reward streams to various *strategies* such as staking LP tokens and divides them among *users* of those strategies.
+ *          It takes a single reward stream to various *strategies* such as staking LP tokens and divides them among *users* of those strategies.
  *
  *          The Core contract maintains three important pieces of state:
  * the rewards index which determines how many rewards are owed per token per strategy. User indexes track how far behind the strategy they are to lazily calculate all catch-up rewards.

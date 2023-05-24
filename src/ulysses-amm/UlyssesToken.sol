@@ -5,11 +5,13 @@ import {Ownable} from "solady/auth/Ownable.sol";
 import {FixedPointMathLib} from "solady/utils/FixedPointMathLib.sol";
 import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
 
-import {ERC4626MultiToken, IERC4626MultiToken, ERC20} from "@ERC4626/ERC4626MultiToken.sol";
+import {ERC20} from "solmate/tokens/ERC20.sol";
+
+import {ERC4626MultiToken, IERC4626MultiToken} from "@ERC4626/ERC4626MultiToken.sol";
 
 import {IUlyssesToken} from "./interfaces/IUlyssesToken.sol";
 
-/// @title Ulysses Token
+/// @title Ulysses Token - tokenized Vault multi asset implementation for Ulysses pools
 contract UlyssesToken is ERC4626MultiToken, Ownable, IUlyssesToken {
     using SafeTransferLib for address;
     using FixedPointMathLib for uint256;

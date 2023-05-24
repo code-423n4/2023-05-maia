@@ -4,12 +4,13 @@ pragma solidity ^0.8.0;
 
 import {VirtualAccount} from "../VirtualAccount.sol";
 
+/// @title Core Root Router Interface
 interface ICoreRootRouter {
     function bridgeAgentAddress() external view returns (address);
     function hTokenFactoryAddress() external view returns (address);
 }
 
-/// @notice Struct that contains the information of the Gas Pool for a swapping out of and into a given Branch Chain's Gas Token.
+/// @title Struct that contains the information of the Gas Pool - used for swapping in and out of a given Branch Chain's Gas Token.
 struct GasPoolInfo {
     bool zeroForOneOnInflow;
     uint24 priceImpactPercentage;
@@ -18,11 +19,13 @@ struct GasPoolInfo {
 }
 
 /**
- * @title `RootPort`
+ * @title  Root Port - Omnichain Token Management Contract
  * @author MaiaDAO
  * @notice Ulyses `RootPort` implementation for Root Omnichain Environment deployment.
  *         This contract is used to manage the deposit and withdrawal of assets
- *         between the Root Omnichain Environment an every Branch Chain.
+ *         between the Root Omnichain Environment an every Branch Chain in response to
+ *         Root Bridge Agents requests. Manages Bridge Agents and their factories as well as
+ *         key governance enabled actions such as adding new chains and bridge agent factories.
  */
 interface IRootPort {
     /*///////////////////////////////////////////////////////////////

@@ -3,7 +3,11 @@ pragma solidity ^0.8.0;
 
 import {TalosOptimizer} from "../TalosOptimizer.sol";
 
-contract OptimizerFactory {
+import {IOptimizerFactory} from "../interfaces/IOptimizerFactory.sol";
+
+/// @title Optimizer Factory for Talos Optimizers
+/// @author Maia DAO (https://github.com/Maia-DAO)
+contract OptimizerFactory is IOptimizerFactory {
     /*//////////////////////////////////////////////////////////////
                         OPTIMIZER FACTORY STATE
     //////////////////////////////////////////////////////////////*/

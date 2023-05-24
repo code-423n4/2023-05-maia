@@ -84,12 +84,30 @@ struct SettlementMultipleParams {
 }
 
 /**
- * @title `BranchBridgeAgent`
+ * @title  Branch Bridge Agent Contract
  * @author MaiaDAO
  * @notice Contract for deployment in Branch Chains of Omnichain System, responible for
- *         interfacing with Users/Routers acting as a middleman to access Anycall cross-chain
- *         messaging and Port communication for asset management.
- * @dev    Func IDs for calling these functions through messaging layer:
+ *         interfacing with Users and Routers acting as a middleman to access Anycall cross-chain
+ *         messaging and  requesting / depositing  assets in the Branch Chain's Ports.
+ * @dev    Bridge Agents allow for the encapsulation of business logic as well as the standardize
+ *         cross-chain communication, allowing for the creation of custom Routers to perform
+ *         actions as a response to remote user requests. This contract for deployment in the Branch
+ *         Chains of the Ulysses Omnichain Liquidity System.
+ *         This contract manages gas spenditure calling `_replenishingGas` after each remote initiated
+ *         execution, as well as requests tokens clearances and tx execution to the `BranchBridgeAgentExecutor`.
+ *         Remote execution is "sandboxed" in 3 different nestings:
+ *         - 1: Anycall Messaging Layer will revert execution if by the end of the call the
+ *              balance in the executionBudget AnycallConfig contract for the Branch Bridge Agent
+ *              being called is inferior to the executionGasSpent, throwing the error `no enough budget`.
+ *         - 2: The `BranchBridgeAgent` will trigger a revert all state changes if by the end of the remote initiated call
+ *              Router interaction the userDepositedGas < executionGasSpent. This is done by calling the `_forceRevert()`
+ *              internal function clearing all executionBudget from the AnycallConfig contract forcing the error `no enough budget`.
+ *         - 3: The `BranchBridgeAgentExecutor` is in charge of requesting token deposits for each remote interaction as well
+ *              as performing the Router calls, if any of the calls initiated by the Router lead to an invlaid state change
+ *              both the token deposit clearances as well as the external interactions will be reverted. Yet executionGas
+ *              will still be credited by the `BranchBridgeAgent`.
+ *
+ *         Func IDs for calling these functions through messaging layer:
  *
  *         BRANCH BRIDGE AGENT SETTLEMENT FLAGS
  *         --------------------------------------
@@ -98,6 +116,29 @@ struct SettlementMultipleParams {
  *         0x00         | Call to Branch without Settlement.
  *         0x01         | Call to Branch with Settlement.
  *         0x02         | Call to Branch with Settlement of Multiple Tokens.
+ *
+ *         Encoding Scheme for different Root Bridge Agent Deposit Flags:
+ *
+ *           - ht = hToken
+ *           - t = Token
+ *           - A = Amount
+ *           - D = Destination
+ *           - b = bytes
+ *           - n = number of assets
+ *           ________________________________________________________________________________________________________________________________
+ *          |            Flag               |           Deposit Info           |             Token Info             |   DATA   |  Gas Info   |
+ *          |           1 byte              |            4-25 bytes            |        (105 or 128) * n bytes      |   ---	   |  16 bytes   |
+ *          |                               |                                  |            hT - t - A - D          |          |             |
+ *          |_______________________________|__________________________________|____________________________________|__________|_____________|
+ *          | callOut = 0x0                 |  20b(recipient) + 4b(nonce)      |            -------------           |   ---	   |     dep     |
+ *          | callOutSingle = 0x1           |  20b(recipient) + 4b(nonce)      |         20b + 20b + 32b + 32b      |   ---	   |     16b     |
+ *          | callOutMulti = 0x2            |  1b(n) + 20b(recipient) + 4b     |   	     32b + 32b + 32b + 32b      |   ---	   |     16b     |
+ *          |_______________________________|__________________________________|____________________________________|__________|_____________|
+ *
+ *          Contract Remote Interaction Flow:
+ *
+ *          BranchBridgeAgent.anyExecute**() -> BridgeAgentExecutor.execute**() -> Router.anyExecute**() -> BridgeAgentExecutor (txExecuted) -> BranchBridgeAgent (replenishedGas)
+ *
  *
  */
 interface IBranchBridgeAgent is IApp {

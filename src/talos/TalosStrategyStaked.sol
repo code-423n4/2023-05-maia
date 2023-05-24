@@ -1,15 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0;
 
-import {FlywheelCoreInstant} from "@rewards/FlywheelCoreInstant.sol";
-import {MultiRewardsDepot} from "@rewards/depots/MultiRewardsDepot.sol";
-import {FlywheelInstantRewards, ERC20} from "@rewards/rewards/FlywheelInstantRewards.sol";
-
-import {BoostAggregator} from "./boost-aggregator/BoostAggregator.sol";
-import {TalosStrategySimpleRebalance, TalosBaseStrategy} from "./strategies/TalosStrategySimpleRebalance.sol";
+import {ERC20} from "solmate/tokens/ERC20.sol";
 
 import {IUniswapV3Pool} from "@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol";
 import {INonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol";
+
+import {FlywheelCoreInstant} from "@rewards/FlywheelCoreInstant.sol";
+import {MultiRewardsDepot} from "@rewards/depots/MultiRewardsDepot.sol";
+import {FlywheelInstantRewards} from "@rewards/rewards/FlywheelInstantRewards.sol";
+
+import {BoostAggregator} from "./boost-aggregator/BoostAggregator.sol";
+import {TalosStrategySimple, TalosBaseStrategy} from "./strategies/TalosStrategySimple.sol";
 
 import {ITalosOptimizer} from "./interfaces/ITalosOptimizer.sol";
 import {ITalosStrategyStaked} from "./interfaces/ITalosStrategyStaked.sol";
@@ -35,7 +37,7 @@ library DeployStaked {
 }
 
 /// @title Tokenized Vault implementation for a staked Uniswap V3 Non-Fungible Positions.
-contract TalosStrategyStaked is TalosStrategySimpleRebalance, ITalosStrategyStaked {
+contract TalosStrategyStaked is TalosStrategySimple, ITalosStrategyStaked {
     /*//////////////////////////////////////////////////////////////
                         TALOS STAKED STRATEGY STATE
     //////////////////////////////////////////////////////////////*/
@@ -66,7 +68,7 @@ contract TalosStrategyStaked is TalosStrategySimpleRebalance, ITalosStrategyStak
         FlywheelCoreInstant _flywheel,
         address _owner
     )
-        TalosStrategySimpleRebalance(
+        TalosStrategySimple(
             _pool,
             _optimizer,
             _boostAggregator.nonfungiblePositionManager(),

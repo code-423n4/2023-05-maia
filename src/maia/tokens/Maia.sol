@@ -6,7 +6,7 @@ import {Ownable} from "solady/auth/Ownable.sol";
 import {ERC20} from "solmate/tokens/ERC20.sol";
 
 /**
- * @title Maia ERC20 token
+ * @title Maia ERC20 token - Native token for the Maia ecosystem
  *  @author Maia DAO (https://github.com/Maia-DAO)
  *  @notice ERC20 representing a share of the Maia ecosystem.
  *

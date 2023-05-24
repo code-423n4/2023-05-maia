@@ -13,8 +13,8 @@ import {UniswapV3Staker} from "@v3-staker/UniswapV3Staker.sol";
 /**
  * @title Boost Aggregator for Uniswap V3 NFTs
  *  @author Maia DAO (https://github.com/Maia-DAO)
- *  @notice This contract is used to aggregate Uniswap V3 NFTs from multiple users and
- *          stake them in the Uniswap V3 Staker contract.
+ *  @notice This contract is used to aggregate Uniswap V3 NFTs from multiple addresses and
+ *          stake them in the Uniswap V3 Staker contract, sharing the same boost.
  *          This contract allows for boost management and rewards distribution. so users
  *          can stake their NFTs and receive boosted hermes rewards.
  */

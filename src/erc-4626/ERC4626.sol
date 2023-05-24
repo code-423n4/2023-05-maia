@@ -8,7 +8,7 @@ import {ERC20} from "solmate/tokens/ERC20.sol";
 
 import {IERC4626} from "./interfaces/IERC4626.sol";
 
-/// @notice Minimal ERC4626 tokenized Vault implementation.
+/// @title Minimal ERC4626 tokenized Vault implementation
 /// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/mixins/ERC4626.sol)
 abstract contract ERC4626 is ERC20, IERC4626 {
     using SafeTransferLib for address;

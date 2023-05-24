@@ -10,12 +10,14 @@ import {FixedPointMathLib} from "solady/utils/FixedPointMathLib.sol";
 import {ReentrancyGuard} from "solmate/utils/ReentrancyGuard.sol";
 import {ERC20} from "solmate/tokens/ERC20.sol";
 
+import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
+
 import {IUniswapV3Pool} from "@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol";
 import {INonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol";
 
 import {PoolVariables} from "../libraries/PoolVariables.sol";
 
-import {ITalosBaseStrategy, IERC721Receiver} from "../interfaces/ITalosBaseStrategy.sol";
+import {ITalosBaseStrategy} from "../interfaces/ITalosBaseStrategy.sol";
 import {ITalosOptimizer} from "../interfaces/ITalosOptimizer.sol";
 
 /// @title Tokenized Vault implementation for Uniswap V3 Non Fungible Positions.

@@ -9,8 +9,8 @@ import {ReentrancyGuard} from "solmate/utils/ReentrancyGuard.sol";
 
 import {IERC4626MultiToken} from "./interfaces/IERC4626MultiToken.sol";
 
-/// @notice Minimal ERC4626 tokenized Vault implementation.
-/// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/mixins/ERC4626.sol)
+/// @title Minimal ERC4626 tokenized Vault multi asset implementation
+/// @author Maia DAO (https://github.com/Maia-DAO)
 abstract contract ERC4626MultiToken is ERC20, ReentrancyGuard, IERC4626MultiToken {
     using SafeTransferLib for address;
     using FixedPointMathLib for uint256;

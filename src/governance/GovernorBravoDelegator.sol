@@ -3,6 +3,7 @@ pragma solidity ^0.8.10;
 
 import "./GovernorBravoInterfaces.sol";
 
+/// @title Governor Bravo Delegate Proxy Contract
 contract GovernorBravoDelegator is GovernorBravoDelegatorStorage, GovernorBravoEvents {
     constructor(
         address timelock_,

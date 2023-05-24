@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {UlyssesFactory} from "../factories/UlyssesFactory.sol";
 
 /**
- * @title Ulysses Router
+ * @title Ulysses Router - Handles routing of transactions in the Ulysses AMM
  *  @author Maia DAO (https://github.com/Maia-DAO)
  *  @notice This contract routes and adds/removes liquidity from Ulysses Pools
  *          deployed by the Ulysses Factory, it allows users to set maximum slippage.
@@ -44,7 +44,7 @@ import {UlyssesFactory} from "../factories/UlyssesFactory.sol";
  */
 interface IUlyssesRouter {
     /*//////////////////////////////////////////////////////////////
-                            STRUCTS
+                                STRUCTS
     //////////////////////////////////////////////////////////////*/
 
     /**

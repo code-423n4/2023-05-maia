@@ -1,21 +1,28 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./interfaces/IRootRouter.sol";
-import {IRootBridgeAgent as IBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
+import {Ownable} from "solady/auth/Ownable.sol";
 
-import {IVirtualAccount, Call} from "./interfaces/IVirtualAccount.sol";
+import {ERC20} from "solmate/tokens/ERC20.sol";
+
+import {WETH9} from "./interfaces/IWETH9.sol";
+
 import {IERC20hTokenRootFactory as IFactory} from "./interfaces/IERC20hTokenRootFactory.sol";
+import {IRootRouter} from "./interfaces/IRootRouter.sol";
+import {IRootBridgeAgent as IBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
+import {IRootPort as IPort} from "./interfaces/IRootPort.sol";
+import {IVirtualAccount, Call} from "./interfaces/IVirtualAccount.sol";
 
+import {DepositParams, DepositMultipleParams} from "./interfaces/IRootBridgeAgent.sol";
 import {ERC20hTokenRoot} from "./token/ERC20hTokenRoot.sol";
 
 /**
- * @title `CoreRootRouter`
+ * @title  Core Root Router Contract
  * @author MaiaDAO
- * @notice Core Branch Router implementation for Root Environment deployment.
+ * @notice Core Root Router implementation for Root Environment deployment.
  *         This contract is responsible for permissionlessly adding new
  *         tokens or Bridge Agents to the system as well as key governance
- *         enabled system functions (i.e. `addNewChain`).
+ *         enabled system functions (i.e. `toggleBranchBridgeAgentFactory`).
  * @dev    Func IDs for calling these functions through messaging layer:
  *
  *         CROSS-CHAIN MESSAGING FUNCIDs

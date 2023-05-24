@@ -7,11 +7,7 @@ import {ERC20} from "../token/ERC20hTokenBranch.sol";
 
 import {IERC20hTokenBranchFactory, ERC20hTokenBranch} from "../interfaces/IERC20hTokenBranchFactory.sol";
 
-/**
- * @title ERC20hTokenBranch Factory Contract
- * @author MaiaDAO
- * @dev Contract for deployment of hTokens in Branch Chains of Ulysses Omnichain Liquidity System
- */
+/// @title ERC20hTokenBranch Factory Contract
 contract ERC20hTokenBranchFactory is Ownable, IERC20hTokenBranchFactory {
     /// @notice Local Network Identifier.
     uint24 public immutable localChainId;

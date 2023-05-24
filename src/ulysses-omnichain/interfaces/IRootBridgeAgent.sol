@@ -82,16 +82,19 @@ struct DepositMultipleParams {
 }
 
 /**
- * @title  BranchBridgeAgent contract for deployment in the Root Chain Omnichain Environment.
+ * @title  Root Bridge Agent Contract
  * @author MaiaDAO
- * @notice Contract responsible for interfacing with Users/Routers acting as a middleman to
+ * @notice Contract responsible for interfacing with Users and Routers acting as a middleman to
  *         access Anycall cross-chain messaging and Port communication for asset management.
  * @dev    Bridge Agents allow for the encapsulation of business logic as well as the standardize
  *         cross-chain communication, allowing for the creation of custom Routers to perform
- *         actions as a response to remote user requests.
- *         Remote execution is "sandboxed" in two different nestings:
+ *         actions as a response to remote user requests. This contract is for deployment in the Root
+ *         Chain Omnichain Environment based on Arbitrum.
+ *         This contract manages gas spenditure calling `_replenishingGas` after each remote initiated
+ *         execution, as well as requests tokens clearances and tx execution from the `RootBridgeAgentExecutor`.
+ *         Remote execution is "sandboxed" in 3 different nestings:
  *         - 1: Anycall Messaging Layer will revert execution if by the end of the call the
- *              balance in the executionBudget AnycallConfig contract for the Root Bridge Agent
+ *              balance in the executionBudget AnycallConfig contract to the Root Bridge Agent
  *              being called is inferior to the  executionGasSpent, throwing the error `no enough budget`.
  *         - 2: The `RootBridgeAgent` will trigger a revert all state changes if by the end of the remote initiated call
  *              Router interaction the userDepositedGas < executionGasSpent. This is done by calling the `_forceRevert()`
@@ -114,8 +117,8 @@ struct DepositMultipleParams {
  *          0x04         | Call to Root Router without Deposit + singned message.
  *          0x05         | Call to Root Router with Deposit + singned message.
  *          0x06         | Call to Root Router with Deposit of Multiple Tokens + singned message.
- *          0x07         | Call to `retrySettlement()´.
- *          0x08         | Call to `clearDeposit()´.
+ *          0x07         | Call to `retrySettlement()´. (retries sending a settlement + calldata for branch execution with new gas)
+ *          0x08         | Call to `clearDeposit()´. (clears a deposit that has not been executed yet triggering `anyFallback`)
  *
  *
  *          Encoding Scheme for different Root Bridge Agent Deposit Flags:
@@ -141,6 +144,16 @@ struct DepositMultipleParams {
  *          | callOutSignedMultiple = 0x6   |   20b + 1b(n) + 4b(nonce)  |      32b + 32b + 32b + 32b + 3b 	  |   ---	 |  16b + 16b  |
  *          |_______________________________|____________________________|____________________________________|__________|_____________|
  *
+ *          Contract Interaction Flows:
+ *
+ *          - 1) Remote to Remote:
+ *                  RootBridgeAgent.anyExecute**() -> BridgeAgentExecutor.execute**() -> Router.anyExecute**() -> BridgeAgentExecutor (txExecuted) -> RootBridgeAgent (replenishedGas)
+ *
+ *          - 2) Remote to Arbitrum:
+ *                  RootBridgeAgent.anyExecute**() -> BridgeAgentExecutor.execute**() -> Router.anyExecute**() -> BridgeAgentExecutor (txExecuted) -> RootBridgeAgent (replenishedGas)
+ *
+ *          - 3) Arbitrum to Arbitrum:
+ *                  RootBridgeAgent.anyExecute**() -> BridgeAgentExecutor.execute**() -> Router.anyExecute**() -> BridgeAgentExecutor (txExecuted)
  *
  */
 interface IRootBridgeAgent is IApp {

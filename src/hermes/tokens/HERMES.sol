@@ -6,9 +6,9 @@ import {Ownable} from "solady/auth/Ownable.sol";
 import {ERC20} from "solmate/tokens/ERC20.sol";
 
 /**
- * @title Hermes ERC20 token
+ * @title Hermes ERC20 token - Native token for the Hermes Incentive System 
  *  @author Maia DAO (https://github.com/Maia-DAO)
- *  @notice Reward token for Hermes gauge system.
+ *  @notice Native token for the Hermes Incentive System.
  *
  * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣶⣾⡿⢻⣿⣿⣿⣟⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
  * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣟⡿⣷⣿⣿⢤⣾⣿⣻⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

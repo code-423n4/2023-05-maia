@@ -3,17 +3,12 @@ pragma solidity ^0.8.0;
 
 import {Ownable} from "solady/auth/Ownable.sol";
 
-import {BranchBridgeAgent} from "./BranchBridgeAgent.sol";
-import {
-    IApp,
-    DepositParams,
-    DepositMultipleParams,
-    SettlementParams,
-    SettlementMultipleParams
-} from "./interfaces/IBranchBridgeAgent.sol";
-
 import {IBranchRouter as IRouter} from "./interfaces/IBranchRouter.sol";
 
+import {BranchBridgeAgent} from "./BranchBridgeAgent.sol";
+import {SettlementParams, SettlementMultipleParams} from "./interfaces/IBranchBridgeAgent.sol";
+
+/// @title Library for Branch Bridge Agent Executor Deployment
 library DeployBranchBridgeAgentExecutor {
     function deploy() external returns (address) {
         return address(new BranchBridgeAgentExecutor());
@@ -21,9 +16,9 @@ library DeployBranchBridgeAgentExecutor {
 }
 
 /**
- * @title `BranchBridgeAgentExecutor`
+ * @title  Branch Bridge Agent Executor Contract
  * @notice This contract is used for requesting token deposit clearance and
- *         executing transaction requests from the root environment.
+ *         executing transactions in response to requests from the root environment.
  * @dev    Execution is "sandboxed" meaning upon tx failure both token deposits
  *         and interactions with external contracts should be reverted and caught.
  */

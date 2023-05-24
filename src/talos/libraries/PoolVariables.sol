@@ -14,7 +14,7 @@ import {TickMath} from "@uniswap/v3-core/contracts/libraries/TickMath.sol";
 
 import {ITalosOptimizer} from "@talos/interfaces/ITalosOptimizer.sol";
 
-/// @title Liquidity and ticks functions
+/// @title Pool Variables - Library for computing liquidity and ticks for token amounts and prices
 /// @notice Provides functions for computing liquidity and ticks for token amounts and prices
 library PoolVariables {
     using FixedPointMathLib for uint256;

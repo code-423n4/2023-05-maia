@@ -13,7 +13,7 @@ import {bHermesVotes as ERC20Votes} from "./tokens/bHermesVotes.sol";
 
 import {IUtilityManager} from "./interfaces/IUtilityManager.sol";
 
-/// @title Utility Manager Contract.
+/// @title Utility Tokens Manager Contract
 abstract contract UtilityManager is IUtilityManager {
     using SafeTransferLib for address;
 
