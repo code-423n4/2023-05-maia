@@ -47,10 +47,11 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 
 # Maia DAO Ecosystem audit details
 - Total Prize Pool: $300,500 USDC 
-  - HM awards: $187,500 USDC 
-  - QA awards: $25,000 USDC 
-  - Bot Race awards: $25,000 USDC 
-  - Gas awards: $12,500 USDC 
+  - HM awards: $220,000 USDC 
+  - Audit summary awards: $12,500 USDC
+  - QA awards: $6,250 USDC 
+  - Bot Race awards: $5,000 USDC 
+  - Gas awards: $6,250 USDC 
   - Judge awards: $30,000 USDC 
   - Lookout awards: $20,000 USDC 
   - Scout awards: $500 USDC 
