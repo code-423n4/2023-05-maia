@@ -1,49 +1,3 @@
-# ✨ So you want to run an audit
-
-This `README.md` contains a set of checklists for our audit collaboration.
-
-Your audit will use two repos: 
-- **an _audit_ repo** (this one), which is used for scoping your audit and for providing information to wardens
-- **a _findings_ repo**, where issues are submitted (shared with you after the audit) 
-
-Ultimately, when we launch the audit, this repo will be made public and will contain the smart contracts to be reviewed and all the information needed for audit participants. The findings repo will be made public after the audit report is published and your team has mitigated the identified issues.
-
-Some of the checklists in this doc are for **C4 (🐺)** and some of them are for **you as the audit sponsor (⭐️)**.
-
----
-
-# Repo setup
-## ⭐️ Sponsor: Add code to this repo
-203.
-- [x] Create a PR to this repo with the below changes:
-- [x] Provide a self-contained repository with working commands that will build (at least) all in-scope contracts, and commands that will run tests producing gas reports for the relevant contracts.
-- [x] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
-- [x] Please have final versions of contracts and documentation added/updated in this repo **no less than 24 hours prior to audit start time.**
-- [x] Be prepared for a 🚨code freeze🚨 for the duration of the audit — important because it establishes a level playing field. We want to ensure everyone's looking at the same code, no matter when they look during the audit. (Note: this includes your own repo, since a PR can leak alpha to our wardens!)
-
----
-
-## ⭐️ Sponsor: Edit this README
-
-Under "SPONSORS ADD INFO HERE" heading below, include the following:
-
-- [x] Modify the bottom of this `README.md` file to describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing. ([Here's a well-constructed example.](https://github.com/code-423n4/2022-08-foundation#readme))
-  - [x] When linking, please provide all links as full absolute links versus relative links
-  - [x] All information should be provided in markdown format (HTML does not render on Code4rena.com)
-- [x] Under the "Scope" heading, provide the name of each contract and:
-  - [x] source lines of code (excluding blank lines and comments) in each
-  - [ ] external contracts called in each
-  - [x] libraries used in each
-- [x] Describe any novel or unique curve logic or mathematical models implemented in the contracts
-- [x] Does the token conform to the ERC-20 standard? In what specific ways does it differ?
-- [x] Describe anything else that adds any special logic that makes your approach unique
-- [x] Identify any areas of specific concern in reviewing the code
-- [x] Optional / nice to have: pre-record a high-level overview of your protocol (not just specific smart contract functions). This saves wardens a lot of time wading through documentation.
-- [x] See also: [this checklist in Notion](https://code4rena.notion.site/Key-info-for-Code4rena-sponsors-f60764c4c4574bbf8e7a6dbd72cc49b4#0cafa01e6201462e9f78677a39e09746)
-- [ ] Delete this checklist and all text above the line below when you're ready.
-
----
-
 # Maia DAO Ecosystem audit details
 - Total Prize Pool: $300,500 USDC 
   - HM awards: $187,500 USDC 
@@ -298,7 +252,7 @@ There are specific concerns that we would like to highlight for the wardens to p
 | [src/gauges/factories/BaseV2GaugeFactory.sol](src/gauges/factories/BaseV2GaugeFactory.sol) | 88 | Base V2 Gauge Factory | [solady](https://github.com/vectorized/solady), [solmate](https://github.com/transmissions11/solmate) |
 | [src/gauges/factories/BribesFactory.sol](src/gauges/factories/BribesFactory.sol) | 58 | Gauge Bribes Factory | [solady](https://github.com/vectorized/solady), [solmate](https://github.com/transmissions11/solmate) |
 | [src/erc-4626/ERC4626.sol](src/erc-4626/ERC4626.sol) | 86 | Minimal ERC4626 tokenized Vault implementation | [solady](https://github.com/vectorized/solady), [solmate](https://github.com/transmissions11/solmate) |
-| [src/erc-4626/ERC4626MultiToken.sol](src/erc-4626/ERC4626MultiToken.sol) | 184 | Minimal ERC4626 tokenized Vault multi asset implementation | [solady](https://github.com/vectorized/solady), [solmate](https://github.com/transmissions11/solmate) |
+| [src/erc-4626/ERC4626MultiToken.sol](src/erc-4626/ERC4626MultiToken.sol) | 186 | Minimal ERC4626 tokenized Vault multi asset implementation | [solady](https://github.com/vectorized/solady), [solmate](https://github.com/transmissions11/solmate) |
 | [src/erc-4626/UlyssesERC4626.sol](src/erc-4626/UlyssesERC4626.sol) | 73 | Minimal ERC4626 tokenized 1:1 Vault implementation | [solady](https://github.com/vectorized/solady), [solmate](https://github.com/transmissions11/solmate) |
 | [src/erc-4626/ERC4626DepositOnly.sol](src/erc-4626/ERC4626DepositOnly.sol) | 50 | Minimal Deposit Only ERC4626 tokenized Vault implementation | [solady](https://github.com/vectorized/solady), [solmate](https://github.com/transmissions11/solmate) |
 | [src/erc-20/ERC20MultiVotes.sol](src/erc-20/ERC20MultiVotes.sol) | 194 | ERC20 Multi-Delegation Voting contract | [solady](https://github.com/vectorized/solady), [solmate](https://github.com/transmissions11/solmate), [EnumerableSet](lib/EnumerableSet.sol) |
@@ -562,7 +516,7 @@ Ulysses Omnichain Liquidity System uses AnycallV7 (https://github.com/anyswap/mu
 ```
 - If you have a public code repo, please share it here:  [https://twitter.com/MaiaDAOEco](https://github.com/Maia-DAO/maia-ecosystem-monorepo/tree/code4rena-audit)
 - How many contracts are in scope?:   191
-- Total SLoC for these contracts?:  10989
+- Total SLoC for these contracts?:  10991
 - How many external imports are there?:  152
 - How many separate interfaces and struct definitions are there for the contracts within scope?:  116
 - Does most of your code generally use composition or inheritance?:   Composition
