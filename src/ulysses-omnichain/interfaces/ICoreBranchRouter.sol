@@ -14,12 +14,12 @@ pragma solidity ^0.8.0;
  *         -----------------------------
  *         FUNC ID      | FUNC NAME
  *         -------------+---------------
- *         0x01         | clearDeposit
- *         0x02         | finalizeDeposit
- *         0x03         | finalizeWithdraw
- *         0x04         | clearToken
- *         0x05         | clearTokens
- *         0x06         | addGlobalToken
+ *         0x01         | addGlobalToken
+ *         0x02         | addBridgeAgent
+ *         0x03         | toggleBranchBridgeAgentFactory
+ *         0x04         | removeBranchBridgeAgent
+ *         0x05         | manageStrategyToken
+ *         0x06         | managePortStrategy
  *
  */
 interface ICoreBranchRouter {
@@ -42,7 +42,7 @@ interface ICoreBranchRouter {
     ) external payable;
 
     /**
-     * @notice Function to add a token that's not available in the global environment to the branch chain.
+     * @notice Function to add a token that's not available in the global environment from this branch chain.
      * @param _underlyingAddress the address of the token to be added.
      */
     function addLocalToken(address _underlyingAddress) external payable;

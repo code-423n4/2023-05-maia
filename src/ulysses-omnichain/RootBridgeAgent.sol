@@ -178,7 +178,7 @@ contract RootBridgeAgent is IRootBridgeAgent {
     //////////////////////////////////////////////////////////////*/
 
     uint256 internal constant MIN_FALLBACK_RESERVE = 155_000; // 100_000 for anycall + 55_000 for fallback
-    uint256 internal constant MIN_EXECUTION_OVERHEAD = 255_000; // 2 * 100_000 for anycall + 30_000 Pre 1st Gas Checkpoint Execution + 25_000 Post last Gas Checkpoint Execution
+    uint256 internal constant MIN_EXECUTION_OVERHEAD = 155_000; // 100_000 for anycall + 30_000 Pre 1st Gas Checkpoint Execution + 25_000 Post last Gas Checkpoint Execution
 
     uint256 public initialGas;
     UserFeeInfo public userFeeInfo;
@@ -598,7 +598,11 @@ contract RootBridgeAgent is IRootBridgeAgent {
             if (settlement.hTokens[i] != address(0)) {
                 //Move hTokens from Branch to Root + Mint Sufficient hTokens to match new port deposit
                 IPort(localPortAddress).bridgeToRoot(
-                    msg.sender, settlement.hTokens[i], settlement.amounts[i], settlement.deposits[i], settlement.toChain
+                    msg.sender,
+                    IPort(localPortAddress).getGlobalTokenFromLocal(settlement.hTokens[i], settlement.toChain),
+                    settlement.amounts[i],
+                    settlement.deposits[i],
+                    settlement.toChain
                 );
             }
 
@@ -1178,13 +1182,14 @@ contract RootBridgeAgent is IRootBridgeAgent {
     {
         //Get Initial Gas Checkpoint
         uint256 _initialGas = gasleft();
-        //Save to storage
-        initialGas = _initialGas;
+
         //Get fromChain
         (, uint256 _fromChainId) = _getContext();
         uint24 fromChainId = _fromChainId.toUint24();
+
         //Save Flag
         bytes1 flag = data[0];
+
         //Deposit nonce
         uint32 _settlementNonce;
 
@@ -1262,9 +1267,9 @@ contract RootBridgeAgent is IRootBridgeAgent {
                             MODIFIERS
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Modifier for a simple re-entrancy check.
     uint256 internal _unlocked = 1;
 
+    /// @notice Modifier for a simple re-entrancy check.
     modifier lock() {
         require(_unlocked == 1);
         _unlocked = 2;
@@ -1272,13 +1277,13 @@ contract RootBridgeAgent is IRootBridgeAgent {
         _unlocked = 1;
     }
 
-    /// @notice require msg sender == active branch interface
+    /// @notice Modifier verifies the caller is the Anycall Executor or Local Branch Bridge Agent.
     modifier requiresExecutor() {
         _requiresExecutor();
         _;
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Verifies the caller is the Anycall Executor or Local Branch Bridge Agent. Internal function used in modifier to reduce contract bytesize.
     function _requiresExecutor() internal view {
         if (msg.sender == getBranchBridgeAgent[localChainId]) return;
 
@@ -1287,24 +1292,24 @@ contract RootBridgeAgent is IRootBridgeAgent {
         if (getBranchBridgeAgent[fromChainId] != from) revert AnycallUnauthorizedCaller();
     }
 
-    /// @notice require msg sender == active branch interface
+    /// @notice Modifier that verifies msg sender is the Bridge Agent's Router
     modifier requiresRouter() {
         _requiresRouter();
         _;
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Internal function to verify msg sender is Bridge Agent's Router. Reuse to reduce contract bytesize.
     function _requiresRouter() internal view {
         if (msg.sender != localRouterAddress) revert UnrecognizedCallerNotRouter();
     }
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is Bridge Agent Executor.
     modifier requiresAgentExecutor() {
         if (msg.sender != bridgeAgentExecutorAddress) revert UnrecognizedExecutor();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is Local Branch Bridge Agent.
     modifier requiresLocalBranchBridgeAgent() {
         if (msg.sender != getBranchBridgeAgent[localChainId]) {
             revert UnrecognizedExecutor();
@@ -1312,13 +1317,13 @@ contract RootBridgeAgent is IRootBridgeAgent {
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is the Local Port.
     modifier requiresPort() {
         if (msg.sender != localPortAddress) revert UnrecognizedPort();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is the Bridge Agent's Manager.
     modifier requiresManager() {
         if (msg.sender != IPort(localPortAddress).getBridgeAgentManager(address(this))) {
             revert UnrecognizedBridgeAgentManager();

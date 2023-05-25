@@ -71,7 +71,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     //////////////////////////////////////////////////////////////*/
 
     /**
-     * @notice Add a new global token to the omnichain environment.
+     * @notice Add a new Chain (Branch Bridge Agent and respective Router) to a Root Bridge Agent.
      * @param _branchBridgeAgentFactory Address of the branch Bridge Agent Factory.
      * @param _newBranchRouter Address of the new branch router.
      * @param _gasReceiver Address of the excess gas receiver.
@@ -116,7 +116,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     }
 
     /**
-     * @dev Internal function to add a global token to a specific chain. Must be called from a branch interface.
+     * @dev Internal function sync a Root Bridge Agent with a newly created BRanch Bridge Agent.
      *   @param _newBranchBridgeAgent new branch bridge agent address
      *   @param _rootBridgeAgent new branch bridge agent address
      *   @param _fromChain branch chain id.
@@ -133,7 +133,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     ////////////////////////////////////////////////////////////*/
 
     /**
-     * @notice Internal function to add a global token to a specific chain. Must be called from a branch interface.
+     * @notice Internal function to add a global token to a specific chain. Must be called from a branch.
      *   @param _remoteExecutionGas gas to be used in remote execution.
      *   @param _globalAddress global token to be added.
      *   @param _gasReceiver Address of the excess gas receiver.
@@ -218,7 +218,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     ///////////////////////////////////////////////////////////////*/
 
     /**
-     * @notice Add or Remove a new global token to the omnichain environment.
+     * @notice Add or Remove a Branch Bridge Agent Factory.
      * @param _rootBridgeAgentFactory Address of the root Bridge Agent Factory.
      * @param _branchBridgeAgentFactory Address of the branch Bridge Agent Factory.
      * @param _gasReceiver Receiver of any leftover execution gas upon reaching destination network.
@@ -245,7 +245,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     }
 
     /**
-     * @notice Remove a branch bridge agent.
+     * @notice Remove a Branch Bridge Agent.
      * @param _branchBridgeAgent Address of the Branch Bridge Agent to be updated.
      * @param _gasReceiver Receiver of any leftover execution gas upon reaching destination network.
      * @param _toChain Chain Id of the branch chain where the new Bridge Agent will be deployed.
@@ -266,7 +266,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     }
 
     /**
-     * @notice Add or Remove a branch bridge agent.
+     * @notice Add or Remove a Strategy Token.
      * @param _underlyingToken Address of the underlying token to be added for use in Branch strategies.
      * @param _minimumReservesRatio Minimum Branch Port reserves ratio for the underlying token.
      * @param _gasReceiver Receiver of any leftover execution gas upon reaching destination network.
@@ -289,7 +289,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     }
 
     /**
-     * @notice Add, Remove or update a branch bridge agent.
+     * @notice Add, Remove or update a Port Strategy.
      * @param _portStrategy Address of the Port Strategy to be added for use in Branch strategies.
      * @param _underlyingToken Address of the underlying token to be added for use in Branch strategies.
      * @param _dailyManagementLimit Daily management limit of the given token for the Port Strategy.
@@ -442,13 +442,13 @@ contract CoreRootRouter is IRootRouter, Ownable {
         _unlocked = 1;
     }
 
-    /// @notice Modifier that requires caler to be an active branch interface.
+    /// @notice Modifier verifies the caller is the Bridge Agent Executor.
     modifier requiresExecutor() {
         _requiresExecutor();
         _;
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Internal function verifies the caller is the Bridge Agent Executor. Reuse to reduce contract bytesize
     function _requiresExecutor() internal view {
         if (msg.sender != bridgeAgentExecutorAddress) revert UnrecognizedBridgeAgentExecutor();
     }

@@ -134,15 +134,15 @@ contract BaseBranchRouter is IBranchRouter, Ownable {
                                 MODIFIERS
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is the Bridge Agent Executor.
     modifier requiresAgentExecutor() {
         if (msg.sender != bridgeAgentExecutorAddress) revert UnrecognizedBridgeAgentExecutor();
         _;
     }
 
-    /// @notice Modifier for a simple re-entrancy check.
     uint256 internal _unlocked = 1;
 
+    /// @notice Modifier for a simple re-entrancy check.
     modifier lock() {
         require(_unlocked == 1);
         _unlocked = 2;

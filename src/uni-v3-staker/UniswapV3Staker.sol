@@ -493,7 +493,7 @@ contract UniswapV3Staker is IUniswapV3Staker, Multicallable {
 
         UniswapV3Gauge gauge = gauges[pool]; // saves another SLOAD if no tokenId is attached
 
-        if (hermesGaugeBoost.isUserGauge(tokenOwner, address(gauge))) {
+        if (!hermesGaugeBoost.isUserGauge(tokenOwner, address(gauge))) {
             _userAttachements[tokenOwner][pool] = tokenId;
             gauge.attachUser(tokenOwner);
         }

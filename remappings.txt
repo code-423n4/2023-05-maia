@@ -18,3 +18,5 @@ solady/=lib/solady/src/
 @omni/=src/ulysses-omnichain/
 @ulysses-amm/=src/ulysses-amm/
 @ERC4626/=src/erc-4626/
+
+@test/=test/

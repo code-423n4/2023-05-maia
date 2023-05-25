@@ -14,13 +14,12 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 
 # Repo setup
 ## ⭐️ Sponsor: Add code to this repo
-
-- [ ] Create a PR to this repo with the below changes:
-- [ ] Provide a self-contained repository with working commands that will build (at least) all in-scope contracts, and commands that will run tests producing gas reports for the relevant contracts.
-- [ ] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
-- [ ] Please have final versions of contracts and documentation added/updated in this repo **no less than 24 hours prior to audit start time.**
-- [ ] Be prepared for a 🚨code freeze🚨 for the duration of the audit — important because it establishes a level playing field. We want to ensure everyone's looking at the same code, no matter when they look during the audit. (Note: this includes your own repo, since a PR can leak alpha to our wardens!)
-
+203.
+- [x] Create a PR to this repo with the below changes:
+- [x] Provide a self-contained repository with working commands that will build (at least) all in-scope contracts, and commands that will run tests producing gas reports for the relevant contracts.
+- [x] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
+- [x] Please have final versions of contracts and documentation added/updated in this repo **no less than 24 hours prior to audit start time.**
+- [x] Be prepared for a 🚨code freeze🚨 for the duration of the audit — important because it establishes a level playing field. We want to ensure everyone's looking at the same code, no matter when they look during the audit. (Note: this includes your own repo, since a PR can leak alpha to our wardens!)
 
 ---
 
@@ -33,8 +32,8 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
   - [x] All information should be provided in markdown format (HTML does not render on Code4rena.com)
 - [x] Under the "Scope" heading, provide the name of each contract and:
   - [x] source lines of code (excluding blank lines and comments) in each
-  - [x] external contracts called in each
-  - [ ] libraries used in each
+  - [ ] external contracts called in each
+  - [x] libraries used in each
 - [x] Describe any novel or unique curve logic or mathematical models implemented in the contracts
 - [x] Does the token conform to the ERC-20 standard? In what specific ways does it differ?
 - [x] Describe anything else that adds any special logic that makes your approach unique
@@ -78,7 +77,7 @@ Previous Audits by Zellic can be found in the [audits](audits) folder. There are
 
 ### Hermes
 
-Hermes provides significant improvements over V1, which is a soldily fork. There are three ideas behind this model:
+[Hermes](https://v2-docs.maiadao.io/protocols/Hermes/introduction) provides significant improvements over V1, which is a soldily fork. There are three ideas behind this model:
 - Lockers direct emissions to gauges and receive the revenue of each gauge they vote for, proportional to the amount of votes for that gauge
 - Lockers can boost their liquidity farming rewards from gauges by up to 2.5x
 - Lockers receive rebases weekly proportional to inflation
@@ -89,17 +88,17 @@ Hermes also introduced a new gauge system, that accepts any kind of yield. The f
 
 ### Maia
 
-Maia is the first implementation of the Partner bHermes Vault. It allows users to stake their Maia converting it to vMaia and receive two of the three bHermes utilities deposited in the vault. The utilities are: weight and governance. The third utility is boost, which is not claimable by users, but instead used by Maia's Treasury to host a boost aggregator with Talos Positions to enable further accumulation of hermes.
+[Maia](https://v2-docs.maiadao.io/protocols/introduction) is the first implementation of the Partner bHermes Vault. It allows users to stake their Maia converting it to vMaia and receive two of the three bHermes utilities deposited in the vault. The utilities are: weight and governance. The third utility is boost, which is not claimable by users, but instead used by Maia's Treasury to host a boost aggregator with Talos Positions to enable further accumulation of hermes.
 
 ### Talos
 
-Talos is decentralized Uniswap V3 Liquidity Management protocol. It allows anyone to create and manage new LPs. These LPs always start 50/50 and if they have a manager, it can call two strategies: rebalancing and reranging. Talos LPs are Uni V3 NFT wrappers, while this is less gas efficient, it allows for easier integrations with other protocols, like staking in Uniswap V3 gauges.
+[Talos](https://v2-docs.maiadao.io/protocols/Talos/introduction) is decentralized Uniswap V3 Liquidity Management protocol. It allows anyone to create and manage new LPs. These LPs always start 50/50 and if they have a manager, it can call two strategies: rebalancing and reranging. Talos LPs are Uni V3 NFT wrappers, while this is less gas efficient, it allows for easier integrations with other protocols, like staking in Uniswap V3 gauges.
 
 Staked Talos Positions need to be attached to a boost aggregator, anyone can deploy one using Boost Aggregator Factory. This allows users to pool together and share the same boost.
 
 ### Ulysses
 
-Ulysses is devided in two separate concepts: Virtualized and Unified Liquidity. Virtualized liquidity is made possible by using anycall v7 as our messaging layer and means that an asset deposited from a specific chain, is recognized as a different asset from the "same" asset but from a different chain (ex: arb ETH is different from mainnet ETH). Unified Liquidity then unifies these tokens using a stableswap AMM and then depositing them in a Unified Liquidity Token, which is a Multi-Asset ERC4626 tokenized vault. This allows users to deposit any asset from any chain and receive a 1:1 representation of the underlying assets. These Unified Liquidity Tokens can then be used in any other protocol, like Uniswap v3.
+[Ulysses](https://v2-docs.maiadao.io/protocols/Ulysses/introduction) is devided in two separate concepts: Virtualized and Unified Liquidity. Virtualized liquidity is made possible by using anycall v7 as our messaging layer and means that an asset deposited from a specific chain, is recognized as a different asset from the "same" asset but from a different chain (ex: arb ETH is different from mainnet ETH). Unified Liquidity then unifies these tokens using a stableswap AMM and then depositing them in a Unified Liquidity Token, which is a Multi-Asset ERC4626 tokenized vault. This allows users to deposit any asset from any chain and receive a 1:1 representation of the underlying assets. These Unified Liquidity Tokens can then be used in any other protocol, like Uniswap v3.
 
 ## Areas of Concern
 
@@ -558,9 +557,6 @@ When offset (b) is 0, the trapezium is equivalent to a triangle:
 
 Ulysses Omnichain Liquidity System uses AnycallV7 (https://github.com/anyswap/multichain-smart-contracts/tree/main/contracts/anycall/v7) for cross-chain messaging, it is integrated using the Pay on Destination flag (`0x06`), meaning execution gas fees are credited to the recipient contract (Bridge Agent) deducting the gas spent from this contract's `executionBudget` kept in the AnycallConfig contract (https://docs.multichain.org/developer-guide/anycall-v7/estimate-fee-pay-fees-on-destination-chain)
 
-
-*Sponsor, please confirm/edit the information below.*
-
 ## Scoping Details
 
 ```
@@ -588,6 +584,37 @@ Ulysses Omnichain Liquidity System uses AnycallV7 (https://github.com/anyswap/mu
 
 # Tests
 
+Here is an example of a full script to run the first time you build the contracts in Linux:
+```bash
+forge install
+forge build
+python3 -m venv venv
+source venv/bin/activate
+pip3 install pycryptodome
+python3 init_code_hash.py
+deactivate
+forge test --gas-report
+forge snapshot --diff
+```
+
+Here is an example of a full script to run the first time you build the contracts in Windows:
+This script is not tested, if you have any issues, please refer to [pycruptodome's documentation](https://pycryptodome.readthedocs.io/en/latest/src/installation.html#windows-from-sources) or try to hash Uniswap V3 Pool's bytecode through [another method](#update-init_code_hash-in-pooladdress).
+```bash
+forge install
+forge build
+python -m venv venv
+venv\Scripts\activate.bat
+pip install pycryptodome --no-binary :all:
+python init_code_hash.py
+deactivate
+forge test --gas-report
+forge snapshot --diff
+```
+
+Default gas prixe is 10000, but you can change it by adding `--gas-price <gas price>` to the command or by setting the `gas_price` property in the [foundry.toml](foundry.toml) file.
+
+Tests don't compile with --via-ir, but contracts do and will be deployed with --via-ir. Compilation settings that will be used are in [hardhat.config.ts](hardhat.config.ts).
+
 ### Install and First Build
 
 Install libraries using forge and compile contracts.
@@ -600,7 +627,7 @@ forge build
 
 Update [PoolAddress.sol](lib/v3-periphery/contracts/libraries/PoolAddress.sol) with correct INIT_CODE_HASH according to latest build. This has to be run everytime UniswapV3Pool is compiled.
 
-The following example runs a scirpt using a python virtual environment:
+The following example runs a scirpt using a python virtual environment in Linux:
 ```bash
 python3 -m venv venv
 source venv/bin/activate
@@ -609,23 +636,38 @@ python3 init_code_hash.py
 deactivate
 ```
 
-If you wish, you can install the python dependencies globally:
+If you wish, you can install the python dependencies globally and run the script:
 ```bash
 pip3 install pycryptodome
 python3 init_code_hash.py
 ```
 
-If you wish to do this manually, you need to get the bytecode from [out/UniswapV3Pool.sol/UniswapV3Pool.json](out/UniswapV3Pool.sol/UniswapV3Pool.json). To do this, head over to the file and get the bytecode from the "bytecode" and then "object" field. 
-Copy this bytecode and use any tool to hash it using keccak-256 function. 
+The following example runs a scirpt using a python virtual environment in Windows:
+This script is not tested, if you have any issues, please refer to [pycruptodome's documentation](https://pycryptodome.readthedocs.io/en/latest/src/installation.html#windows-from-sources) or try to hash Uniswap V3 Pool's bytecode through the method below.
+```bash
+python -m venv venv
+venv\Scripts\activate.bat
+pip install pycryptodome --no-binary :all:
+python init_code_hash.py
+deactivate
+```
 
-If you use this [tool](https://emn178.github.io/online-tools/keccak_256.html), please remember to remove the first two characters "0x" and select input type to "hex" (default is string).
+If you wish to do this manually or are having issues with the previous scripts. Then please follow these steps:
+- Get the bytecode from [out/UniswapV3Pool.sol/UniswapV3Pool.json](out/UniswapV3Pool.sol/UniswapV3Pool.json). To do this, head over to the file and get the bytecode from the "bytecode" and then "object" field.
+- Copy this bytecode and use any tool to hash it using keccak-256 function. For example this [tool](https://emn178.github.io/online-tools/keccak_256.html), but please remember to remove the first two characters "0x" and __select input type to "hex"__ (default is string).
 
 ### Build PoolAddress and Run Tests
 
+Default gas prixe is 10000, but you can change it by adding `--gas-price <gas price>` to the command or by setting the `gas_price` property in the [foundry.toml](foundry.toml) file.
+
 Compile contracts again to update PoolAddress.sol bytecode and run tests.
 ```bash
-forge build
-forge test --gas-price 10000
+forge test --gas-report
+```
+
+Compile contracts again to update PoolAddress.sol bytecode and check snapshot differece.
+```bash
+forge snapshot --diff
 ```
 
 ## Slither

@@ -176,23 +176,21 @@ contract ArbitrumBranchBridgeAgent is BranchBridgeAgent {
     }
 
     /**
-     * @notice Internal function to deposit gas to the AnycallProxy.
+     * @notice Internal function to deposit gas to the AnycallProxy. Cross-chain messaging + Gas is managed by the Root Bridge Agent
      */
-    function _replenishGas(uint256) internal override {
-        //Cross-chain messaging + Gas is managed by the Root Bridge Agent
-    }
+    function _replenishGas(uint256) internal override {}
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Verifies the caller is the Anycall Executor. Internal function used in modifier to reduce contract bytesize.
     function _requiresExecutor() internal view override {
         if (msg.sender != rootBridgeAgentAddress) revert AnycallUnauthorizedCaller();
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Verifies enough gas is deposited to pay for an eventual fallback call. Reuse to reduce contract bytesize.
     function _requiresFallbackGas() internal view override {
         //Cross-chain messaging + Fallback is managed by the Root Bridge Agent
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Verifies enough gas is deposited to pay for an eventual fallback call.
     function _requiresFallbackGas(uint256) internal view override {
         //Cross-chain messaging + Fallback is managed by the Root Bridge Agent
     }

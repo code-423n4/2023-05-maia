@@ -105,7 +105,7 @@ dist
 .tern-port
 
 # Python Virtual Environment
-.venv
+venv
 
 # Foundry
 cache/

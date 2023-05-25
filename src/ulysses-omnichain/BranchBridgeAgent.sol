@@ -134,8 +134,8 @@ contract BranchBridgeAgent is IBranchBridgeAgent {
 
     uint256 public remoteCallDepositedGas;
 
-    uint256 internal constant MIN_FALLBACK_RESERVE = 185_000; // 100_000 for anycall + 85_000 for fallback
-    uint256 internal constant MIN_EXECUTION_OVERHEAD = 260_000; // 2 * 100_000 for anycall + 30_000 Pre 1st Gas Checkpoint Execution + 25_000 Post last Gas Checkpoint Executions
+    uint256 internal constant MIN_FALLBACK_RESERVE = 185_000; // 100_000 for anycall + 85_000 fallback execution overhead
+    uint256 internal constant MIN_EXECUTION_OVERHEAD = 160_000; // 100_000 for anycall + 35_000 Pre 1st Gas Checkpoint Execution + 25_000 Post last Gas Checkpoint Executions
     uint256 internal constant TRANSFER_OVERHEAD = 24_000;
 
     constructor(
@@ -1360,9 +1360,9 @@ contract BranchBridgeAgent is IBranchBridgeAgent {
                                 MODIFIERS
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Modifier for a simple re-entrancy check.
     uint256 internal _unlocked = 1;
 
+    /// @notice Modifier for a simple re-entrancy check.
     modifier lock() {
         require(_unlocked == 1);
         _unlocked = 2;
@@ -1370,48 +1370,48 @@ contract BranchBridgeAgent is IBranchBridgeAgent {
         _unlocked = 1;
     }
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies caller is the Bridge Agent Executor.
     modifier requiresAgentExecutor() {
         if (msg.sender != bridgeAgentExecutorAddress) revert UnrecognizedBridgeAgentExecutor();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is the RootInterface Contract from Root Chain.
+    /// @notice Modifier verifies the caller is the Anycall Executor. 
     modifier requiresExecutor() {
         _requiresExecutor();
         _;
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Verifies the caller is the Anycall Executor. Internal function used in modifier to reduce contract bytesize.
     function _requiresExecutor() internal view virtual {
         if (msg.sender != localAnyCallExecutorAddress) revert AnycallUnauthorizedCaller();
         (address from,,) = IAnycallExecutor(localAnyCallExecutorAddress).context();
         if (from != rootBridgeAgentAddress) revert AnycallUnauthorizedCaller();
     }
 
-    /// @notice require msg sender == active branch interface
+    /// @notice Modifier that verifies caller is Branch Bridge Agent's Router.
     modifier requiresRouter() {
         _requiresRouter();
         _;
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Internal function that verifies caller is Branch Bridge Agent's Router. Reuse to reduce contract bytesize.
     function _requiresRouter() internal view {
         if (msg.sender != localRouterAddress) revert UnrecognizedCallerNotRouter();
     }
 
-    /// @notice Modifier that verifies msg sender is the RootInterface Contract from Root Chain.
+    /// @notice Modifier that verifies enough gas is deposited to pay for an eventual fallback call.
     modifier requiresFallbackGas() {
         _requiresFallbackGas();
         _;
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Verifies enough gas is deposited to pay for an eventual fallback call. Reuse to reduce contract bytesize.
     function _requiresFallbackGas() internal view virtual {
         if (msg.value <= MIN_FALLBACK_RESERVE * tx.gasprice) revert InsufficientGas();
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Verifies enough gas is deposited to pay for an eventual fallback call.
     function _requiresFallbackGas(uint256 _depositedGas) internal view virtual {
         if (_depositedGas <= MIN_FALLBACK_RESERVE * tx.gasprice) revert InsufficientGas();
     }

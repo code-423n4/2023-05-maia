@@ -17,7 +17,7 @@ interface IRootRouter {
     ///////////////////////////////////////////////////////////////*/
 
     /**
-     *     @notice Function responsible of executing a branch router response.
+     *     @notice Function to execute Branch Bridge Agent system initiated requests with no asset deposit.
      *     @param funcId 1 byte called Router function identifier.
      *     @param encodedData data received from messaging layer.
      *     @param fromChainId chain where the request originated from.
@@ -71,7 +71,7 @@ interface IRootRouter {
     ) external payable returns (bool success, bytes memory result);
 
     /**
-     * @notice Reverts when called
+     * @notice Function responsible of executing a crosschain request with msg.sender without any deposit.
      * @param funcId 1 byte Router function identifier.
      * @param encodedData execution data received from messaging layer.
      * @param userAccount user account address.
@@ -83,7 +83,7 @@ interface IRootRouter {
         returns (bool success, bytes memory result);
 
     /**
-     * @notice Reverts when called
+     * @notice Function responsible of executing a crosschain request which contains cross-chain deposit information and msg.sender attached.
      * @param funcId 1 byte Router function identifier.
      * @param encodedData execution data received from messaging layer.
      * @param dParams cross-chain deposit information.
@@ -99,7 +99,7 @@ interface IRootRouter {
     ) external payable returns (bool success, bytes memory result);
 
     /**
-     * @notice Reverts when called
+     * @notice Function responsible of executing a crosschain request which contains cross-chain deposit information for multiple assets and msg.sender attached.
      * @param funcId 1 byte Router function identifier.
      * @param encodedData execution data received from messaging layer.
      * @param dParams cross-chain multiple deposit information.

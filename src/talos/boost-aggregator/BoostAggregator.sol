@@ -79,7 +79,7 @@ contract BoostAggregator is Ownable, IBoostAggregator {
     function onERC721Received(address, address from, uint256 tokenId, bytes calldata)
         external
         override
-        onlyWhitelisted
+        onlyWhitelisted(from)
         returns (bytes4)
     {
         // update tokenIdRewards prior to staking
@@ -185,9 +185,10 @@ contract BoostAggregator is Ownable, IBoostAggregator {
                                 MODIFIERS
     //////////////////////////////////////////////////////////////*/
 
-    /// @dev only whitelisted addresses
-    modifier onlyWhitelisted() {
-        if (!whitelistedAddresses[msg.sender]) revert Unauthorized();
+    /// @dev Only whitelisted addresses
+    /// @param from The address who the NFT is being transferred from
+    modifier onlyWhitelisted(address from) {
+        if (!whitelistedAddresses[from]) revert Unauthorized();
         _;
     }
 }

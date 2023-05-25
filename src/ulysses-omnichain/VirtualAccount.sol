@@ -65,7 +65,7 @@ contract VirtualAccount is IVirtualAccount {
                                 MODIFIERS
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Modifier that verifies msg sender is the RootInterface Contract from Root Chain.
+    /// @notice Modifier that verifies msg sender is the approved to use the virtual account. Either the owner or an approved router.
     modifier requiresApprovedCaller() {
         if ((!IRootPort(localPortAddress).isRouterApproved(this, msg.sender)) && (msg.sender != userAddress)) {
             revert UnauthorizedCaller();

@@ -506,25 +506,25 @@ contract RootPort is Ownable, IRootPort {
                                 MODIFIERS
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Modifier that verifies msg sender is the RootInterface Contract from Root Chain.
+    /// @notice Modifier that verifies msg sender is the an active Bridge Agent Factory.
     modifier requiresBridgeAgentFactory() {
         if (!isBridgeAgentFactory[msg.sender]) revert UnrecognizedBridgeAgentFactory();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is the RootInterface Contract from Root Chain.
+    /// @notice Modifier that verifies msg sender is an active Bridge Agent.
     modifier requiresBridgeAgent() {
         if (!isBridgeAgent[msg.sender]) revert UnrecognizedBridgeAgent();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is the RootInterface Contract from Root Chain.
+    /// @notice Modifier that verifies msg sender is the Root Chain's Core Router.
     modifier requiresCoreRootRouter() {
         if (!(msg.sender == coreRootRouterAddress)) revert UnrecognizedCoreRootRouter();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is the RootInterface Contract from Root Chain.
+    /// @notice Modifier that verifies msg sender is the Root Chain's Local Branch Port.
     modifier requiresLocalBranchPort() {
         if (!(msg.sender == localBranchPortAddress)) revert UnrecognizedLocalBranchPort();
         _;
