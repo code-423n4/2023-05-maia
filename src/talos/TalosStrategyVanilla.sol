@@ -3,9 +3,9 @@
 pragma solidity >=0.8.0;
 
 import {Ownable} from "solady/auth/Ownable.sol";
-import {ERC20} from "solmate/tokens/ERC20.sol";
-
 import {FixedPointMathLib} from "solady/utils/FixedPointMathLib.sol";
+
+import {ERC20} from "solmate/tokens/ERC20.sol";
 
 import {IUniswapV3Pool} from "@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol";
 
@@ -14,7 +14,7 @@ import {INonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/inter
 import {ITalosOptimizer} from "./interfaces/ITalosOptimizer.sol";
 import {PoolVariables} from "./libraries/PoolVariables.sol";
 
-import {TalosStrategySimpleRebalance, TalosBaseStrategy} from "./strategies/TalosStrategySimpleRebalance.sol";
+import {TalosStrategySimple, TalosBaseStrategy} from "./strategies/TalosStrategySimple.sol";
 
 /// @title Deploy Vanilla
 /// @notice This library deploys talos vanilla strategies
@@ -36,9 +36,9 @@ library DeployVanilla {
     }
 }
 
-/// @notice Minimal tokenized Vault implementation for Uniswap V3 Non Fungible Positions.
+/// @notice Tokenized Vault implementation for Uniswap V3 Non Fungible Positions.
 /// @author Maia DAO (https://github.com/Maia-DAO)
-contract TalosStrategyVanilla is TalosStrategySimpleRebalance {
+contract TalosStrategyVanilla is TalosStrategySimple {
     using FixedPointMathLib for uint256;
     using FixedPointMathLib for uint128;
     using PoolVariables for IUniswapV3Pool;
@@ -61,7 +61,7 @@ contract TalosStrategyVanilla is TalosStrategySimpleRebalance {
         INonfungiblePositionManager _nonfungiblePositionManager,
         address _strategyManager,
         address _owner
-    ) TalosStrategySimpleRebalance(_pool, _optimizer, _nonfungiblePositionManager, _strategyManager, _owner) {}
+    ) TalosStrategySimple(_pool, _optimizer, _nonfungiblePositionManager, _strategyManager, _owner) {}
 
     /*//////////////////////////////////////////////////////////////
                           INTERNAL HOOKS LOGIC

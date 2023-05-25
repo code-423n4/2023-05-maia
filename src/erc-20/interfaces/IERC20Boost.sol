@@ -12,20 +12,26 @@ pragma solidity ^0.8.0;
  *
  *          For example, gauges can be used to direct token emissions, similar to Curve or Hermes V1.
  *          Alternatively, gauges can be used to direct another quantity such as relative access to a line of credit.
+ *          This contract should serve as reference for the amount of boost a user has allocated to a gauge.
+ *          Then liquidity per user should be caculated by using this formula, from curve finance:
+ *          min(UserLiquidity, (40 * UserLiquidity) + (60 * TotalLiquidity * UserBoostBalance / BoostTotal))
  *
  *          "Live" gauges are in the set.
- *          Users can only be attached to live gauges but can remove weight from live or deprecated gauges.
- *          Gauges can be deprecated and reinstated; and will maintain any non-removed weight from before.
+ *          Users can only be attached to live gauges but can detach from live or deprecated gauges.
+ *          Gauges can be deprecated and reinstated; and will maintain any non-removed boost from before.
  *
  *  @dev    SECURITY NOTES: decrementGaugeAllBoost can run out of gas.
  *          Gauges should be removed individually until decrementGaugeAllBoost can be called.
  *
  *          After having the boost attached, getUserBoost() will return the maximum boost a user had allocated to all gauges.
  *
- *          Weight state is preserved on the gauge and user level even when a gauge is removed, in case it is re-added.
- *          This maintains the state efficiently, and global accounting is managed only on the `_totalWeight`
+ *          Boost state is preserved on the gauge and user level even when a gauge is removed, in case it is re-added.
  */
 interface IERC20Boost {
+    /*//////////////////////////////////////////////////////////////
+                                STRUCTS
+    //////////////////////////////////////////////////////////////*/
+
     /**
      * @notice User allocated boost to a gauge and bHermes total supply.
      * @param userGaugeBoost User allocated boost to a gauge.

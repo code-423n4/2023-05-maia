@@ -9,6 +9,8 @@ import {IUniswapV3Factory} from "@uniswap/v3-core/contracts/interfaces/IUniswapV
 import {IUniswapV3Pool} from "@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol";
 import {INonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol";
 
+import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
+
 import {IUniswapV3GaugeFactory} from "@gauges/interfaces/IUniswapV3GaugeFactory.sol";
 import {UniswapV3Gauge} from "@gauges/UniswapV3Gauge.sol";
 import {bHermesBoost} from "@hermes/tokens/bHermesBoost.sol";
@@ -18,7 +20,7 @@ import {IncentiveTime} from "./libraries/IncentiveTime.sol";
 import {NFTPositionInfo} from "./libraries/NFTPositionInfo.sol";
 import {RewardMath} from "./libraries/RewardMath.sol";
 
-import {IERC721Receiver, IUniswapV3Staker} from "./interfaces/IUniswapV3Staker.sol";
+import {IUniswapV3Staker} from "./interfaces/IUniswapV3Staker.sol";
 
 /// @title Uniswap V3 Staker Interface with bHermes Boost.
 contract UniswapV3Staker is IUniswapV3Staker, Multicallable {
@@ -491,7 +493,7 @@ contract UniswapV3Staker is IUniswapV3Staker, Multicallable {
 
         UniswapV3Gauge gauge = gauges[pool]; // saves another SLOAD if no tokenId is attached
 
-        if (hermesGaugeBoost.isUserGauge(tokenOwner, address(gauge))) {
+        if (!hermesGaugeBoost.isUserGauge(tokenOwner, address(gauge))) {
             _userAttachements[tokenOwner][pool] = tokenId;
             gauge.attachUser(tokenOwner);
         }

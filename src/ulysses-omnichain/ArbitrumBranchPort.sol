@@ -5,14 +5,16 @@ pragma solidity ^0.8.0;
 import {Ownable} from "solady/auth/Ownable.sol";
 import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
 
+import {ERC20} from "solmate/tokens/ERC20.sol";
+
 import {IArbitrumBranchPort, IBranchPort} from "./interfaces/IArbitrumBranchPort.sol";
 import {IRootPort} from "./interfaces/IRootPort.sol";
 
 import {ArbitrumBranchBridgeAgent} from "./ArbitrumBranchBridgeAgent.sol";
 import {BranchPort} from "./BranchPort.sol";
-import {ERC20, ERC20hTokenBranch} from "./token/ERC20hTokenBranch.sol";
+import {ERC20hTokenBranch} from "./token/ERC20hTokenBranch.sol";
 
-/// @title `ArbitrumBranchPort`
+/// @title Arbitrum Branch Port Contract
 contract ArbitrumBranchPort is BranchPort, IArbitrumBranchPort {
     using SafeTransferLib for address;
 

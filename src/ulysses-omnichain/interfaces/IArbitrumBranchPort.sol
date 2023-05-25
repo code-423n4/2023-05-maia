@@ -5,11 +5,13 @@ pragma solidity ^0.8.0;
 import {IBranchPort} from "./IBranchPort.sol";
 
 /**
- * @title `ArbitrumBranchPort`
+ * @title  Arbitrum Branch Port Contract
  * @author MaiaDAO
  * @notice Ulyses `Port` implementation for Arbitrum Branch Chain deployment.
- *         This contract is used to manage the deposit and withdrawal of assets
- *         between Arbitrum Chain Branch contracts and the root omnichain environment.
+ *         This contract is used to manage the deposit and withdrawal of underlying assets
+ *         from the Arbitrum Branch Chain in response to Branch Bridge Agents' requests.
+ *         Manages Bridge Agents and their factories as well as the chain's strategies and
+ *         their tokens.
  */
 interface IArbitrumBranchPort is IBranchPort {
     /*///////////////////////////////////////////////////////////////

@@ -1,21 +1,28 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./interfaces/IRootRouter.sol";
-import {IRootBridgeAgent as IBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
+import {Ownable} from "solady/auth/Ownable.sol";
 
-import {IVirtualAccount, Call} from "./interfaces/IVirtualAccount.sol";
+import {ERC20} from "solmate/tokens/ERC20.sol";
+
+import {WETH9} from "./interfaces/IWETH9.sol";
+
 import {IERC20hTokenRootFactory as IFactory} from "./interfaces/IERC20hTokenRootFactory.sol";
+import {IRootRouter} from "./interfaces/IRootRouter.sol";
+import {IRootBridgeAgent as IBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
+import {IRootPort as IPort} from "./interfaces/IRootPort.sol";
+import {IVirtualAccount, Call} from "./interfaces/IVirtualAccount.sol";
 
+import {DepositParams, DepositMultipleParams} from "./interfaces/IRootBridgeAgent.sol";
 import {ERC20hTokenRoot} from "./token/ERC20hTokenRoot.sol";
 
 /**
- * @title `CoreRootRouter`
+ * @title  Core Root Router Contract
  * @author MaiaDAO
- * @notice Core Branch Router implementation for Root Environment deployment.
+ * @notice Core Root Router implementation for Root Environment deployment.
  *         This contract is responsible for permissionlessly adding new
  *         tokens or Bridge Agents to the system as well as key governance
- *         enabled system functions (i.e. `addNewChain`).
+ *         enabled system functions (i.e. `toggleBranchBridgeAgentFactory`).
  * @dev    Func IDs for calling these functions through messaging layer:
  *
  *         CROSS-CHAIN MESSAGING FUNCIDs
@@ -64,7 +71,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     //////////////////////////////////////////////////////////////*/
 
     /**
-     * @notice Add a new global token to the omnichain environment.
+     * @notice Add a new Chain (Branch Bridge Agent and respective Router) to a Root Bridge Agent.
      * @param _branchBridgeAgentFactory Address of the branch Bridge Agent Factory.
      * @param _newBranchRouter Address of the new branch router.
      * @param _gasReceiver Address of the excess gas receiver.
@@ -109,7 +116,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     }
 
     /**
-     * @dev Internal function to add a global token to a specific chain. Must be called from a branch interface.
+     * @dev Internal function sync a Root Bridge Agent with a newly created BRanch Bridge Agent.
      *   @param _newBranchBridgeAgent new branch bridge agent address
      *   @param _rootBridgeAgent new branch bridge agent address
      *   @param _fromChain branch chain id.
@@ -126,7 +133,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     ////////////////////////////////////////////////////////////*/
 
     /**
-     * @notice Internal function to add a global token to a specific chain. Must be called from a branch interface.
+     * @notice Internal function to add a global token to a specific chain. Must be called from a branch.
      *   @param _remoteExecutionGas gas to be used in remote execution.
      *   @param _globalAddress global token to be added.
      *   @param _gasReceiver Address of the excess gas receiver.
@@ -211,7 +218,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     ///////////////////////////////////////////////////////////////*/
 
     /**
-     * @notice Add or Remove a new global token to the omnichain environment.
+     * @notice Add or Remove a Branch Bridge Agent Factory.
      * @param _rootBridgeAgentFactory Address of the root Bridge Agent Factory.
      * @param _branchBridgeAgentFactory Address of the branch Bridge Agent Factory.
      * @param _gasReceiver Receiver of any leftover execution gas upon reaching destination network.
@@ -238,7 +245,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     }
 
     /**
-     * @notice Remove a branch bridge agent.
+     * @notice Remove a Branch Bridge Agent.
      * @param _branchBridgeAgent Address of the Branch Bridge Agent to be updated.
      * @param _gasReceiver Receiver of any leftover execution gas upon reaching destination network.
      * @param _toChain Chain Id of the branch chain where the new Bridge Agent will be deployed.
@@ -259,7 +266,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     }
 
     /**
-     * @notice Add or Remove a branch bridge agent.
+     * @notice Add or Remove a Strategy Token.
      * @param _underlyingToken Address of the underlying token to be added for use in Branch strategies.
      * @param _minimumReservesRatio Minimum Branch Port reserves ratio for the underlying token.
      * @param _gasReceiver Receiver of any leftover execution gas upon reaching destination network.
@@ -282,7 +289,7 @@ contract CoreRootRouter is IRootRouter, Ownable {
     }
 
     /**
-     * @notice Add, Remove or update a branch bridge agent.
+     * @notice Add, Remove or update a Port Strategy.
      * @param _portStrategy Address of the Port Strategy to be added for use in Branch strategies.
      * @param _underlyingToken Address of the underlying token to be added for use in Branch strategies.
      * @param _dailyManagementLimit Daily management limit of the given token for the Port Strategy.
@@ -435,13 +442,13 @@ contract CoreRootRouter is IRootRouter, Ownable {
         _unlocked = 1;
     }
 
-    /// @notice Modifier that requires caler to be an active branch interface.
+    /// @notice Modifier verifies the caller is the Bridge Agent Executor.
     modifier requiresExecutor() {
         _requiresExecutor();
         _;
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Internal function verifies the caller is the Bridge Agent Executor. Reuse to reduce contract bytesize
     function _requiresExecutor() internal view {
         if (msg.sender != bridgeAgentExecutorAddress) revert UnrecognizedBridgeAgentExecutor();
     }

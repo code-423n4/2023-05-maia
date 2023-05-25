@@ -2,10 +2,11 @@
 pragma solidity ^0.8.0;
 
 /**
- * @title `ERC20hTokenBranch`
+ * @title  ERC20 hToken Branch Contract
  * @author MaiaDAO.
- * @notice ERC20 hToken contract deployed in the Branch Chains of the Hermes Omnichain Liquidity System.
- *         Represents a token deposited in the BranchPort.
+ * @notice ERC20 hToken contract deployed in the Branch Chains of the Ulysses Omnichain Liquidity System.
+ *         1:1 ERC20 representation of a token deposited in a  Branch Chain's Port. Is only minted upon
+ *         user request otherwise underlying tokens are cleared and the matching Root hToken has been burned.
  */
 interface IERC20hTokenBranch {
     /*///////////////////////////////////////////////////////////////

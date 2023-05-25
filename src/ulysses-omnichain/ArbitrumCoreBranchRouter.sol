@@ -3,14 +3,16 @@ pragma solidity ^0.8.0;
 
 import {ERC20} from "solmate/tokens/ERC20.sol";
 
-import "./CoreBranchRouter.sol";
+import {IBranchBridgeAgent as IBridgeAgent} from "./interfaces/IBranchBridgeAgent.sol";
+import {IBranchBridgeAgentFactory as IBridgeAgentFactory} from "./interfaces/IBranchBridgeAgentFactory.sol";
+import {IERC20hTokenBranchFactory as IFactory} from "./interfaces/IERC20hTokenBranchFactory.sol";
+import {IArbitrumBranchPort as IPort} from "./interfaces/IArbitrumBranchPort.sol";
 
+import {CoreBranchRouter} from "./CoreBranchRouter.sol";
 import {ERC20hTokenBranch as ERC20hToken} from "./token/ERC20hTokenBranch.sol";
 
-import {IERC20hTokenBranchFactory as IFactory} from "./interfaces/IERC20hTokenBranchFactory.sol";
-
 /**
- * @title `ArbitrumCoreBranchRouter`
+ * @title  Arbitrum Core Branch Router Contract
  * @author MaiaDAO
  * @notice Core Branch Router implementation for Arbitrum deployment.
  *         This contract is responsible for permissionlessly adding new
@@ -25,12 +27,11 @@ import {IERC20hTokenBranchFactory as IFactory} from "./interfaces/IERC20hTokenBr
  *         -----------------------------
  *         FUNC ID      | FUNC NAME
  *         -------------+---------------
- *         0x01         | clearDeposit
- *         0x02         | finalizeDeposit
- *         0x03         | finalizeWithdraw
- *         0x04         | clearToken
- *         0x05         | clearTokens
- *         0x06         | addGlobalToken
+ *         0x02         | addBridgeAgent
+ *         0x03         | toggleBranchBridgeAgentFactory
+ *         0x04         | removeBranchBridgeAgent
+ *         0x05         | manageStrategyToken
+ *         0x06         | managePortStrategy
  *
  */
 contract ArbitrumCoreBranchRouter is CoreBranchRouter {
@@ -63,13 +64,12 @@ contract ArbitrumCoreBranchRouter is CoreBranchRouter {
     //////////////////////////////////////////////////////////////*/
 
     /**
-     * @notice Function to deploy/add a token already active in the global environment in the Root Chain. Must be called from another chain.
+     * @notice Add a new Branch Bridge Agent and respective Router to a Root Bridge Agent.
      *  @param _newBranchRouter the address of the new branch router.
      *  @param _branchBridgeAgentFactory the address of the branch bridge agent factory.
      *  @param _rootBridgeAgent the address of the root bridge agent.
      *  @param _rootBridgeAgentFactory the address of the root bridge agent factory.
-     *  @dev FUNC ID: 9
-     *  @dev all hTokens have 18 decimals.
+     *  @dev FUNC ID: 4
      *
      */
     function _receiveAddBridgeAgent(

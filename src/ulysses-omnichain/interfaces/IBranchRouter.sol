@@ -10,10 +10,12 @@ import {
 } from "./IBranchBridgeAgent.sol";
 
 /**
- * @title `BaseBranchRouter`
+ * @title  BaseBranchRouter Contract
  * @author MaiaDAO
  * @notice Base Branch Contract for interfacing with Branch Bridge Agents.
- *         This contract for deployment in Branch Chains of the Ulysses Omnichain System.
+ *         This contract for deployment in Branch Chains of the Ulysses Omnichain System,
+ *         additional logic can be implemented to perform actions before sending cross-chain
+ *         requests, as well as in response to requests from the Root Omnichain Environment.
  */
 interface IBranchRouter {
     /*///////////////////////////////////////////////////////////////

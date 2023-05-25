@@ -2,5 +2,24 @@
 src = 'src'
 out = 'out'
 libs = ['lib']
+solc = "0.8.18"
+# via_ir = true
+
+# Necessary for testing
+gas_price = 10000
+
+[fuzz]
+# Number of Fuzz runs to perform
+# runs = 1000 # default = 256
+
+[invariant]
+# If true, the Invariant will fail if a revert is detected
+# fail_on_revert = true # default = false
+
+# Number of Invariant runs to perform
+# runs = 50 # default = 256
+
+# Number of runs to perform per Invariant run
+# depth = 75 # default = 15
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config

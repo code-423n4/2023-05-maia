@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 
 import {Ownable} from "solady/auth/Ownable.sol";
 import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
+
 import {ERC20} from "solmate/tokens/ERC20.sol";
 
 import {IPortStrategy} from "./interfaces/IPortStrategy.sol";
@@ -11,7 +12,7 @@ import {IBranchPort} from "./interfaces/IBranchPort.sol";
 
 import {ERC20hTokenBranch} from "./token/ERC20hTokenBranch.sol";
 
-/// @title `BranchPort`
+/// @title Branch Port - Omnichain Token Management Contract
 contract BranchPort is Ownable, IBranchPort {
     using SafeTransferLib for address;
 
@@ -392,33 +393,33 @@ contract BranchPort is Ownable, IBranchPort {
                             MODIFIERS
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is the Branch Chain's Core Root Router.
     modifier requiresCoreRouter() {
         if (msg.sender != coreBranchRouterAddress) revert UnrecognizedCore();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is an active Bridge Agent.
     modifier requiresBridgeAgent() {
         if (!isBridgeAgent[msg.sender]) revert UnrecognizedBridgeAgent();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is an active Bridge Agent Factory.
     modifier requiresBridgeAgentFactory() {
         if (!isBridgeAgentFactory[msg.sender]) revert UnrecognizedBridgeAgentFactory();
         _;
     }
 
-    /// @notice require msg sender == active port strategy
+    /// @notice Modifier that require msg sender to be an active Port Strategy
     modifier requiresPortStrategy(address _token) {
         if (!isPortStrategy[msg.sender][_token]) revert UnrecognizedPortStrategy();
         _;
     }
 
-    /// @notice Modifier for a simple re-entrancy check.
     uint256 internal _unlocked = 1;
 
+    /// @notice Modifier for a simple re-entrancy check.
     modifier lock() {
         require(_unlocked == 1);
         _unlocked = 2;

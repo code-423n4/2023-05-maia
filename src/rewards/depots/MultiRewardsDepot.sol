@@ -7,7 +7,7 @@ import {RewardsDepot} from "./RewardsDepot.sol";
 
 import {IMultiRewardsDepot} from "../interfaces/IMultiRewardsDepot.sol";
 
-/// @title Multiple Rewards Depot
+/// @title Multiple Rewards Depot - Contract for multiple reward token storage
 contract MultiRewardsDepot is Ownable, RewardsDepot, IMultiRewardsDepot {
     /*///////////////////////////////////////////////////////////////
                         REWARDS DEPOT STATE

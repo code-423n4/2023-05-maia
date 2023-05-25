@@ -10,7 +10,7 @@ import {ERC20Boost} from "@ERC20/ERC20Boost.sol";
 import {IbHermesUnderlying} from "../interfaces/IbHermesUnderlying.sol";
 
 /**
- * @title Burned Hermes Boost Token
+ * @title bHermesBoost: Earns rights to boosted Hermes yield
  *  @author Maia DAO (https://github.com/Maia-DAO)
  *  @notice An ERC20 with an embedded attachment mechanism to
  *          keep track of boost allocations to gauges.

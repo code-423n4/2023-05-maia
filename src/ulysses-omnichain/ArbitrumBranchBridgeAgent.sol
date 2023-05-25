@@ -1,9 +1,38 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./BranchBridgeAgent.sol";
+import {SafeCastLib} from "solady/utils/SafeCastLib.sol";
+import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
+
+import {ERC20} from "solmate/tokens/ERC20.sol";
+
+import {WETH9} from "./interfaces/IWETH9.sol";
+
+import {AnycallFlags} from "./lib/AnycallFlags.sol";
+import {IAnycallProxy} from "./interfaces/IAnycallProxy.sol";
+import {IAnycallConfig} from "./interfaces/IAnycallConfig.sol";
+import {IAnycallExecutor} from "./interfaces/IAnycallExecutor.sol";
+
+import {ERC20hTokenBranch as ERC20hToken} from "./token/ERC20hTokenBranch.sol";
+import {IBranchRouter as IRouter} from "./interfaces/IBranchRouter.sol";
 import {IArbitrumBranchPort as IArbPort} from "./interfaces/IArbitrumBranchPort.sol";
 import {IRootBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
+
+import {
+    IBranchBridgeAgent,
+    IApp,
+    Deposit,
+    DepositStatus,
+    DepositInput,
+    DepositMultipleInput,
+    DepositParams,
+    DepositMultipleParams,
+    SettlementParams,
+    SettlementMultipleParams
+} from "./interfaces/IBranchBridgeAgent.sol";
+
+import {BranchBridgeAgent} from "./BranchBridgeAgent.sol";
+import {BranchBridgeAgentExecutor, DeployBranchBridgeAgentExecutor} from "./BranchBridgeAgentExecutor.sol";
 
 library DeployArbitrumBranchBridgeAgent {
     function deploy(
@@ -28,7 +57,7 @@ library DeployArbitrumBranchBridgeAgent {
 }
 
 /**
- * @title `ArbitrumBranchBridgeAgent`
+ * @title  Manages bridging transactions between root and Arbitrum branch
  * @author MaiaDAO
  * @notice This contract is used for interfacing with Users/Routers acting as a middleman
  *         to access Anycall cross-chain messaging and Port communication for asset management
@@ -147,23 +176,21 @@ contract ArbitrumBranchBridgeAgent is BranchBridgeAgent {
     }
 
     /**
-     * @notice Internal function to deposit gas to the AnycallProxy.
+     * @notice Internal function to deposit gas to the AnycallProxy. Cross-chain messaging + Gas is managed by the Root Bridge Agent
      */
-    function _replenishGas(uint256) internal override {
-        //Cross-chain messaging + Gas is managed by the Root Bridge Agent
-    }
+    function _replenishGas(uint256) internal override {}
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Verifies the caller is the Anycall Executor. Internal function used in modifier to reduce contract bytesize.
     function _requiresExecutor() internal view override {
         if (msg.sender != rootBridgeAgentAddress) revert AnycallUnauthorizedCaller();
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Verifies enough gas is deposited to pay for an eventual fallback call. Reuse to reduce contract bytesize.
     function _requiresFallbackGas() internal view override {
         //Cross-chain messaging + Fallback is managed by the Root Bridge Agent
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Verifies enough gas is deposited to pay for an eventual fallback call.
     function _requiresFallbackGas(uint256) internal view override {
         //Cross-chain messaging + Fallback is managed by the Root Bridge Agent
     }

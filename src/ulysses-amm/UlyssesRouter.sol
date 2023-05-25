@@ -2,19 +2,14 @@
 pragma solidity ^0.8.0;
 
 import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
-import {FixedPointMathLib} from "solady/utils/FixedPointMathLib.sol";
-
-import {ERC20} from "solmate/tokens/ERC20.sol";
-import {ERC4626, ERC20} from "solmate/mixins/ERC4626.sol";
 
 import {UlyssesPool} from "./UlyssesPool.sol";
 
 import {IUlyssesRouter, UlyssesFactory} from "./interfaces/IUlyssesRouter.sol";
 
-/// @title Ulysses Router
+/// @title Ulysses Router - Handles routing of transactions in the Ulysses AMM
 contract UlyssesRouter is IUlyssesRouter {
     using SafeTransferLib for address;
-    using FixedPointMathLib for uint256;
 
     /// @notice Mapping from pool id to Ulysses pool.
     mapping(uint256 => UlyssesPool) private pools;

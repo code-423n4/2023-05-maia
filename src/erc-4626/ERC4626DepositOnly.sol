@@ -8,8 +8,8 @@ import {ERC20} from "solmate/tokens/ERC20.sol";
 
 import {IERC4626DepositOnly} from "./interfaces/IERC4626DepositOnly.sol";
 
-/// @notice Minimal Deposit Only ERC4626 tokenized Vault implementation.
-/// @author Solmate (https://github.com/transmissions11/solmate/blob/main/src/mixins/ERC4626.sol)
+/// @title Minimal Deposit Only ERC4626 tokenized Vault implementation
+/// @author Maia DAO (https://github.com/Maia-DAO)
 abstract contract ERC4626DepositOnly is ERC20, IERC4626DepositOnly {
     using SafeTransferLib for address;
     using FixedPointMathLib for uint256;

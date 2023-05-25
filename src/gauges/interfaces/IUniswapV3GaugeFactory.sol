@@ -11,7 +11,7 @@ import {IBaseV2GaugeFactory} from "./IBaseV2GaugeFactory.sol";
 /**
  * @title Uniswap V3 Gauge Factory
  *  @author Maia DAO (https://github.com/Maia-DAO)
- *  @notice Handles the creation of new gauges and the management of existing ones.
+ *  @notice Handles the creation of new Uniswap V3 gauges and the management of existing ones.
  *          Adds and removes gauges, and allows the bribe factory
  *          to add and remove bribes to gauges.
  *

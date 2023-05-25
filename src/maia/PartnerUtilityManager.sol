@@ -1,12 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {ERC20Votes, SafeTransferLib, UtilityManager, IUtilityManager} from "@hermes/UtilityManager.sol";
+import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
+
+import {ERC20Votes, UtilityManager, IUtilityManager} from "@hermes/UtilityManager.sol";
 
 import {IBaseVault} from "./interfaces/IBaseVault.sol";
 import {IPartnerUtilityManager} from "./interfaces/IPartnerUtilityManager.sol";
 
-/// @title Partner Utility Manager Contract.
+/// @title Partner Utility Tokens Manager Contract
 abstract contract PartnerUtilityManager is UtilityManager, IPartnerUtilityManager {
     using SafeTransferLib for address;
 

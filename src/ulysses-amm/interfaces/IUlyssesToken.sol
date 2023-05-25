@@ -2,9 +2,9 @@
 pragma solidity ^0.8.0;
 
 /**
- * @title Ulysses Token
+ * @title Ulysses Token - tokenized Vault multi asset implementation for Ulysses pools
  *  @author Maia DAO (https://github.com/Maia-DAO)
- *  @notice ERC4626 multiple token implementation for Ulysses.
+ *  @notice ERC4626 multiple token implementation intended for Ulysses Pools.
  *          Balances are always 1 : 1 with the underlying assets.
  *  @dev Allows to add/remove new tokens and change exisiting weights
  *       but there needs to be at least 1 token and the caller is

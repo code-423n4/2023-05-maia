@@ -1,32 +1,33 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import {Ownable} from "solady/auth/Ownable.sol";
 import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
 
-import "./interfaces/IRootRouter.sol";
+import {IMulticall2 as IMulticall} from "./interfaces/IMulticall2.sol";
 import {IRootBridgeAgent as IBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
+import {IRootRouter} from "./interfaces/IRootRouter.sol";
 import {IVirtualAccount, Call} from "./interfaces/IVirtualAccount.sol";
 
-import {IMulticall2 as IMulticall} from "./interfaces/IMulticall2.sol";
-
 import {ERC20hTokenRoot} from "./token/ERC20hTokenRoot.sol";
+import {DepositParams, DepositMultipleParams, Settlement} from "./interfaces/IRootBridgeAgent.sol";
 
 struct OutputParams {
-    address recipient;
-    address outputToken;
-    uint256 amountOut;
-    uint256 depositOut;
+    address recipient; // Address to receive the output assets.
+    address outputToken; // Address of the output hToken.
+    uint256 amountOut; // Amount of output hTokens to send.
+    uint256 depositOut; // Amount of output underlying token to send.
 }
 
 struct OutputMultipleParams {
-    address recipient;
-    address[] outputTokens;
-    uint256[] amountsOut;
-    uint256[] depositsOut;
+    address recipient; // Address to receive the output assets.
+    address[] outputTokens; // Addresses of the output hTokens.
+    uint256[] amountsOut; // Amounts of output hTokens to send.
+    uint256[] depositsOut; // Amounts of output underlying tokens to send.
 }
 
 /**
- * @title `MulticallRootRouter`
+ * @title  Multicall Root Router Contract
  * @author MaiaDAO
  * @notice Root Router implementation for interfacing with third party dApps present in the Root Omnichain Environment.
  * @dev    Func IDs for calling these  functions through messaging layer:
@@ -46,8 +47,6 @@ struct OutputMultipleParams {
 contract MulticallRootRouter is IRootRouter, Ownable {
     using SafeTransferLib for address;
 
-    uint256 private constant MAX_LENGTH = 20 * 32;
-
     /// @notice Address for Local Port Address where funds deposited from this chain are kept, managed and supplied to different Port Strategies.
     uint256 public immutable localChainId;
 
@@ -61,8 +60,6 @@ contract MulticallRootRouter is IRootRouter, Ownable {
     address payable public bridgeAgentAddress;
 
     address public bridgeAgentExecutorAddress;
-
-    uint256 public constant MIN_AMOUNT = 10 ** 6;
 
     constructor(uint256 _localChainId, address _localPortAddress, address _multicallAddress) {
         require(_localPortAddress != address(0), "Local Port Address cannot be 0");
@@ -491,9 +488,9 @@ contract MulticallRootRouter is IRootRouter, Ownable {
                             MODIFIERS
     ////////////////////////////////////////////////////////////*/
 
-    /// @notice Modifier for a simple re-entrancy check.
     uint256 internal _unlocked = 1;
 
+    /// @notice Modifier for a simple re-entrancy check.
     modifier lock() {
         require(_unlocked == 1);
         _unlocked = 2;
@@ -501,12 +498,13 @@ contract MulticallRootRouter is IRootRouter, Ownable {
         _unlocked = 1;
     }
 
+    /// @notice Modifier verifies the caller is the Bridge Agent Executor.
     modifier requiresExecutor() {
         _requiresExecutor();
         _;
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Verifies the caller is the Bridge Agent Executor. Internal function used in modifier to reduce contract bytesize.
     function _requiresExecutor() internal view {
         require(msg.sender == bridgeAgentExecutorAddress, "Unauthorized Caller");
     }

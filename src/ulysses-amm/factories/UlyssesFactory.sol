@@ -34,7 +34,7 @@ library UlyssesPoolDeployer {
     }
 }
 
-/// @title Factory responsible for managing Ulysses instances.
+/// @title Factory of new Ulysses instances
 contract UlyssesFactory is Ownable, IUlyssesFactory {
     using SafeTransferLib for ERC20;
     using FixedPointMathLib for uint256;

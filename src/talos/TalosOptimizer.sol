@@ -6,7 +6,7 @@ import {Ownable} from "solady/auth/Ownable.sol";
 
 import {ITalosOptimizer} from "./interfaces/ITalosOptimizer.sol";
 
-/// @title Permissioned Optimizer variables
+/// @title Talos Optimizer - Manages optimization variables for Talos Positions
 contract TalosOptimizer is Ownable, ITalosOptimizer {
     /*//////////////////////////////////////////////////////////////
                         TALOS OPTIMIZER STATE

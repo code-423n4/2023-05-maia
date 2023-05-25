@@ -1,15 +1,14 @@
-import fs from "fs";
 import "hardhat-preprocessor";
 import "hardhat-contract-sizer";
 import "hardhat-interface-generator";
-import { HardhatUserConfig, task } from "hardhat/config";
+import { HardhatUserConfig } from "hardhat/config";
 import '@nomicfoundation/hardhat-foundry';
 
 const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       {
-        version: "0.8.16",
+        version: '0.8.18',
         settings: {
           viaIR: true,
           optimizer: {
@@ -17,14 +16,14 @@ const config: HardhatUserConfig = {
             runs: 1_000_000,
           },
           metadata: {
-            bytecodeHash: "none",
+            bytecodeHash: 'none',
           },
         },
       },
     ],
     overrides: {
-      "src/talos/TalosStrategyVanilla.sol": {
-        version: "0.8.16",
+      'src/talos/TalosStrategyVanilla.sol': {
+        version: '0.8.18',
         settings: {
           viaIR: true,
           optimizer: {
@@ -32,12 +31,12 @@ const config: HardhatUserConfig = {
             runs: 200,
           },
           metadata: {
-            bytecodeHash: "none",
+            bytecodeHash: 'none',
           },
         },
       },
-      "src/talos/TalosStrategyStaked.sol": {
-        version: "0.8.16",
+      'src/talos/TalosStrategyStaked.sol': {
+        version: '0.8.18',
         settings: {
           viaIR: true,
           optimizer: {
@@ -45,12 +44,12 @@ const config: HardhatUserConfig = {
             runs: 200,
           },
           metadata: {
-            bytecodeHash: "none",
+            bytecodeHash: 'none',
           },
         },
       },
-      "src/ulysses-omnichain/RootBridgeAgent.sol": {
-        version: "0.8.16",
+      'src/ulysses-omnichain/RootBridgeAgent.sol': {
+        version: '0.8.18',
         settings: {
           viaIR: true,
           optimizer: {
@@ -58,12 +57,12 @@ const config: HardhatUserConfig = {
             runs: 200,
           },
           metadata: {
-            bytecodeHash: "none",
+            bytecodeHash: 'none',
           },
         },
       },
-      "src/ulysses-omnichain/BranchBridgeAgent.sol": {
-        version: "0.8.16",
+      'src/ulysses-omnichain/BranchBridgeAgent.sol': {
+        version: '0.8.18',
         settings: {
           viaIR: true,
           optimizer: {
@@ -71,12 +70,12 @@ const config: HardhatUserConfig = {
             runs: 200,
           },
           metadata: {
-            bytecodeHash: "none",
+            bytecodeHash: 'none',
           },
         },
       },
-      "src/ulysses-omnichain/ArbitrumBranchBridgeAgent.sol": {
-        version: "0.8.16",
+      'src/ulysses-omnichain/BranchBridgeAgentFactory.sol': {
+        version: '0.8.18',
         settings: {
           viaIR: true,
           optimizer: {
@@ -84,11 +83,11 @@ const config: HardhatUserConfig = {
             runs: 200,
           },
           metadata: {
-            bytecodeHash: "none",
+            bytecodeHash: 'none',
           },
         },
       },
-    }
+    },
   },
   networks: {
     hardhat: {

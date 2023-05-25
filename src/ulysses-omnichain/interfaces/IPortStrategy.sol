@@ -2,13 +2,12 @@
 
 pragma solidity ^0.8.0;
 
-import {ERC20} from "solmate/tokens/ERC20.sol";
-import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
-
 /**
- * @title IPortStrategy Interface.
- * @author MaiaDAO.
- * @notice Interface for Brach Port Strategy contracts.
+ * @title  Base PortStrategy Contract
+ * @author MaiaDAO
+ * @notice Base Contract for interfacing with Brach Port Strategy contracts
+ *         whitelisted by the chain's Branch Port to manage a limited amount
+ *         of one or more Strategy Tokens.
  */
 interface IPortStrategy {
     /*///////////////////////////////////////////////////////////////

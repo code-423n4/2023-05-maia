@@ -14,7 +14,7 @@ import {FlywheelCore} from "@rewards/FlywheelCoreStrategy.sol";
 import {BaseV2GaugeFactory, BaseV2GaugeManager} from "./BaseV2GaugeManager.sol";
 import {IBribesFactory} from "../interfaces/IBribesFactory.sol";
 
-/// @title Bribes Factory.
+/// @title Gauge Bribes Factory
 contract BribesFactory is Ownable, IBribesFactory {
     /*///////////////////////////////////////////////////////////////
                         BRIBES FACTORY STATE

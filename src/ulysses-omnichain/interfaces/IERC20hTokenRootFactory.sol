@@ -4,9 +4,11 @@ pragma solidity ^0.8.0;
 import {ERC20hTokenRoot} from "../token/ERC20hTokenRoot.sol";
 
 /**
- * @title ERC20 hToken Contract for deployment of new hTokens in Root Chain of Hermes Omnichain Incentives System.
+ * @title  Factory Contract for Root hTokens
  * @author MaiaDAO
- * @dev This contract is used to deploy new hTokens in the Root Chain of the Hermes Omnichain Incentives System.
+ * @notice Factory contract allowing for permissionless deployment of new Root hTokens in the
+ *  	   Root Chain of Ulysses Omnichain Liquidity Protocol.
+ * @dev    This contract is called by the chain's Core Root Router.
  */
 interface IERC20hTokenRootFactory {
     /*///////////////////////////////////////////////////////////////

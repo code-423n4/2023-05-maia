@@ -8,7 +8,7 @@ import {IUniswapV3Staker} from "@v3-staker/interfaces/IUniswapV3Staker.sol";
 import {BaseV2Gauge, FlywheelGaugeRewards} from "./BaseV2Gauge.sol";
 import {IUniswapV3Gauge} from "./interfaces/IUniswapV3Gauge.sol";
 
-/// @title Uniswap V3 Gauge, implementation of Base V2 Gauge.
+/// @title Uniswap V3 Gauge - Handles liquidity provider incentives for Uniswap V3 in the Base V2 Gauge implementation.
 contract UniswapV3Gauge is BaseV2Gauge, IUniswapV3Gauge {
     using SafeTransferLib for address;
 

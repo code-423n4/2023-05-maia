@@ -8,11 +8,7 @@ import {ERC20} from "solmate/tokens/ERC20.sol";
 
 import {IERC20hTokenRootFactory, ERC20hTokenRoot} from "../interfaces/IERC20hTokenRootFactory.sol";
 
-/**
- * @title ERC20hTokenRoot Factory Contract
- * @author MaiaDAO
- * @dev Contract for deployment in Root Chain of Ulysses Omnichain Liquidity System
- */
+/// @title ERC20 hToken Root Factory Contract
 contract ERC20hTokenRootFactory is Ownable, IERC20hTokenRootFactory {
     using SafeTransferLib for address;
 

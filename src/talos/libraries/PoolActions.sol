@@ -11,9 +11,9 @@ import {ITalosOptimizer} from "@talos/interfaces/ITalosOptimizer.sol";
 
 import {PoolVariables} from "./PoolVariables.sol";
 
-/// @title PoolActions
+/// @title Pool Actions - Library for conducting uniswap v3 pool actions
 /// @author MaiaDAO
-/// @notice This library is created to conduct a variety of burn liquidity methods
+/// @notice This library is created to conduct a variety of swap, burn and add liquidity methods.
 library PoolActions {
     using PoolVariables for IUniswapV3Pool;
 

@@ -3,10 +3,10 @@ pragma solidity ^0.8.0;
 
 import {Ownable} from "solady/auth/Ownable.sol";
 
-import "./interfaces/IBranchRouter.sol";
-import {IBranchBridgeAgent as IBridgeAgent} from "./interfaces/IBranchBridgeAgent.sol";
+import {IBranchRouter} from "./interfaces/IBranchRouter.sol";
 
 import {
+    IBranchBridgeAgent as IBridgeAgent,
     Deposit,
     DepositStatus,
     DepositInput,
@@ -17,7 +17,7 @@ import {
     SettlementMultipleParams
 } from "./interfaces/IBranchBridgeAgent.sol";
 
-/// @title `BaseBranchRouter`
+/// @title Base Branch Router Contract
 contract BaseBranchRouter is IBranchRouter, Ownable {
     /// @inheritdoc IBranchRouter
     address public localBridgeAgentAddress;
@@ -134,15 +134,15 @@ contract BaseBranchRouter is IBranchRouter, Ownable {
                                 MODIFIERS
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is the Bridge Agent Executor.
     modifier requiresAgentExecutor() {
         if (msg.sender != bridgeAgentExecutorAddress) revert UnrecognizedBridgeAgentExecutor();
         _;
     }
 
-    /// @notice Modifier for a simple re-entrancy check.
     uint256 internal _unlocked = 1;
 
+    /// @notice Modifier for a simple re-entrancy check.
     modifier lock() {
         require(_unlocked == 1);
         _unlocked = 2;

@@ -12,7 +12,7 @@ import {IAnycallProxy} from "../interfaces/IAnycallProxy.sol";
 import {IBranchPort as IPort} from "../interfaces/IBranchPort.sol";
 import {IBranchBridgeAgentFactory} from "../interfaces/IBranchBridgeAgentFactory.sol";
 
-/// @title `BranchBridgeAgentFactory`
+/// @title Branch Bridge Agent Factory Contract
 contract BranchBridgeAgentFactory is Ownable, IBranchBridgeAgentFactory {
     /// @notice Local Chain Id
     uint256 public immutable localChainId;

@@ -10,9 +10,9 @@ import {PoolActions} from "../libraries/PoolActions.sol";
 
 import {ITalosOptimizer} from "../interfaces/ITalosOptimizer.sol";
 
-/// @notice Rebalacing and reranging strategies for TALOS UniswapV3 LPs.
+/// @title Rebalacing and reranging strategies for TALOS UniswapV3 LPs
 /// @author Maia DAO (https://github.com/Maia-DAO)
-abstract contract TalosStrategySimpleRebalance is TalosBaseStrategy {
+abstract contract TalosStrategySimple is TalosBaseStrategy {
     using PoolActions for INonfungiblePositionManager;
 
     constructor(

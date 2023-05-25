@@ -6,7 +6,7 @@ import {ITalosBaseStrategy} from "./ITalosBaseStrategy.sol";
 import {AutomationCompatibleInterface} from "./AutomationCompatibleInterface.sol";
 
 /**
- *  @title  Talos Strategy Manager.
+ *  @title  Talos Strategy Manager - Manages rebalancing and reranging of Talos Positions
  *  @notice TalosManager is a Uniswap V3 yield enhancement contract which acts as
  *          intermediary between the user who wants to provide liquidity to specific pools
  *          and earn fees from such actions. The contract ensures that user position is in

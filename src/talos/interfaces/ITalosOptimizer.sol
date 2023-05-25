@@ -3,9 +3,9 @@
 pragma solidity ^0.8.0;
 
 /**
- * @title Permissioned Optimizer variables
+ * @title  Talos Optimizer - Manages optimization variables for Talos Positions
  *  @author Maia DAO (https://github.com/Maia-DAO)
- *  @notice Contains Optimizer variables that may only be called by the governance.
+ *  @notice Contains Optimizer variables used by Talos LPs that may only be modified by the governance.
  */
 interface ITalosOptimizer {
     /// @return Maximum TLP value that could be minted

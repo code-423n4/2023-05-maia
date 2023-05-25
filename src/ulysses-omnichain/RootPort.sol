@@ -7,19 +7,16 @@ import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
 
 import {ERC20} from "solmate/tokens/ERC20.sol";
 
-import {INonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol";
-
-import {IRootBridgeAgent as IBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
-
-import {IRootBridgeAgentFactory} from "./interfaces/IRootBridgeAgentFactory.sol";
-
 import {IERC20hTokenRootFactory} from "./interfaces/IERC20hTokenRootFactory.sol";
-
-import {IRootPort, VirtualAccount, GasPoolInfo, ICoreRootRouter} from "./interfaces/IRootPort.sol";
+import {INonfungiblePositionManager} from "@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol";
+import {IRootBridgeAgent as IBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
+import {IRootBridgeAgentFactory} from "./interfaces/IRootBridgeAgentFactory.sol";
+import {IRootPort, ICoreRootRouter} from "./interfaces/IRootPort.sol";
 
 import {ERC20hTokenRoot} from "./token/ERC20hTokenRoot.sol";
+import {VirtualAccount, GasPoolInfo} from "./interfaces/IRootPort.sol";
 
-/// @title `RootPort`
+/// @title Root Port - Omnichain Token Management Contract
 contract RootPort is Ownable, IRootPort {
     using SafeTransferLib for address;
 
@@ -509,25 +506,25 @@ contract RootPort is Ownable, IRootPort {
                                 MODIFIERS
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Modifier that verifies msg sender is the RootInterface Contract from Root Chain.
+    /// @notice Modifier that verifies msg sender is the an active Bridge Agent Factory.
     modifier requiresBridgeAgentFactory() {
         if (!isBridgeAgentFactory[msg.sender]) revert UnrecognizedBridgeAgentFactory();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is the RootInterface Contract from Root Chain.
+    /// @notice Modifier that verifies msg sender is an active Bridge Agent.
     modifier requiresBridgeAgent() {
         if (!isBridgeAgent[msg.sender]) revert UnrecognizedBridgeAgent();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is the RootInterface Contract from Root Chain.
+    /// @notice Modifier that verifies msg sender is the Root Chain's Core Router.
     modifier requiresCoreRootRouter() {
         if (!(msg.sender == coreRootRouterAddress)) revert UnrecognizedCoreRootRouter();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is the RootInterface Contract from Root Chain.
+    /// @notice Modifier that verifies msg sender is the Root Chain's Local Branch Port.
     modifier requiresLocalBranchPort() {
         if (!(msg.sender == localBranchPortAddress)) revert UnrecognizedLocalBranchPort();
         _;

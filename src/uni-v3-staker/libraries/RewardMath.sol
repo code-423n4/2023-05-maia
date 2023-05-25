@@ -4,8 +4,8 @@ pragma solidity ^0.8.0;
 
 import {FixedPointMathLib} from "solady/utils/FixedPointMathLib.sol";
 
-/// @title Math for computing rewards
-/// @notice Allows computing rewards given some parameters of stakes and incentives
+/// @title Math for computing rewards for Uniswap V3 LPs with boost
+/// @notice Allows computing rewards given some parameters of boost, stakes and incentives
 library RewardMath {
     using FixedPointMathLib for uint256;
 

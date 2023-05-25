@@ -9,9 +9,9 @@ import {ERC20MultiVotes} from "@ERC20/ERC20MultiVotes.sol";
 import {IbHermesUnderlying} from "../interfaces/IbHermesUnderlying.sol";
 
 /**
- * @title bHermesGauges: Directs hermes emissions.
+ * @title bHermesVotes: Have power over Hermes' governance
  * @author Maia DAO (https://github.com/Maia-DAO)
- *  @notice Represents the underlying voting power of a bHermes token.
+ *  @notice Represents the underlying governance power of a bHermes token.
  */
 contract bHermesVotes is ERC20MultiVotes, IbHermesUnderlying {
     /// @inheritdoc IbHermesUnderlying

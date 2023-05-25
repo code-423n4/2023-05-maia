@@ -11,7 +11,7 @@ import {IFlywheelAcummulatedRewards} from "./IFlywheelAcummulatedRewards.sol";
 /**
  * @title Flywheel Accumulated Bribes Reward Stream
  *  @author Maia DAO (https://github.com/Maia-DAO)
- *  @notice Distributes rewards for allocation to voters periodically in accordance to votes.
+ *  @notice Distributes rewards for allocation to voters at the end of each epoch in accordance to votes.
  */
 interface IFlywheelBribeRewards is IFlywheelAcummulatedRewards {
     /*//////////////////////////////////////////////////////////////

@@ -8,13 +8,14 @@ import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
 
 import {ERC20} from "solmate/tokens/ERC20.sol";
 
-import {UlyssesERC4626, ERC20} from "@ERC4626/UlyssesERC4626.sol";
+import {UlyssesERC4626} from "@ERC4626/UlyssesERC4626.sol";
 
 import {UlyssesFactory} from "./factories/UlyssesFactory.sol";
 
 import {IUlyssesPool} from "./interfaces/IUlyssesPool.sol";
 
-/// @title Ulysses Pool
+/// @title Ulysses Pool - Single Sided Stableswap LP
+/// @author Maia DAO (https://github.com/Maia-DAO)
 contract UlyssesPool is UlyssesERC4626, Ownable, IUlyssesPool {
     using SafeTransferLib for address;
     using FixedPointMathLib for uint256;

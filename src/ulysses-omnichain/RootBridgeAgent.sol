@@ -2,27 +2,28 @@
 pragma solidity ^0.8.0;
 
 import {Ownable} from "solady/auth/Ownable.sol";
+import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
+import {SafeCastLib} from "solady/utils/SafeCastLib.sol";
 
-import {IRootPort as IPort} from "./interfaces/IRootPort.sol";
-import {IRootRouter as IRouter} from "./interfaces/IRootRouter.sol";
-import {IBranchBridgeAgent} from "./interfaces/IBranchBridgeAgent.sol";
-import {IERC20hTokenRoot} from "./interfaces/IERC20hTokenRoot.sol";
-import {VirtualAccount} from "./VirtualAccount.sol";
+import {ERC20} from "solmate/tokens/ERC20.sol";
+
+import {WETH9} from "./interfaces/IWETH9.sol";
+import {IUniswapV3Pool} from "@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol";
+
+import {AnycallFlags} from "./lib/AnycallFlags.sol";
 
 import {IAnycallProxy} from "./interfaces/IAnycallProxy.sol";
 import {IAnycallConfig} from "./interfaces/IAnycallConfig.sol";
 import {IAnycallExecutor} from "./interfaces/IAnycallExecutor.sol";
-import {AnycallFlags} from "./lib/AnycallFlags.sol";
 
-import {WETH9} from "./interfaces/IWETH9.sol";
+import {IApp, IRootBridgeAgent} from "./interfaces/IRootBridgeAgent.sol";
+import {IBranchBridgeAgent} from "./interfaces/IBranchBridgeAgent.sol";
+import {IERC20hTokenRoot} from "./interfaces/IERC20hTokenRoot.sol";
+import {IRootPort as IPort} from "./interfaces/IRootPort.sol";
+import {IRootRouter as IRouter} from "./interfaces/IRootRouter.sol";
 
-import {ERC20} from "solmate/tokens/ERC20.sol";
-import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
-import {SafeCastLib} from "solady/utils/SafeCastLib.sol";
-import {IUniswapV3Pool} from "@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol";
-
+import {VirtualAccount} from "./VirtualAccount.sol";
 import {
-    IApp,
     IRootBridgeAgent,
     DepositParams,
     DepositMultipleParams,
@@ -36,6 +37,7 @@ import {
 
 import {DeployRootBridgeAgentExecutor, RootBridgeAgentExecutor} from "./RootBridgeAgentExecutor.sol";
 
+/// @title Library for Cross Chain Deposit Parameters Validation.
 library CheckParamsLib {
     /**
      * @notice Function to check cross-chain deposit parameters and verify deposits made on branch chain are valid.
@@ -61,6 +63,7 @@ library CheckParamsLib {
     }
 }
 
+/// @title Library for Root Bridge Agent Deployment.
 library DeployRootBridgeAgent {
     function deploy(
         WETH9 _wrappedNativeToken,
@@ -83,43 +86,7 @@ library DeployRootBridgeAgent {
     }
 }
 
-/**
- * @title  BranchBridgeAgent contract for deployment in the Root Chain Omnichain Environment.
- * @author MaiaDAO
- * @notice Contract responsible for interfacing with Users/Routers acting as a middleman to
- *         access Anycall cross-chain messaging and Port communication for asset management.
- * @dev    Bridge Agents allow for the encapsulation of business logic as well as the standardize
- *         cross-chain communication, allowing for the creation of custom Routers to perform
- *         actions as a response to remote user requests.
- *         Remote execution is "sandboxed" in two different nestings:
- *         - 1: Anycall Messaging Layer will revert execution if by the end of the call the
- *              balance in the executionBudget AnycallConfig contract for the Root Bridge Agent
- *              being called is inferior to the  executionGasSpent, throwing the error `no enough budget`.
- *         - 2: The `RootBridgeAgent` will trigger a revert all state changes if by the end of the remote initiated call
- *              Router interaction the userDepositedGas < executionGasSpent. This is done by calling the `_forceRevert()`
- *              internal function clearing all executionBudget from the AnycallConfig contract forcing the error `no enough budget`.
- *         - 3: The `RootBridgeAgentExecutor` is in charge of requesting token deposits for each remote interaction as well
- *              as performing the Router calls, if any of the calls initiated by the Router lead to an invlaid state change
- *              both the token deposit clearances as well as the external interactions will be reverted. Yet executionGas
- *              will still be credited by the `RootBridgeAgent`.
- *
- *          Func IDs for calling these  functions through messaging layer:
- *
- *          ROOT BRIDGE AGENT DEPOSIT FLAGS
- *          --------------------------------------
- *          ID           | DESCRIPTION
- *          -------------+------------------------
- *          0x00         | Branch Router Response.
- *          0x01         | Call to Root Router without Deposit.
- *          0x02         | Call to Root Router with Deposit.
- *          0x03         | Call to Root Router with Deposit of Multiple Tokens.
- *          0x04         | Call to Root Router without Deposit + singned message.
- *          0x05         | Call to Root Router with Deposit + singned message.
- *          0x06         | Call to Root Router with Deposit of Multiple Tokens + singned message.
- *          0x07         | Call to `retrySettlement()´.
- *          0x08         | Call to `clearDeposit()´.
- *
- */
+/// @title  Root Bridge Agent Contract
 contract RootBridgeAgent is IRootBridgeAgent {
     using SafeTransferLib for address;
     using SafeCastLib for uint256;
@@ -211,7 +178,7 @@ contract RootBridgeAgent is IRootBridgeAgent {
     //////////////////////////////////////////////////////////////*/
 
     uint256 internal constant MIN_FALLBACK_RESERVE = 155_000; // 100_000 for anycall + 55_000 for fallback
-    uint256 internal constant MIN_EXECUTION_OVERHEAD = 255_000; // 2 * 100_000 for anycall + 30_000 Pre 1st Gas Checkpoint Execution + 25_000 Post last Gas Checkpoint Execution
+    uint256 internal constant MIN_EXECUTION_OVERHEAD = 155_000; // 100_000 for anycall + 30_000 Pre 1st Gas Checkpoint Execution + 25_000 Post last Gas Checkpoint Execution
 
     uint256 public initialGas;
     UserFeeInfo public userFeeInfo;
@@ -631,7 +598,11 @@ contract RootBridgeAgent is IRootBridgeAgent {
             if (settlement.hTokens[i] != address(0)) {
                 //Move hTokens from Branch to Root + Mint Sufficient hTokens to match new port deposit
                 IPort(localPortAddress).bridgeToRoot(
-                    msg.sender, settlement.hTokens[i], settlement.amounts[i], settlement.deposits[i], settlement.toChain
+                    msg.sender,
+                    IPort(localPortAddress).getGlobalTokenFromLocal(settlement.hTokens[i], settlement.toChain),
+                    settlement.amounts[i],
+                    settlement.deposits[i],
+                    settlement.toChain
                 );
             }
 
@@ -1211,13 +1182,14 @@ contract RootBridgeAgent is IRootBridgeAgent {
     {
         //Get Initial Gas Checkpoint
         uint256 _initialGas = gasleft();
-        //Save to storage
-        initialGas = _initialGas;
+
         //Get fromChain
         (, uint256 _fromChainId) = _getContext();
         uint24 fromChainId = _fromChainId.toUint24();
+
         //Save Flag
         bytes1 flag = data[0];
+
         //Deposit nonce
         uint32 _settlementNonce;
 
@@ -1295,9 +1267,9 @@ contract RootBridgeAgent is IRootBridgeAgent {
                             MODIFIERS
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Modifier for a simple re-entrancy check.
     uint256 internal _unlocked = 1;
 
+    /// @notice Modifier for a simple re-entrancy check.
     modifier lock() {
         require(_unlocked == 1);
         _unlocked = 2;
@@ -1305,13 +1277,13 @@ contract RootBridgeAgent is IRootBridgeAgent {
         _unlocked = 1;
     }
 
-    /// @notice require msg sender == active branch interface
+    /// @notice Modifier verifies the caller is the Anycall Executor or Local Branch Bridge Agent.
     modifier requiresExecutor() {
         _requiresExecutor();
         _;
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Verifies the caller is the Anycall Executor or Local Branch Bridge Agent. Internal function used in modifier to reduce contract bytesize.
     function _requiresExecutor() internal view {
         if (msg.sender == getBranchBridgeAgent[localChainId]) return;
 
@@ -1320,24 +1292,24 @@ contract RootBridgeAgent is IRootBridgeAgent {
         if (getBranchBridgeAgent[fromChainId] != from) revert AnycallUnauthorizedCaller();
     }
 
-    /// @notice require msg sender == active branch interface
+    /// @notice Modifier that verifies msg sender is the Bridge Agent's Router
     modifier requiresRouter() {
         _requiresRouter();
         _;
     }
 
-    /// @notice reuse to reduce contract bytesize
+    /// @notice Internal function to verify msg sender is Bridge Agent's Router. Reuse to reduce contract bytesize.
     function _requiresRouter() internal view {
         if (msg.sender != localRouterAddress) revert UnrecognizedCallerNotRouter();
     }
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is Bridge Agent Executor.
     modifier requiresAgentExecutor() {
         if (msg.sender != bridgeAgentExecutorAddress) revert UnrecognizedExecutor();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is Local Branch Bridge Agent.
     modifier requiresLocalBranchBridgeAgent() {
         if (msg.sender != getBranchBridgeAgent[localChainId]) {
             revert UnrecognizedExecutor();
@@ -1345,13 +1317,13 @@ contract RootBridgeAgent is IRootBridgeAgent {
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is the Local Port.
     modifier requiresPort() {
         if (msg.sender != localPortAddress) revert UnrecognizedPort();
         _;
     }
 
-    /// @notice Modifier that verifies msg sender is an active bridgeAgent.
+    /// @notice Modifier that verifies msg sender is the Bridge Agent's Manager.
     modifier requiresManager() {
         if (msg.sender != IPort(localPortAddress).getBridgeAgentManager(address(this))) {
             revert UnrecognizedBridgeAgentManager();

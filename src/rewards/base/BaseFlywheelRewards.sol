@@ -11,7 +11,7 @@ import {FlywheelCore} from "./FlywheelCore.sol";
 import {IFlywheelRewards} from "../interfaces/IFlywheelRewards.sol";
 
 /**
- * @title Flywheel Reward Module
+ * @title Flywheel Reward Module - Base contract for reward token distribution
  *  @notice Determines how many rewards accrue to each strategy globally over a given time period.
  *  @dev approves the flywheel core for the reward token to allow balances to be managed by the module but claimed from core.
  */

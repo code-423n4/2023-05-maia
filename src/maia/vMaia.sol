@@ -17,11 +17,11 @@ import {ERC4626PartnerManager, PartnerManagerFactory} from "./tokens/ERC4626Part
  * @title vMaia: Yield bearing, boosting, voting, and gauge enabled MAIA
  * @author Maia DAO (https://github.com/Maia-DAO)
  * @notice vMaia is an ERC-4626 compliant MAIA token which:
- *         distributes bHermes utility tokens (Weight, Boost, Governance)
+ *         distributes bHermes utility tokens (Weight, Governance) and Maia Governance
  *         in exchange for staking MAIA.
  *
  *         NOTE: Withdraw is only allowed once per month,
- *                  during the 1st Tuesday (UTC+0) of the month.
+ *               during the 1st Tuesday (UTC+0) of the month.
  */
 contract vMaia is ERC4626PartnerManager {
     using SafeTransferLib for address;

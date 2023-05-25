@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {bHermesVotes as ERC20Votes} from "@hermes/tokens/bHermesVotes.sol";
 
 /**
- * @title Partner Utility Manager Contract.
+ * @title Partner Utility Tokens Manager Contract.
  * @author Maia DAO (https://github.com/Maia-DAO)
  *  @notice When implemented, this contract allows for the partner
  *          management of bHermes utility tokens.

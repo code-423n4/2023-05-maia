@@ -7,6 +7,10 @@ pragma solidity ^0.8.0;
  *  @notice an ERC20 extension that allows delegations to multiple delegatees up to a user's balance on a given block.
  */
 interface IERC20MultiVotes {
+    /*//////////////////////////////////////////////////////////////
+                                STRUCTS
+    //////////////////////////////////////////////////////////////*/
+
     /**
      * @notice A checkpoint for marking the number of votes from a given block.
      * @param fromBlock the block number that the votes were delegated.

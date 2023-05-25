@@ -3,6 +3,7 @@ pragma solidity ^0.8.10;
 
 import "./GovernorBravoInterfaces.sol";
 
+/// @title Governor Bravo Constants Contract
 contract GovernorBravoConstants {
     /// @notice The name of this contract
     string public constant name = "vMaia Governor Bravo";
@@ -35,6 +36,7 @@ contract GovernorBravoConstants {
     uint256 public constant DIVISIONER = 1 ether;
 }
 
+/// @title Governor Bravo Delegate Contract
 contract GovernorBravoDelegate is GovernorBravoDelegateStorageV2, GovernorBravoEvents, GovernorBravoConstants {
     /// @notice The EIP-712 typehash for the contract's domain
     bytes32 public constant DOMAIN_TYPEHASH =

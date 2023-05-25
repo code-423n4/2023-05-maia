@@ -12,7 +12,7 @@ import {FlywheelGaugeRewards} from "@rewards/rewards/FlywheelGaugeRewards.sol";
 
 import {IBaseV2Minter} from "../interfaces/IBaseV2Minter.sol";
 
-/// @title Base V2 Minter
+/// @title Base V2 Minter - Mints HERMES tokens for the B(3,3) system
 contract BaseV2Minter is Ownable, IBaseV2Minter {
     using SafeTransferLib for address;
 

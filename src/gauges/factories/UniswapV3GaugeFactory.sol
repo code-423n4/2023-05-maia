@@ -25,7 +25,7 @@ import {BaseV2GaugeManager} from "./BaseV2GaugeManager.sol";
 
 import {IUniswapV3GaugeFactory} from "../interfaces/IUniswapV3GaugeFactory.sol";
 
-/// @title Uniswap V3 Gauge Factory.
+/// @title Uniswap V3 Gauge Factory
 contract UniswapV3GaugeFactory is BaseV2GaugeFactory, IUniswapV3GaugeFactory {
     /*//////////////////////////////////////////////////////////////
                          FACTORY STATE
