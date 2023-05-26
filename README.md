@@ -508,6 +508,90 @@ There are specific concerns that we would like to highlight for the wardens to p
 |[lib/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol) [💰](#nowhere "Payable Functions")|[95](#nowhere "(nSLOC:61, SLOC:95, Lines:180)")|| [`@openzeppelin/contracts`](https://github.com/OpenZeppelin/openzeppelin-contracts)|
 |Total (over 86 files):| [6080](#nowhere "(nSLOC:5128, SLOC:6080, Lines:8676)") ||
 
+## External imports
+* **@openzeppelin/contracts/token/ERC20/extensions/draft-IERC20Permit.sol**
+  * ~~[lib/v3-periphery/contracts/base/SelfPermit.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/base/SelfPermit.sol)~~
+* **@openzeppelin/contracts/token/ERC20/IERC20.sol**
+  * ~~[lib/v3-periphery/contracts/base/PeripheryPayments.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/base/PeripheryPayments.sol)~~
+  * ~~[lib/v3-periphery/contracts/base/PeripheryPaymentsWithFee.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/base/PeripheryPaymentsWithFee.sol)~~
+  * ~~[lib/v3-periphery/contracts/base/SelfPermit.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/base/SelfPermit.sol)~~
+  * ~~[lib/v3-periphery/contracts/interfaces/IERC20Metadata.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/interfaces/IERC20Metadata.sol)~~
+  * [lib/v3-periphery/contracts/interfaces/external/IWETH9.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/interfaces/external/IWETH9.sol)
+  * ~~[lib/v3-periphery/contracts/libraries/TransferHelper.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/TransferHelper.sol)~~
+* **@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol**
+  * ~~[lib/v3-periphery/contracts/base/ERC721Permit.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/base/ERC721Permit.sol)~~
+* **@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol**
+  * ~~[lib/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol)~~
+* **@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol**
+  * ~~[lib/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol)~~
+* **@openzeppelin/contracts/token/ERC721/IERC721.sol**
+  * ~~[lib/v3-periphery/contracts/interfaces/IERC721Permit.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/interfaces/IERC721Permit.sol)~~
+* **@openzeppelin/contracts/utils/Address.sol**
+  * ~~[lib/v3-periphery/contracts/base/ERC721Permit.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/base/ERC721Permit.sol)~~
+* **@openzeppelin/contracts/utils/Strings.sol**
+  * ~~[lib/v3-periphery/contracts/libraries/NFTDescriptor.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/NFTDescriptor.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/NFTSVG.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/NFTSVG.sol)~~
+* **@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3FlashCallback.sol**
+  * ~~[lib/v3-periphery/contracts/examples/PairFlash.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/examples/PairFlash.sol)~~
+* **@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol**
+  * ~~[lib/v3-periphery/contracts/base/LiquidityManagement.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/base/LiquidityManagement.sol)~~
+* **@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3SwapCallback.sol**
+  * ~~[lib/v3-periphery/contracts/interfaces/ISwapRouter.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/interfaces/ISwapRouter.sol)~~
+  * ~~[lib/v3-periphery/contracts/lens/Quoter.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/lens/Quoter.sol)~~
+  * ~~[lib/v3-periphery/contracts/lens/QuoterV2.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/lens/QuoterV2.sol)~~
+* **@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol**
+  * ~~[lib/v3-periphery/contracts/base/LiquidityManagement.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/base/LiquidityManagement.sol)~~
+  * ~~[lib/v3-periphery/contracts/base/PoolInitializer.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/base/PoolInitializer.sol)~~
+* **@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol**
+  * ~~[lib/v3-periphery/contracts/NonfungiblePositionManager.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/NonfungiblePositionManager.sol)~~
+  * ~~[lib/v3-periphery/contracts/NonfungibleTokenPositionDescriptor.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/NonfungibleTokenPositionDescriptor.sol)~~
+  * ~~[lib/v3-periphery/contracts/SwapRouter.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/SwapRouter.sol)~~
+  * ~~[lib/v3-periphery/contracts/base/PoolInitializer.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/base/PoolInitializer.sol)~~
+  * ~~[lib/v3-periphery/contracts/lens/Quoter.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/lens/Quoter.sol)~~
+  * ~~[lib/v3-periphery/contracts/lens/QuoterV2.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/lens/QuoterV2.sol)~~
+  * ~~[lib/v3-periphery/contracts/lens/TickLens.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/lens/TickLens.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/CallbackValidation.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/CallbackValidation.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/NFTDescriptor.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/NFTDescriptor.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/OracleLibrary.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/OracleLibrary.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/PoolTicksCounter.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/PoolTicksCounter.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/PositionValue.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/PositionValue.sol)~~
+* **@uniswap/v3-core/contracts/libraries/BitMath.sol**
+  * ~~[lib/v3-periphery/contracts/libraries/NFTDescriptor.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/NFTDescriptor.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/NFTSVG.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/NFTSVG.sol)~~
+* **@uniswap/v3-core/contracts/libraries/FixedPoint128.sol**
+  * ~~[lib/v3-periphery/contracts/NonfungiblePositionManager.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/NonfungiblePositionManager.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/PositionValue.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/PositionValue.sol)~~
+* **@uniswap/v3-core/contracts/libraries/FixedPoint96.sol**
+  * ~~[lib/v3-periphery/contracts/libraries/LiquidityAmounts.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/LiquidityAmounts.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/SqrtPriceMathPartial.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/SqrtPriceMathPartial.sol)~~
+* **@uniswap/v3-core/contracts/libraries/FullMath.sol**
+  * ~~[lib/v3-periphery/contracts/NonfungiblePositionManager.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/NonfungiblePositionManager.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/LiquidityAmounts.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/LiquidityAmounts.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/NFTDescriptor.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/NFTDescriptor.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/OracleLibrary.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/OracleLibrary.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/SqrtPriceMathPartial.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/SqrtPriceMathPartial.sol)~~
+* **@uniswap/v3-core/contracts/libraries/SafeCast.sol**
+  * ~~[lib/v3-periphery/contracts/SwapRouter.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/SwapRouter.sol)~~
+  * ~~[lib/v3-periphery/contracts/lens/Quoter.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/lens/Quoter.sol)~~
+  * ~~[lib/v3-periphery/contracts/lens/QuoterV2.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/lens/QuoterV2.sol)~~
+* **@uniswap/v3-core/contracts/libraries/Tick.sol**
+  * ~~[lib/v3-periphery/contracts/libraries/PositionValue.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/PositionValue.sol)~~
+* **@uniswap/v3-core/contracts/libraries/TickBitmap.sol**
+  * ~~[lib/v3-periphery/contracts/lens/QuoterV2.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/lens/QuoterV2.sol)~~
+* **@uniswap/v3-core/contracts/libraries/TickMath.sol**
+  * ~~[lib/v3-periphery/contracts/SwapRouter.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/SwapRouter.sol)~~
+  * ~~[lib/v3-periphery/contracts/base/LiquidityManagement.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/base/LiquidityManagement.sol)~~
+  * ~~[lib/v3-periphery/contracts/lens/Quoter.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/lens/Quoter.sol)~~
+  * ~~[lib/v3-periphery/contracts/lens/QuoterV2.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/lens/QuoterV2.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/NFTDescriptor.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/NFTDescriptor.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/OracleLibrary.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/OracleLibrary.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/PositionValue.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/PositionValue.sol)~~
+* **@uniswap/v3-core/contracts/libraries/UnsafeMath.sol**
+  * ~~[lib/v3-periphery/contracts/libraries/SqrtPriceMathPartial.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/SqrtPriceMathPartial.sol)~~
+* **base64-sol/base64.sol**
+  * ~~[lib/v3-periphery/contracts/libraries/NFTDescriptor.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/NFTDescriptor.sol)~~
+  * ~~[lib/v3-periphery/contracts/libraries/NFTSVG.sol](https://github.com/code-423n4/2023-05-maia/blob/main/lib/v3-periphery/contracts/libraries/NFTSVG.sol)~~
+
 ## Out of scope
 
 Anything in [lib/](https://github.com/code-423n4/2023-05-maia/blob/main/lib/) and [src/out-of-scope/](https://github.com/code-423n4/2023-05-maia/blob/main/src/out-of-scope/) is out of scope for this audit.
@@ -783,7 +867,7 @@ deactivate
 ```
 
 If you wish to do this manually or are having issues with the previous scripts. Then please follow these steps (after building at least once):
-- Get the bytecode from [out/UniswapV3Pool.sol/UniswapV3Pool.json](out/UniswapV3Pool.sol/UniswapV3Pool.json). To do this, head over to the file and get the bytecode from the "bytecode" and then "object" field.
+- Get the bytecode from `out/UniswapV3Pool.sol/UniswapV3Pool.json`. To do this, head over to the file and get the bytecode from the "bytecode" and then "object" field.
 - Copy this bytecode and use any tool to hash it using keccak-256 function. For example this [tool](https://emn178.github.io/online-tools/keccak_256.html), but please remember to remove the first two characters "0x" and __select input type to "hex"__ (default is string).
 
 ### Build PoolAddress and Run Tests
