@@ -3,7 +3,7 @@
   - HM awards: $215,000 USDC
   - ✨ Analysis awards: $12,500 USDC
   - QA awards: $6,250 USDC
-  - Bot Race awards: $5,000 USDC
+  - Bot Race awards: $10,000 USDC
   - Gas report awards: $6,250 USDC
   - Judge awards: $30,000 USDC 
   - Lookout awards: $20,000 USDC 
