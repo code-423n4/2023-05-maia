@@ -14,6 +14,8 @@
 - Starts May 30, 2023 20:00 UTC
 - Ends July 5, 2023 20:00 UTC 
 
+✨ All participating wardens must submit an Analysis prior to the closing date. [Guidelines and FAQ can be found here.](https://code4rena.notion.site/Analyses-Guidelines-and-FAQ-2808a71e08e44c81a985527194f5f118) The submission form for Analyses is scheduled to go live June 6, 2023.
+
 ## Automated Findings / Publicly Known Issues
 
 Automated findings output for the audit can be found [here](add link to report) within 24 hours of audit opening.
