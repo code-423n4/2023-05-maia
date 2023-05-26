@@ -32,9 +32,9 @@ Maia DAO V2 Ecossytem docs that explains the business logic and technical refere
 
 Maia DAO Ecosystem is made to be a significant increase in capital efficiency and utility for the Maia DAO community from the V1 ecosystem. The V2 ecosystem is made up of 4 protocols: Hermes, Maia, Talos and Ulysses.
 
-Previous Audits by Zellic can be found in the [audits](audits) folder. There are two audits, each for different parts of the codebase:
- - [Rewards System](audits/Maia%20DAO%20February%202023%20-%20Zellic%20Audit%20Report.pdf)
- - [Ulysses Protocol](audits/Ulysses%20Protocol%20May%202023%20-%20Zellic%20Audit%20Report.pdf)
+Previous Audits by Zellic can be found in the [audits](https://github.com/code-423n4/2023-05-maia/tree/main/audits) folder. There are two audits, each for different parts of the codebase:
+ - [Rewards System](https://github.com/code-423n4/2023-05-maia/tree/main/audits/Maia%20DAO%20February%202023%20-%20Zellic%20Audit%20Report.pdf)
+ - [Ulysses Protocol](https://github.com/code-423n4/2023-05-maia/tree/main/audits/Ulysses%20Protocol%20May%202023%20-%20Zellic%20Audit%20Report.pdf)
 
 ### Hermes
 
