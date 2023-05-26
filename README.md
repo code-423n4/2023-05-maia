@@ -1,10 +1,10 @@
 # Maia DAO Ecosystem audit details
 - Total Prize Pool: $300,500 USDC 
-  - HM awards: $220,000 USDC 
-  - Audit summary awards: $12,500 USDC
-  - QA awards: $6,250 USDC 
-  - Bot Race awards: $5,000 USDC 
-  - Gas awards: $6,250 USDC 
+  - HM awards: $215,000 USDC
+  - ✨ Analysis awards: $12,500 USDC
+  - QA awards: $6,250 USDC
+  - Bot Race awards: $5,000 USDC
+  - Gas report awards: $6,250 USDC
   - Judge awards: $30,000 USDC 
   - Lookout awards: $20,000 USDC 
   - Scout awards: $500 USDC 
@@ -20,7 +20,7 @@ Automated findings output for the audit can be found [here](add link to report) 
 
 *Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
 
-There are a couple of know issues that are intended and not in scope for this audit:
+There are a couple of known issues that are intended and not in scope for this audit:
 - Rebases and Fee-On-Transfer tokens are not supported. 
 - Ulysses AMM (Ulysses Pools and Ulysses Tokens) only supports tokens with 18 decimals, but Ulysses Omnichain accounting supports tokens with any decimals and converts them to 18 decimals.
 - There are contracts that allow to renounce ownership and do not override renounceOwnership function from `solady` library.
