@@ -886,6 +886,8 @@ forge snapshot --diff
 
 ## Slither
 
+If you encounter any issues, please update slither to [0.9.3](https://github.com/crytic/slither/releases/tag/0.9.3), the latest version at the moment.
+
 To run [slither](https://github.com/crytic/slither) from root, please specify the src directory.
 ```bash
 slither "./src/*"
