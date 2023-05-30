@@ -786,7 +786,7 @@ Ulysses Omnichain Liquidity System uses AnycallV7 (https://github.com/anyswap/mu
 - What is the overall line coverage percentage provided by your tests?:  Can't provide accurate information, so 0
 - Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:   false
 - Please describe required context:   n/a
-- Does it use an oracle?:  No
+- Does it use an oracle?:  Yes, Uniswap V3 TWAP is used to check for price deviation in Talos positions
 - Does the token conform to the ERC20 standard?:  true
 - Are there any novel or unique curve logic or mathematical models?: Maia DAO's implementation of the Delta Algorithm (from layerzero). Boosted Reward calculation for uniswapV3 positions from curve and uniswapV3Staker respectively.
 - Does it use a timelock function?:  true
