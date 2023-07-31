@@ -423,7 +423,7 @@ contract BranchBridgeAgent is IBranchBridgeAgent {
     {
         //Encode Data for cross-chain call.
         bytes memory packedData = abi.encodePacked(
-            bytes1(0x07), depositNonce, _settlementNonce, msg.value.toUint128(), _gasToBoostSettlement
+            bytes1(0x07), depositNonce++, _settlementNonce, msg.value.toUint128(), _gasToBoostSettlement
         );
         //Update State and Perform Call
         _sendRetrieveOrRetry(packedData);
