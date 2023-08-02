@@ -223,8 +223,9 @@ abstract contract ERC4626PartnerManager is PartnerUtilityManager, Ownable, ERC46
         bHermesRate = newRate;
 
         partnerGovernance.mint(
-            address(this), totalSupply * newRate - address(partnerGovernance).balanceOf(address(this))
+            address(this), totalSupply * (newRate - bHermesRate)
         );
+
         bHermesToken.claimOutstanding();
     }
 
