@@ -627,11 +627,15 @@ The original Uniswap V3 Staker awards positons based on the difference between s
 
 The original curve logic behind calculating boosted rewards for uniswapV3 positions is based on the following formula, found [here, in docs](https://v2-docs.maiadao.io/protocols/Hermes/overview/tokenomics/utility-tokens/bhermes-boost):
 
-$Rewards Received = min(UserLiquidity,(40\%*UserLiquidity)+(60\%*TotalLiquidity*UserBoostBalance/BoostTotal))$
+``
+Rewards Received = min(UserLiquidity, (40%*UserLiquidity)+(60%*TotalLiquidity*UserBoostBalance/BoostTotal))
+``
 
 In order to calculate the boosted rewards for the uniswapV3 positions, we have used the following formula:
 
-$Rewards Received = min(Position Rewards, Position Rewards * 40\% + (Total Rewards For Duration Staked * User bHERMES / Total bHERMES Supply) * 60\%)$
+``
+Rewards Received = min(Position Rewards, Position Rewards * 40% + (Total Rewards For Duration Staked * User bHERMES / Total bHERMES Supply) * 60%)
+``
 
 More information on Uniswap V3 Gauges and how boost calculation is made, can be found [here, in docs](https://v2-docs.maiadao.io/protocols/Hermes/overview/gauges/uni-v3#calculating-boost).
 
