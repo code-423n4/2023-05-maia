@@ -1,0 +1,2247 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q2-2023 / maia-may30
+==============================================================
+
+[05/23/2023 19:57] kartoonjoy (pinned)
+👋 Hello and welcome to the audit channel for the **$300,500 USDC Maia DAO Ecosystem** audit!
+
+📆 Audit opens 05/30/2023 20:00 (20:00 UTC) and runs through 07/05/2023 20:00 (20:00 UTC) (36 days).
+
+Please give a warm welcome to the Maia DAO Ecosystem team, particularly @0xbuzzlightyear and @0xBugsy, who will be available for questions either here in the channel or via DM in the UTC+2 timezone(s).
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/contests/2023-05-maia-dao-ecosystem
+
+{Embed}
+https://code4rena.com/contests/2023-05-maia-dao-ecosystem
+Code4rena Maia DAO Ecosystem
+$300,500 USDC
+30 May 2023—5 July 2023
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/c4-og-banner-0FCFA.png
+
+{Reactions}
+💜 (14) 
+
+[05/23/2023 19:57] kartoonjoy
+Pinned a message.
+
+
+[05/23/2023 19:58] kartoonjoy
+:hearteyesrobot: Automated findings output for the audit will be posted within 24 hours of audit opening. :hearteyesrobot:
+
+
+[05/23/2023 19:59] kartoonjoy
+___
+📢 Let's limit conversation until the audit begins. Please direct any questions / comments to the #🐺wardens or #❓questions channels. Thanks!
+
+
+[05/30/2023 16:24] kartoonjoy (pinned)
+✨ All participating wardens must submit an Analysis prior to the closing date. The submission form for Analyses is scheduled to go live June 6, 2023.
+
+Guidelines and FAQ: https://code4rena.notion.site/Analyses-Guidelines-and-FAQ-2808a71e08e44c81a985527194f5f118
+Additional FAQ: https://discord.com/channels/810916927919620096/1111666431050919996
+
+{Embed}
+https://code4rena.notion.site/Analyses-Guidelines-and-FAQ-2808a71e08e44c81a985527194f5f118
+Analyses: Guidelines and FAQ
+What is an analysis?
+
+{Reactions}
+👍 
+
+[05/30/2023 16:25] cloudellie
+Pinned a message.
+
+
+[05/31/2023 07:51] 0xepley
+any docs available?
+
+
+[05/31/2023 09:23] cloudellie
+Are you seeing this on the contest page? https://code4rena.com/contests/2023-05-maia-dao-ecosystem
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/image-F1575.png
+
+
+[05/31/2023 09:36] noro9954
+> Users receive bHERMES ERC-4626 shares proportional to their deposit, based on a conversion ratio that starts at a 1:1 ratio at version 2 launch and increases with inflation,** protecting voters from dilution.**
+what does protecting voters from dilution means and how it can be achieved by increasing the conversion ratio ??
+
+
+[05/31/2023 10:20] 0xbuzzlightyear
+hey, so this is the same as a rebase. if 1% of the circulating supply increases, then 1% of the locked supply increases as well. Instead of having to claim the rebase, it happens through increasing the conversion ratio
+
+
+[05/31/2023 10:23] 0xbuzzlightyear
+you will find every resource available linked in the readme / contest page. just like c4 team mentioned, you have a link to the docs in the first sentence. Here they are anyway: https://v2-docs.maiadao.io/
+
+{Reactions}
+Pepe_laugh 
+
+[05/31/2023 10:23] 0xepley
+yeah i got it, thanks
+
+{Reactions}
+pepoloveleaf 
+
+[05/31/2023 10:31] 0xbugsy
+Gm, warderns! As you know if you have any question feel free to message me and @0xbuzzlightyear at any time we'll answer as soon as we can. Happy hacking!
+
+{Reactions}
+❤️ (11) pepehandshake (2) pepemarching (2) 
+
+[05/31/2023 10:32] 0xepley
+i wonder how this is implemented
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/image-8E6A0.png
+
+
+[05/31/2023 10:34] 0xbuzzlightyear (pinned)
+that's a typo in the docs, it's actually tuesday:
+https://github.com/code-423n4/2023-05-maia/blob/main/src/maia/vMaia.sol#L102
+https://github.com/code-423n4/2023-05-maia/blob/main/src/maia/libraries/DateTimeLib.sol
+
+{Reactions}
+❤️ 
+
+[05/31/2023 10:42] kartoonjoy
+Pinned a message.
+
+
+[05/31/2023 13:30] noro9954
+what contract#function is called to vote for a gauge in Hermes ?
+
+
+[05/31/2023 13:33] 0xbuzzlightyear (pinned)
+ERC20Gauges: incrementGauge or incrementGauges
+https://github.com/code-423n4/2023-05-maia/blob/main/src/erc-20/ERC20Gauges.sol#L188
+https://github.com/code-423n4/2023-05-maia/blob/main/src/erc-20/ERC20Gauges.sol#L245
+
+example in tests:
+https://github.com/code-423n4/2023-05-maia/blob/main/test/erc-20/ERC20GaugesTest.t.sol#L209
+
+{Reactions}
+🫡 (2) 
+
+[05/31/2023 14:23] noro9954
+@0xbuzzlightyear does **rebases **refer to `bHermes `or `bHermesGauges `or `Hermes` ?
+
+
+[05/31/2023 14:24] 0xbuzzlightyear
+bHermes. the conversion rate of hermes to bHermes grows with time. so it's equivalent to bHermes balance growing
+
+
+[05/31/2023 14:30] kartoonjoy
+Pinned a message.
+
+
+[05/31/2023 17:34] itsmetechjay (pinned)
+Wardens - please note that the automated findings output (AKA the winning bot race report 🏆, submitted by @favelanky) is posted below. 
+
+These are considered publicly known issues and are not eligible for awards.
+
+**🤖 Automated findings: **
+https://gist.github.com/itsmetechjay/09ae039958715d881a47209f74af1b7c
+
+**📄 Code4rena submission guidelines and automated findings policy: **
+https://docs.code4rena.com/roles/wardens/submission-policy#automated-findings-ineligible
+
+The above link has also been added to the contest README.
+
+
+[05/31/2023 17:35] itsmetechjay
+Pinned a message.
+
+
+[05/31/2023 18:06] bytes032
+got a high
+
+{Reactions}
+🔥 (9) 
+
+[05/31/2023 18:06] bytes032
+sick
+
+
+[05/31/2023 18:34] 0xnirlin
+i think we are going through same part of code lmao.
+
+
+[05/31/2023 18:35] neumoxx
+But the description of the issue is wrong, it’s not a comparison, but an assignment. 🤷🏽‍♂️
+
+{Reactions}
+checkmark (3) 
+
+[05/31/2023 18:38] bytes032
+im refering to the bot :d
+
+{Reactions}
+thisisfine 
+
+[05/31/2023 18:38] chasethelight
+Doesn't assignment use a single "=" ? 🤔 Or is there a case when this doesn't hold?
+
+
+[05/31/2023 19:02] noro9954
+@0xBugsy can you check Dms please ?
+
+{Reactions}
+👍 
+
+[05/31/2023 19:04] neumoxx
+That’s the point, the issue in both instances is that use == instead of =
+
+
+[05/31/2023 19:06] chasethelight
+Ah mb, you were talking abt the description being wrong 🫡
+
+{Reactions}
+👍 
+
+[05/31/2023 19:25] aba1842
+Damn, the bot finding is impressing to say the least...
+
+{Reactions}
+🔥 
+
+[05/31/2023 21:39] 0xray44
+this is the bHermes boost docs, what is the purpose of the 100 that I have highlighted if it is not considered in the final equation of 40+0.6
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/image-C1183.png
+
+
+[05/31/2023 22:04] 0xbuzzlightyear
+Thanks for pointing that out! it would be more correct to have min(100, 40+0.6). In a case where a user has more % of the bHermes Boost TotalSupply than he as % of the pool, that would come into effect and his balance would be used.
+In that specific case, where the user has 100% of the pool, he would need to have more than 100% of bHermes Boost totalSupply to have more than 100.
+
+
+[05/31/2023 22:17] 0xray44
+okay, makes sense, thank you
+
+{Reactions}
+pepoloveleaf (2) 
+
+[05/31/2023 23:34] aba1842
+@0xbuzzlightyear hei, I DMed you, whenever you can take a look
+
+{Reactions}
+checkmark (2) 
+
+[06/01/2023 02:49] gabeitches#3953
+When is the deadline if i may ask
+
+
+[06/01/2023 02:51] gabeitches#3953
+Also how would this be any fair to wardens that' didn't wanted to put all their time on this contest but just wanted to give it a pass ?
+
+
+[06/01/2023 02:51] kartoonjoy
+Before the audit closes.
+
+
+[06/01/2023 03:19] 0x3b
+if you can spend a few hours on this contest, you can spend 20 min on writing this thingy
+
+
+[06/01/2023 04:46] devabdee
+Is anyone succeeded with running `forge coverage`?
+
+
+[06/01/2023 04:47] devabdee
+`forge test` is running successfully but `forge coverage` is giving 'Stack Too Deep' Error
+
+
+[06/01/2023 10:00] 0xbuzzlightyear (pinned)
+In short, some contracts and tests don't compile with the optimizer off, so we can't get a coverage report for our codebase
+https://github.com/foundry-rs/foundry/issues/3357#issuecomment-1297192171
+
+{Reactions}
+👍 (2) 
+
+[06/01/2023 11:00] noro9954
+is there any resource to learn about rewards module ?
+
+
+[06/01/2023 11:11] 0xbuzzlightyear
+On top of contracts where it is appropriate, we have references to where the logic was inspired/ported from. 
+In the rewards folder you will find references to flywheel v2 from tribe dao:
+`// Rewards logic inspired by Tribe DAO Contracts (flywheel-v2/src/FlywheelCore.sol)`
+Here you can find the original contracts as well as other implementations or examples, like the one from Fuse (from rari capital):
+https://github.com/fei-protocol/flywheel-v2
+
+
+[06/01/2023 12:55] escrow1337
+@0xbuzzlightyear sent fr
+
+{Reactions}
+checkmark (2) 
+
+[06/01/2023 20:03] 0xbuzzlightyear (pinned)
+In short, if you want videos of me and bugsy covering our docs, repo and code, please take a look here: https://maiaeco.notion.site/Code4rena-Code-Overview-3f455e66c457427ab3650a73a614641c
+
+To give some context. Recognizing that some wardens may prefer multimedia resources, we've integrated a comprehensive video tutorial into our docs, repo, and code. Designed as an alternative to traditional text-based materials, these videos offer a direct visual approach to system comprehension. You can access these resources on our notion page.
+
+You can also find the link to these videos in our repo here: https://github.com/code-423n4/2023-05-maia#overview
+
+{Reactions}
+10_10 (9) 🔥 (13) 
+
+[06/01/2023 20:19] kartoonjoy
+Pinned a message.
+
+
+[06/02/2023 21:36] _brolee
+@0xbuzzlightyear sent fr 🙂
+
+{Reactions}
+checkmark 
+
+[06/04/2023 11:03] noro9954
+Gm, does Zellic cheked and approved the fixes of findings ?
+
+
+[06/04/2023 12:34] mrpotatomagic
+hi, for the analysis report the closing date is July 6th right?
+
+
+[06/04/2023 12:58] 0xbuzzlightyear
+gm, you will find the reports here: https://github.com/code-423n4/2023-05-maia/tree/main/audits
+
+We did address everything or acknowledged what was meant as business logic. You will find our remediation reviewed/acknowledged by zellic on the bottom of every finding, in which we almost always followed their recommendations, with links to commits for each audit's repo:
+1st audit: https://github.com/Maia-DAO/maia-ecosystem-monorepo/commits/1-audit
+2nd audit: https://github.com/Maia-DAO/maia-ecosystem-monorepo/commits/2-audit
+
+We have made changes since then that are not on that repo. So please use the code4rena repo to make any POC.
+But do want to add, if for some reason there was something that was missed and is not on the current code4rena repo it is a completely valid finding, the reports are not included in the Automated Findings / Publicly Known Issues
+
+{Reactions}
+👌🏼 
+
+[06/04/2023 13:18] 0xbuzzlightyear
+The closing date is at 5 July 2023 20:00 UTC, so depends on your timezone exactly what day it is for you. 
+You can double check on the first message of this chat: https://discord.com/channels/810916927919620096/1110626768223739924/1110657714943701123
+
+{Reactions}
+👍 (2) 
+
+[06/04/2023 15:25] Cryptor#9119
+@0xbuzzlightyear sent you a fr
+
+{Reactions}
+checkmark 
+
+[06/04/2023 17:36] 0xepley
+assembly code 👀 😵‍💫
+
+{Reactions}
+7335walternoooo (2) 
+
+[06/04/2023 21:39] rokinot
+@0xbuzzlightyear sent a dm
+
+{Reactions}
+checkmark 
+
+[06/05/2023 09:19] lourenslinde
+@0xbuzzlightyear sent you a fr
+
+{Reactions}
+checkmark (2) 
+
+[06/05/2023 15:51] thekmj
+<https://discord.com/channels/810916927919620096/810936719003090974/1115294476009750593> Analysis no longer required
+
+{Reactions}
+🥹 (2) 👍 
+
+[06/06/2023 15:48] 0x0oz
+was there a code review yet? is it recorded?
+
+
+[06/06/2023 16:03] 0xbuzzlightyear
+Not sure what exactly you are asking about:
+Our AMA with code4rena before the audit started: https://twitter.com/i/spaces/1OwxWwdgyjqxQ
+Our docs/repo/code review released a few days after the audit start: https://discord.com/channels/810916927919620096/1110626768223739924/1113920888555966524
+
+
+[06/06/2023 16:09] 0x0oz
+I was looking for this
+ https://maiaeco.notion.site/Code4rena-Code-Overview-3f455e66c457427ab3650a73a614641c
+
+{Embed}
+https://maiaeco.notion.site/Code4rena-Code-Overview-3f455e66c457427ab3650a73a614641c
+Code4rena Code Overview
+Here you will find an overview of Maia DAO Ecosystem Documentation and github repository for Code4rena.
+
+
+[06/06/2023 16:10] 0xbuzzlightyear
+I am sorry, sent link to the wrong message. (will edit the prev message)
+
+
+[06/06/2023 16:12] 0x0oz
+saw it, thanks.
+
+{Reactions}
+pepoloveleaf 
+
+[06/06/2023 17:47] kchmielewski.eth
+What is the reasoning behind calculating the cycles as the `next even divisor`?
+```
+// next cycle is always the next even divisor of the cycle length above current block timestamp.
+uint32 currentCycle = (block.timestamp.toUint32() / gaugeCycleLength) * gaugeCycleLength;
+```
+
+
+[06/06/2023 19:35] 0xbuzzlightyear
+It's truncating the value to get the current cycle. So it knows on what epoch (in our case week) it is
+
+{Reactions}
+👍🏼 
+
+[06/06/2023 21:29] cloudellie (pinned)
+📢 Wardens - the submission form for **Analyses** is now live for the Maia DAO Ecosystem audit! You can submit your Analysis via the contest page on the C4 website.
+
+⚠️ Please note: currently, Analyses *cannot be edited after submitting.* We suggest saving your work locally until you’re ready to submit your final draft. 
+
+**Analyses: Guidelines and FAQ**
+https://code4rena.notion.site/Analyses-Guidelines-and-FAQ-2808a71e08e44c81a985527194f5f118?pvs=4
+
+{Embed}
+https://code4rena.notion.site/Analyses-Guidelines-and-FAQ-2808a71e08e44c81a985527194f5f118?pvs=4
+Analyses: Guidelines and FAQ
+Currently, Analyses cannot be edited after submitting. We suggest saving your work locally until you’re ready to submit your final draft.
+
+{Reactions}
+🔥 (2) 
+
+[06/06/2023 21:30] cloudellie
+Pinned a message.
+
+
+[06/07/2023 09:25] thekmj
+The warning is important. Can you please announce so in #llama-jun06 along with the warning and a pin?
+
+{Reactions}
+👍 
+
+[06/07/2023 09:32] cloudellie
+Good suggestion - done. Thanks!
+
+
+[06/07/2023 19:58] reentrant
+@0xbuzzlightyear do you have the link to the twitter space recording handy?
+
+
+[06/07/2023 20:00] reentrant
+ahh NVM, got it: https://twitter.com/i/spaces/1OwxWwdgyjqxQ
+
+{Reactions}
+pepoloveleaf (5) 
+
+[06/08/2023 12:51] __melonwater
+@0xBugsy hi sent you a dm
+
+{Reactions}
+👍 
+
+[06/08/2023 19:21] aba1842
+@0xbuzzlightyear hey, I pinged you in a DM again 😄 whenever you have the time
+
+{Reactions}
+checkmark 
+
+[06/09/2023 08:50] lourenslinde
+@0xbuzzlightyear sent you a dm :gummy_wink:
+
+{Reactions}
+checkmark 
+
+[06/09/2023 09:24] aba1842
+Light you are getting so much love and friend request ha ha :))
+
+{Reactions}
+pepoloveleaf 
+
+[06/09/2023 10:08] noro9954
+in which chains it will be deployed ?
+
+
+[06/09/2023 10:22] 0xbuzzlightyear
+arbitrum will have most (almost all) contracts, ulysses-omnichain branch contracts (other than arbitrumBranch) are supposed to be deployed in other chains, at launch will be: eth mainnet, optimism, polygon, bsc, metis and possibly ftm and avax
+
+
+[06/09/2023 10:37] deadrosesxyz
+is it supposed to be compatible with any chain?
+
+
+[06/09/2023 11:19] 0xbuzzlightyear
+The contracts for arbitrum, no. others should support any evm compatible chain.
+many chains have their own limitations, but branch contracts are supposed to work on chains that support the opcodes used. for example some ZKs may need minor adjustments, namely in gas management constants.
+
+
+[06/09/2023 17:54] aba1842
+Hey, I did not ask but I presume any issue with compromised trusted addresses (owners/multisig of specific elements) is out of scope / not relevant. I mean, there are a number of ways a trusted (compromised) address can extract value from the protocol
+
+
+[06/09/2023 18:19] 0xbuzzlightyear
+hey, yes. owner is included in automated findings
+
+
+[06/10/2023 13:26] 0xvit_
+Hi @0xbuzzlightyear sent you a dm 👽
+
+{Reactions}
+checkmark (2) 
+
+[06/10/2023 23:31] alexxander
+@0xbuzzlightyear Hi, dmed you 🙏
+
+{Reactions}
+checkmark (2) 
+
+[06/11/2023 18:32] fulum
+Hi, I suppose missing NatSpec is out of scope ?
+
+
+[06/12/2023 04:04] t1moh
+@0xBugsy dmed you
+
+{Reactions}
+👍 
+
+[06/12/2023 10:07] 0xbuzzlightyear
+yes it is out of scope, it's already covered in automated findings
+https://gist.github.com/itsmetechjay/09ae039958715d881a47209f74af1b7c#n-37-natspec-return-argument-is-missing
+
+(edited this, please look 2 msgs below for a more complete and correct answer: https://discord.com/channels/810916927919620096/1110626768223739924/1117818100377718826)
+
+{Reactions}
+👍 
+
+[06/12/2023 12:45] berlin.101
+Hi @0xbuzzlightyear! Please check your DMs 🙏
+
+{Reactions}
+checkmark 
+
+[06/12/2023 14:10] aba1842
+to be technical, if you find a missing NatSpec that was not reported in the automated findings you can say it. I don't really expect this would make such a difference for you but you can add it. (If I will submit QA and I do find a missing natspec that the bot missed (rare cases) then I will submit it, for example)
+
+{Reactions}
+pepoloveleaf checkmark 
+
+[06/12/2023 16:19] kchmielewski.eth
+Who is supposed to call the `newEpoch()` function on Gauges or GaugeManager?
+
+
+[06/12/2023 16:20] 0xbuzzlightyear
+anyone can do it, it's supposed to be fully open. But what usually happens is the team needing to call it every week
+
+{Reactions}
+✅ 
+
+[06/12/2023 17:00] kchmielewski.eth
+Cool, thank you so much! Are you planning on using some kind of keeper to call it on a regular basis?
+
+
+[06/12/2023 17:00] kchmielewski.eth
+Ain't this an expensive operation?
+
+
+[06/12/2023 17:03] 0xbuzzlightyear
+Most likely we will just setup our own off-chain component, since it isn't something that needs to be instant. it's cheaper this way. but we can setup "proper" automation for it, like chainlink keepers
+
+{Reactions}
+✅ (2) 
+
+[06/12/2023 17:03] kchmielewski.eth
+Got it, thanks!
+
+{Reactions}
+pepoloveleaf 
+
+[06/13/2023 18:56] evokid
+Dmed for a miswritten in docs (a conflict I guess)
+
+{Reactions}
+checkmark 
+
+[06/14/2023 09:29] lourenslinde
+Hi @0xbuzzlightyear, sent you a DM :gummy_wink:
+
+{Reactions}
+checkmark 
+
+[06/14/2023 13:51] koolexc
+Hi @0xbuzzlightyear , DMed you for a question
+
+{Reactions}
+checkmark (2) 
+
+[06/14/2023 17:31] dontonka
+is this contest only for certified warden, i assume not ?
+
+
+[06/14/2023 17:45] kartoonjoy
+This is public.
+
+{Reactions}
+✅ 
+
+[06/14/2023 21:36] aba1842
+@0xbuzzlightyear I presume the `gaugeToken` from `FlywheelGaugeRewards` is `bHermesGauges`?
+
+{Reactions}
+checkmark (2) 
+
+[06/14/2023 21:36] 0xbuzzlightyear
+yes, exactly (ERC20 Gauges)
+
+{Reactions}
+thankyou (2) 
+
+[06/15/2023 05:23] 0xstalin
+@0xbuzzlightyear What is the purpose of the bribeDepots in the UniswapV3Staker?
+
+
+[06/15/2023 05:36] block_chomper
+Hey @0xbuzzlightyear - you probably already had this question but I'm getting this error when I try to run forge coverage ```Compiler run failed:
+Error: Compiler error (/solidity/libyul/backends/evm/AsmCodeGen.cpp:63):Stack too deep. Try compiling with `--via-ir` (cli) or the equivalent `viaIR: true` (standard JSON) while enabling the optimizer. Otherwise, try removing local variables. When compiling inline assembly: Variable headStart is 1 slot(s) too deep inside the stack. Stack too deep. Try compiling with `--via-ir` (cli) or the equivalent `viaIR: true` (standard JSON) while enabling the optimizer. Otherwise, try removing local variables.```
+
+
+[06/15/2023 05:36] block_chomper
+Tried using --via-ir but still no joy, any ideas on how to fix?
+
+
+[06/15/2023 11:20] 0xbuzzlightyear
+To send fees generated by uni v3 NFT positions to then distribute to voters of each gauge as bribes
+
+
+[06/15/2023 11:21] 0xbuzzlightyear
+Please read this: https://discord.com/channels/810916927919620096/1110626768223739924/1113769089052192768
+
+
+[06/15/2023 13:36] kartoonjoy
+Pinned a message.
+
+
+[06/15/2023 20:31] co0nan
+Hey folks, first day on this contest. May I ask If there is any information provided here regarding the entry-points for the system? Does each protocol has his own entry-points?
+
+
+[06/15/2023 20:49] aba1842
+@0xbuzzlightyear in `UniswapV3Staker` the `minter` address is a random EOA?
+
+
+[06/15/2023 20:50] 0xbuzzlightyear
+Will be this contract's address:
+https://github.com/code-423n4/2023-05-maia/blob/main/src/hermes/minters/BaseV2Minter.sol
+
+
+[06/15/2023 20:51] aba1842
+there are lot of entry points in the system. I started with the `rewards` section and continued from there. There are also a lot of entry points per component/sub-protocols. I think Thalos is the most isolated, haven't gotten to it yet and Ulysses is probably the most complex part, judging by the video lengths 😄
+
+{Reactions}
+hi5 (2) thankyou pepoloveleaf 
+
+[06/15/2023 20:51] aba1842
+oh, I understand, thank you!
+
+{Reactions}
+pepehandshake 
+
+[06/15/2023 20:52] co0nan
+It seems i have too much to do for next days
+
+{Reactions}
+😅 
+
+[06/15/2023 20:53] aba1842
+I agree, hope you enjoy the ride!
+
+{Reactions}
+😅 
+
+[06/15/2023 21:05] 0xstalin
+at some point you'll be reading contracts from the other systems, I haven't started with ulysses, but the other 3 systems are highly interconnected 🙂
+
+{Reactions}
+👍 💯 
+
+[06/15/2023 22:16] 0xray44
+hi @0xbuzzlightyear i sent you a dm
+
+{Reactions}
+checkmark 
+
+[06/17/2023 05:58] 0xstalin
+hey @0xbuzzlightyear 
+What is the difference or relation between `votes` and `weight` in the `bHermesGauges` token
+And also, what is the `weight` used for?
+
+
+[06/17/2023 09:41] 0xbuzzlightyear
+Weight is for voting towards gauges, votes is the balance a user can use to vote towards gauges.
+Votes come from ERC20MultiVotes that ERC20Gauges extends, where a user needs to delegate to itself for example before allocating weights to gauges
+
+
+[06/17/2023 11:16] dontonka
+why is this possible todo (create with the same owner) and what is the requirement to support this behavior?
+```
+    function testCreateBoostAggregatorSameOwner(address owner) public {
+        mockUniswapV3Staker();
+        hevm.assume(owner != address(0));
+
+        assertEq(factory.getBoostAggregators().length, 1);
+
+        factory.createBoostAggregator(owner);
+        factory.createBoostAggregator(owner);
+
+        assertEq(factory.getBoostAggregators().length, 3);
+    }
+```
+
+
+[06/17/2023 11:33] 0xbuzzlightyear
+Anyone can create any number of BoostAggregators, this is because you can only have 1 boosted NFT per pool per address. So if you want to have two boosted positions and split your boost between them, you can use two EOAs or create 1/2 boost aggregators
+
+
+[06/17/2023 11:41] dontonka
+alright, but this would be using multiple boost for the same EOA correct?
+
+
+[06/17/2023 11:43] 0xbuzzlightyear
+Yes. just want to clarify EOA was an example it's the same for any address.
+
+{Reactions}
+✅ 
+
+[06/17/2023 12:15] dontonka
+sent a friend request
+
+{Reactions}
+checkmark 
+
+[06/17/2023 16:22] 0xsmartcontractsamurai
+Quick question, where are the rerange() and rebalance() functions defined with respect to nonfungiblePositionManager?
+i.e. nonfungiblePositionManager.rerange()
+I cant find it anywhere.
+
+thanks.🙏
+
+
+[06/17/2023 17:02] 0xbuzzlightyear
+Hey, so we are using a library there:
+https://github.com/code-423n4/2023-05-maia/blob/54a45beb1428d85999da3f721f923cbf36ee3d35/src/talos/strategies/TalosStrategySimple.sol#L16
+
+The function is implemented here:
+https://github.com/code-423n4/2023-05-maia/blob/54a45beb1428d85999da3f721f923cbf36ee3d35/src/talos/libraries/PoolActions.sol#L56
+
+{Reactions}
+👍 
+
+[06/17/2023 17:29] 0xsmartcontractsamurai
+Awesome, thanks🫡
+
+{Reactions}
+pepoloveleaf 
+
+[06/17/2023 23:00] _oceansky
+wondering why there is no specific app for TALOS? unlike hermes and maiadao and unimaia
+
+
+[06/18/2023 13:33] co0nan
+where is the implementation of the timelock contract?
+
+
+[06/18/2023 14:13] 0xsurena
+https://docs.uniswap.org/concepts/governance/overview#timelock
+
+{Embed}
+https://docs.uniswap.org/concepts/governance/overview
+Overview | Uniswap
+Code
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/twitter_card_bg-5E6D6.jpg
+
+{Reactions}
+thankyou (2) checkmark 
+
+[06/18/2023 18:24] wtin
+@0xbuzzlightyear sent you a DM
+
+{Reactions}
+checkmark 
+
+[06/18/2023 21:35] aba1842
+regarding the 4 Hermes tokens:
+- HERMES (this one I assume so)
+- bHermesGagues
+- bHermesVotes
+- bHermesBoost
+
+will these be allocated liquidity on a DEX?
+
+
+[06/18/2023 22:28] 0xbuzzlightyear
+Yes for HERMES and bHERMES. Almost defintely will be HERMES-WETH and HERMES bHERMES 
+For the 3 utility tokens:
+At least during the start. As protocol we won't create gauges for them neither have any kind of POL
+
+
+[06/18/2023 22:30] aba1842
+thanks Light!
+
+{Reactions}
+pepoloveleaf 
+
+[06/19/2023 12:13] _oceansky
+@0xbuzzlightyear dmed you thanks
+
+
+[06/19/2023 14:36] mgf15
+are Analysis report required ?
+
+
+[06/19/2023 14:56] 0xepley
+yes
+
+
+[06/19/2023 15:04] Cryptor#9119
+No it isn't. It is only encouraged
+
+{Reactions}
+☝️ (4) 
+
+[06/19/2023 15:07] cloudellie
+Correct -- encouraged, not required.
+
+
+[06/19/2023 15:08] 0xepley
+yeah my bad, https://discord.com/channels/810916927919620096/810936719003090974/1115294476009750593
+
+
+[06/19/2023 18:20] evokid
+@0xBugsy Sent you a DM 👍
+
+
+[06/19/2023 19:41] ihtishamsudo
+@0xbuzzlightyear DMed you
+
+{Reactions}
+checkmark 
+
+[06/19/2023 19:50] yellowbirby
+@0xBugsy @0xbuzzlightyear could you clarify the relation between local, global and underlying tokens in ulysses-omnichain?
+
+
+[06/19/2023 21:43] 0xbugsy (pinned)
+Hey! Ulysses Omnichain Virtualized Liquidity System has 3 token addresses minimum per token: 
+
+- 1 underlying address ( let's imagine OP token from Optimism) 
+- 1 global address (hOP in Arbitrum Root environment used in UniswapV3, Talos and Ulysses AMM for example)
+- 1 localHToken address in its origin chain so you can use the receipt of 1 OP deposited in OP's branch Port in OP for composability purposes (this is 100% opt-in). N  of these local hTokens can also be created 1 for each connected chain - 2 (the token origin chain and the root chain). These also serve the same purpose of being a receipt for a port deposit this time for a port in a different chain. (Example hOP in Eth mainnet and hOP in FTM)
+
+
+[06/19/2023 21:53] reentrant
+Anyone ever get the Slither extension for VSCode on Linux working on this codebase?
+
+
+[06/19/2023 21:53] reentrant
+works for others, but I get an "AssertionError"
+
+
+[06/20/2023 03:16] 0xstalin
+Hey @0xBugsy @light 
+How can users get hTokens?
+
+My understanding regarding depositing and briding is that the user sends both tokens, the `hToken` and the `underlyingToken`, so, how can users get those hTokens? (Or maybe I misunderstood this logic....)
+
+
+[06/20/2023 05:00] __melonwater
+user receive hToken at root chain. I think they can choose to deposit underlying OR hToken at branch chain
+
+{Reactions}
+👍🏻 
+
+[06/20/2023 11:27] yellowbirby
+thanks for the comprehensive reply, a follow up question, you've written
+> These also serve the same purpose of being a receipt for a port deposit this time for a port in a different chain. (Example hOP in Eth mainnet and hOP in FTM)
+Does it mean:
+1. you bridge 1 OP to mainnet, you recive 1 `localHToken` for mainnet `hOP` 
+2. can you bridge ARB `hOP` to mainnet or FTM? If so, is it intended way to use the system?
+3. can you bridge the `localHToken` to other chain? If so, would it make sense?
+
+
+[06/20/2023 11:28] yellowbirby
+@0xBugsy @0xbuzzlightyear Could you point me to the full system deployment script, or a test file which approximates it?
+
+
+[06/20/2023 11:42] almurhasan#1056
+Does anyone can create gaugefactory or only protocol can create gaugefactory
+
+
+[06/20/2023 11:53] block_chomper
+@0xbuzzlightyear Sent you a fr - have some complex questions on Ulysses accounting I hope you can help with
+
+
+[06/20/2023 12:07] 0xbuzzlightyear
+https://github.com/code-423n4/2023-05-maia#slither
+Please try to use slither version 0.9.3, worked for me
+
+
+[06/20/2023 12:08] 0xbuzzlightyear
+anyone can create a gauge factory, but they need to be added to the system through governance
+
+
+[06/20/2023 12:09] 0xbuzzlightyear
+if it's about ulysses-omnichain @0xBugsy will be able to help you and explain it better
+
+
+[06/20/2023 12:13] 0xbugsy
+Hey, any underlying asset deposited in a port (like OP in OP chain in my other example) corresponds to 1 hToken and after any interaction you can choose to withdraw assets from the platform afterwards as underlying assets or stay in hTokens (deposit receipts). So upon entry into the system you will always use underlying assets unless you have previously interacted and requested token settlement/clearance in hTokens or acquired hTokens in alternative ways (in a dex for example)
+
+
+[06/20/2023 12:21] 0xbugsy
+Gm, clearing hTokens to a branch chain is fully opt-in and is possible solely for composability purposes, with the exception of our ecosystem tokens (Hermes and Maia) that are always hTokens so they can be bridged around in a burn-and-mint dynamic (you can see the addition of these tokens to the system here https://github.com/code-423n4/2023-05-maia/blob/54a45beb1428d85999da3f721f923cbf36ee3d35/src/ulysses-omnichain/RootPort.sol#L491). 
+To give further context on hToken addition see `CoreRootRouter` (https://github.com/code-423n4/2023-05-maia/blob/54a45beb1428d85999da3f721f923cbf36ee3d35/src/ulysses-omnichain/CoreRootRouter.sol)
+
+
+[06/20/2023 13:32] almurhasan#1056
+0×Light dm you
+
+{Reactions}
+checkmark 
+
+[06/20/2023 14:53] yellowbirby
+sent you a dm, mate
+
+{Reactions}
+👍 
+
+[06/20/2023 14:57] reentrant
+ya, works on the cli, just the vscode extension dies for me
+
+
+[06/20/2023 14:57] reentrant
+def helped reading about 0.9.3 on the docs
+
+{Reactions}
+pepehandshake pepoloveleaf cyberPray 
+
+[06/20/2023 14:57] 0xbuzzlightyear
+sorry, didn't read the extension part
+
+{Reactions}
+cyberPray 
+
+[06/20/2023 16:30] koolexc
+@0xbuzzlightyear DMed for a question
+
+{Reactions}
+checkmark 
+
+[06/21/2023 04:30] 0xnevi
+Hi @0xbuzzlightyear @0xBugsy how do i go about running tests in uniswapv3staker getting a couple of errors
+
+
+[06/21/2023 06:28] 0xbuzzlightyear
+Hi
+https://github.com/code-423n4/2023-05-maia#tests
+
+{Embed}
+https://github.com/code-423n4/2023-05-maia
+GitHub - code-423n4/2023-05-maia
+Contribute to code-423n4/2023-05-maia development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/5d31dfbd-af04-4be2-a8cb-bb4795a08463-027B3
+
+
+[06/21/2023 06:35] 0xnevi
+Oh im using a mac do i use the same script?
+
+
+[06/21/2023 12:27] koolexc
+Is there a list of the chains intended to be used?
+
+
+[06/21/2023 13:19] kartoonjoy
+Pinned a message.
+
+
+[06/21/2023 15:03] 0xbuzzlightyear
+Hi, am sorry for the late reply. Honestly not sure, but if none of the scripts work there are instructions on how to Update INIT_CODE_HASH in PoolAddress manually for the tests to work
+
+
+[06/21/2023 15:04] 0xbuzzlightyear
+https://discord.com/channels/810916927919620096/1110626768223739924/1116673692588589106
+https://discord.com/channels/810916927919620096/1110626768223739924/1116687961401086013
+
+{Reactions}
+thankyou 
+
+[06/22/2023 09:14] Audinarey#1058
+Hi @0xbuzzlightyear, I sent you a DM.
+
+{Reactions}
+checkmark 
+
+[06/22/2023 10:46] almurhasan#1056
+Hi 0×Light dm you
+
+{Reactions}
+checkmark 
+
+[06/22/2023 15:07] fulum
+Hi @0xbuzzlightyear ,I just dm you
+
+{Reactions}
+checkmark 
+
+[06/22/2023 15:18] almurhasan#1056
+0×Light dm you
+
+{Reactions}
+checkmark 
+
+[06/23/2023 00:13] UCh#4429
+Hi can anyone point to definition of Index, diff, user index and boosting . Thanks
+
+
+[06/23/2023 10:15] sp1cymeatball
+@0xbuzzlightyear @0xBugsy are there tests for `GovernorBravoDelegateMaia.sol`? Also, what token will be used as `govToken_`? bHermes?
+
+
+[06/23/2023 12:45] 0xbuzzlightyear
+hey
+
+it's user reward Index and strategy reward index, it's checkpoints to use for accruing reward distribution in FlywheelCore:
+https://github.com/code-423n4/2023-05-maia/blob/main/src/rewards/interfaces/IFlywheelCore.sol#L15-L17
+https://github.com/code-423n4/2023-05-maia/blob/54a45beb1428d85999da3f721f923cbf36ee3d35/src/rewards/base/FlywheelCore.sol#L161-L176
+https://github.com/code-423n4/2023-05-maia/blob/54a45beb1428d85999da3f721f923cbf36ee3d35/src/rewards/base/FlywheelCore.sol#L183-L204
+ 
+diff = difference, assuming it's from Ulysses Pools, it's the difference in bandwidth from targetBandwidth, either positive or negative according to the action (deposit/mint/swap vs redeem)
+https://github.com/code-423n4/2023-05-maia/blob/main/src/ulysses-amm/UlyssesPool.sol#L413-L439
+
+
+[06/23/2023 12:47] 0xbuzzlightyear
+hey, there are no tests for that atm in this repo. for that specific governance contract the `govToken_` will be bHermesVotes in vMaiaContract:
+https://github.com/code-423n4/2023-05-maia/blob/main/src/maia/PartnerUtilityManager.sol#L23
+
+{Reactions}
+thankyou 
+
+[06/23/2023 19:24] UCh#4429
+Just to confirm any reward works as follows, user balance of a strategy token * rewardIndex ( which is a denominator of a particular strategy)?
+
+
+[06/24/2023 06:54] its_basu
+I am getting this import error - Error: Source "@lib/EnumerableSet.sol" not found: File not found. Searched the following locations: "".
+  --> src/erc-20/ERC20MultiVotes.sol:12:1:
+
+
+[06/24/2023 06:54] its_basu
+while using slither
+
+
+[06/24/2023 06:54] its_basu
+can someone help ?
+
+
+[06/24/2023 14:21] chaduke3730
+@0xbuzzlightyear
+
+
+[06/24/2023 14:21] chaduke3730
+I am sending you a DM requset. thanks
+
+{Reactions}
+checkmark 
+
+[06/24/2023 19:39] ihtishamsudo
+Slither not working properly! Better flatten the file.
+
+
+[06/25/2023 04:08] its_basu
+its sorted out now, thanx for the tip anyway 👍
+
+
+[06/25/2023 12:06] 0xbuzzlightyear
+hey, yes!
+So if you want to see how much rewards the user accrued, then it's:
+user balance of a strategy token * (StrategyRewardIndex - OldUserRewardIndex)
+Then the UserRewardIndex = StrategyRewardIndex
+
+{Reactions}
+🙏 
+
+[06/25/2023 15:55] emmac002#2805
+Hi @0xbuzzlightyear , just sent you a DM. Thanks!
+
+{Reactions}
+checkmark 
+
+[06/25/2023 16:30] cloudellie
+sorted, ty!
+
+{Reactions}
+pepoloveleaf pepehandshake 
+
+[06/26/2023 01:34] UCh#4429
+hi @0xbuzzlightyear  can you tell why rewards.setRewards(0) for this test as the rewards already set in previously with 10 Ether.
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/image-1AE4F.png
+
+
+[06/26/2023 10:09] 0xbuzzlightyear
+hey, please let me know which file you are talking about
+
+
+[06/26/2023 12:25] UCh#4429
+https://github.com/code-423n4/2023-05-maia/blob/main/test/rewards/FlywheelInstantTest.t.sol
+
+{Embed}
+https://github.com/code-423n4/2023-05-maia/blob/main/test/rewards/FlywheelInstantTest.t.sol
+2023-05-maia/test/rewards/FlywheelInstantTest.t.sol at main · code-...
+Contribute to code-423n4/2023-05-maia development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/5d31dfbd-af04-4be2-a8cb-bb4795a08463-027B3
+
+{Reactions}
+thankyou 
+
+[06/26/2023 13:59] 0xbuzzlightyear
+So no rewards are accrued from the mock contract and FlyWheelRewardsInstant only accrues 10 ether of rewardToken for the strategy.
+
+
+[06/26/2023 14:21] UCh#4429
+Thanks mate. So the initial 10 ether rewardToken still considered for user2 accrual and stopped further accrual from mock booster or strategy?
+
+
+[06/26/2023 14:53] 0xbuzzlightyear
+exactly, user1 has 25% of the supply, so he will accrue 2.5 ether and then user2 has 75% of the supply and no new rewards are accrued by the strategy so he will accrue 7.5 ether
+
+
+[06/26/2023 15:05] UCh#4429
+thanks for your time ! one think got me confused was .setrewards would set the total rewards to 0.
+
+{Reactions}
+pepehandshake pepoloveleaf 
+
+[06/27/2023 13:09] kutugu
+@0xbuzzlightyear Dmed
+
+{Reactions}
+checkmark 
+
+[06/27/2023 16:02] _oceansky
+hello @0xbuzzlightyear , what is strategy token , branch strategies and port strategy mentioned in Ulysses omnichain?
+
+
+[06/27/2023 16:12] 0xbuzzlightyear
+Hey! I think you are looking for:
+
+1) Strategy Token: Branch Chain Asset present in Port whitelisted via governance for management by third-party Strategy Contracts. (https://github.com/code-423n4/2023-05-maia/blob/main/src/ulysses-omnichain/BranchPort.sol#L331)
+2) Port Strategy: Third-party contract whitelisted by governance for Management of one or more Strategy Tokens. (https://github.com/code-423n4/2023-05-maia/blob/main/src/ulysses-omnichain/BranchPort.sol#L349)
+
+
+[06/28/2023 14:13] evokid
+Many thanks to @0xBugsy who keep answering my questions in details really quick with patience:hi5:
+
+
+[06/28/2023 16:14] lsaudit
+hey, who can I DM to ask for clarification about UniswapV3Staker.sol file?
+
+
+[06/28/2023 17:09] 0xstalin
+@0xbuzzlightyear  or @0xBugsy
+
+{Reactions}
+pepehandshake 
+
+[06/28/2023 17:12] lsaudit
+thx, I've Dm'd you - @0xbuzzlightyear
+
+{Reactions}
+checkmark 
+
+[06/28/2023 19:28] lsaudit
+i've DMed you once more, with additional question, if you don't mind @0xBugsy , @0xbuzzlightyear
+
+{Reactions}
+checkmark 
+
+[06/28/2023 21:55] aba1842
+@0xbuzzlightyear hey, what is the `rewardToken` that will be used for the "official" project bribe flywheel (set via `BribesFactory::createBribeFlywheel`)?
+
+
+[06/28/2023 23:22] 0xbuzzlightyear
+Bribes can be any token (not rebase or fee on transfer) as long as they are passed through governance
+
+
+[06/28/2023 23:36] aba1842
+alright, thanks!
+
+{Reactions}
+pepoloveleaf 
+
+[06/29/2023 17:33] evokid
+@0xBugsy Dmed you 👍
+
+
+[06/30/2023 09:46] 0xrizwan
+@0xbuzzlightyear Please check DM.
+
+{Reactions}
+checkmark 
+
+[06/30/2023 17:19] dwward3n
+my laptop runs slow when maia code4rena page is opened, is it the same for all?
+
+{Reactions}
+👍 
+
+[07/01/2023 03:08] __melonwater
+me too
+
+
+[07/01/2023 19:37] zinc42#1431
+@0xBugsy  please check DM, thanks!
+
+
+[07/02/2023 05:58] PrasadLak#0622
+@0xbuzzlightyear  Pls check DM.
+
+{Reactions}
+checkmark 
+
+[07/02/2023 18:04] aba1842
+@0xbuzzlightyear @0xBugsy with the upcoming end of the audit, a lot of wardens, including me, will be submitting an analysis. We will, of course, give our best regardless but I am asking if you are interested in any particular subject to be discussed/reviewed by us? As guidelines we have this https://code4rena.notion.site/Analyses-Guidelines-and-FAQ-2808a71e08e44c81a985527194f5f118 (the Questions to answer in your analysis, Advanced part)
+
+{Reactions}
+✅ (2) pepehandshake 
+
+[07/02/2023 19:36] emmac002#2805
+@0xbuzzlightyear  please see DM, thanks.
+
+{Reactions}
+checkmark 
+
+[07/03/2023 12:54] evokid
+Indeed I would add that any professional critic for the code base it will be beneficial to everyone while @0xbuzzlightyear @0xBugsy did amazing job with this huge code base project. good luck for everyone 👍🏻
+
+{Reactions}
+pepehandshake 
+
+[07/03/2023 15:22] 0xbuzzlightyear
+We don't want to dissuade anyone into submitting any kind of analyses. just want to say for anyone reading this, if you are stuck this might help, but this is just our opinion atm on what we think anyone in our situation would want. We are not the judges, but even if we were, would be unfair to favor anyone who would follow this.
+
+Will try to give a couple of examples on each "Advanced" point from the analysis guideline:
+
+1. Analysis of the codebase (What's unique? What's using existing patterns?)
+Anything that would either improve our codebase or documentation about it is deeply appreciated. Identifying pain points can also be very helpful, even if you don't have a specific solution to it, can be an issue with the architecture itself, with naming (contracts, functions, variables) or lacking on the comment/documentation side. So letting us know of anything you didn't think it was perfect will always be appreciated.
+Everyone loves solutions, but don't worry if you don't have one, we prefer to know any kind of issues regardless of the solutions provided. You can provide 0 or multiple solutions if you are on the fence between them or just to show your thought process.
+
+2. Architecture feedback
+In terms of documenting/explaining something, anything is appreciated, from summaries, sketches, diagrams, pseudo-code, formulas, etc. Feel free to choose what you think it's best for each situation, but generally, any extra resources are always welcomed.
+
+3. Centralization risks
+Same as others, having this thoroughly explained is a huge plus. Not sure if this is in this section or the next, but potential governance attack vectors.
+
+4. Systemic risks
+Finding sensitive points in the codebase is extremely important. as well as identifying the effects of these, like chain availability, messaging layer availability, unexpected MEV opportunities, governance risks, etc.
+
+5. Other recommendations
+Again, if it will help improve or understand the codebase, it is very welcomed. An example that might not apply to this audit due to it's size but I would say is definitely useful, is making a threat model. we do have a threat model made by zellic but it is not complete, feel free to give it a look in `/threat-model`.
+
+You will probably find nice things to add by looking at third party audit reports from firms or solo auditors, even if not from this space.
+
+cc: @ABA @evokid
+
+{Reactions}
+👌🏼 (3) thankyou (3) 🔥 (7) code4rena (2) 
+
+[07/04/2023 17:33] adeolu
+hi please check dm ser @0xbuzzlightyear, sent u a dm
+
+{Reactions}
+checkmark 
+
+[07/05/2023 11:22] Audinarey#1058
+Code4rena is not loading I cant submit my findings
+
+
+[07/05/2023 12:08] Audinarey#1058
+Its working again
+
+
+[07/05/2023 12:29] saaj_110
+still facing this issue from my side
+
+
+[07/05/2023 13:07] Cryptor#9119
+I am having trouble submitting my analysis. Is anyone else having the same issue?
+
+
+[07/05/2023 13:26] saaj_110
+yes
+
+
+[07/05/2023 15:55] reentrant
+Same
+
+
+[07/05/2023 15:56] reentrant
+@kartoonjoy is this a known issue going on rn?
+
+
+[07/05/2023 18:38] c145h
+why should it be 'even'? and how is it enforced?
+
+
+[07/05/2023 19:08] cloudellie
+**⚠️ Attention: Teams submitting Analyses**
+
+A technical issue is preventing some **warden teams** from submitting **Analysis reports**. Given we are fast approaching this audit's final submission deadline,  Team Analyses ONLY may be submitted as follows: 
+
+1. Create a secret Gist containing your team's Analysis in Markdown (.md)
+2. While logged in to your C4 account, submit a help desk request (https://code4rena.com/help) with the subject "Team Analysis for Maia"
+3. Paste the link to your secret Gist in the Description field. 
+
+You must still submit this by the deadline, and we are not able to accept other submission types this way.
+
+
+[07/05/2023 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺wardens The **Maia DAO Ecosystem** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the audit is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a Contest-Admin if you have questions along the way!
+
+{Reactions}
+🫡 (16) 🦋 (3) 😍 (3) 
+
+[07/05/2023 20:02] ihtishamsudo
+GL everyone
+
+{Reactions}
+🙏 (4) 
+
+[07/05/2023 20:02] DedOhwale#6048
+🫡
+
+
+[07/05/2023 20:02] deadrosesxyz
+it was a pleasure working on the project 🫡
+
+{Reactions}
+pepoloveleaf 
+
+[07/05/2023 20:04] kodyvim
+Thanks for the quick response and availability @0xBugsy
+
+{Reactions}
+peperespected (2) 
+
+[07/05/2023 20:06] 0xdanial
+https://tenor.com/view/kiss-hehe-kiss-meme-kissing-meme-black-guy-kiss-gif-23557764
+
+{Embed}
+https://tenor.com/view/kiss-hehe-kiss-meme-kissing-meme-black-guy-kiss-gif-23557764
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/kiss-hehe-8E233.png
+
+{Reactions}
+😂 (10) 
+
+[07/05/2023 20:09] ihtishamsudo
+Now wait for 4-5 months for results lol
+
+{Reactions}
+smileysad (10) 
+
+[07/05/2023 20:09] 0xbuzzlightyear
+really sorry I didn't see this. Actually not sure about the "even"
+It's from here: https://github.com/fei-protocol/flywheel-v2/blob/main/src/rewards/FlywheelGaugeRewards.sol#L102
+
+{Reactions}
+❤️ (4) 
+
+[07/05/2023 20:10] 0xbuzzlightyear
+Thank you so much everyone! Really appreciate all your time and effort on this! :pepehandshake: :pepoloveleaf:
+
+{Reactions}
+❤️ (10) 
+
+[07/05/2023 20:13] 0franco
+Hi
+
+
+[07/05/2023 20:14] fulum
+Thanks, very good audit, good luck everyone :hi5:
+
+{Reactions}
+pepoloveleaf 
+
+[07/05/2023 20:19] 0xsmartcontractsamurai
+Thanks for the opportunity to audit this codebase.
+
+
+[07/05/2023 20:23] 0xsmartcontractsamurai
+Where can I submit the last batch of my findings if I couldnt submit before deadline outside of my control?💩
+
+{Reactions}
+😁 (3) 
+
+[07/05/2023 20:24] evokid
+Was a great experience good luck for everyone 👍
+
+{Reactions}
+👍 pepoloveleaf 
+
+[07/05/2023 20:27] 0xstalin
+Thanks to @0xBugsy & @0xbuzzlightyear  for their patience and support in resolving all the questions I asked them
+Had an amazing experience auditing this codebase, so far it has been the largest codebase I've ever audited 🙂
+
+My best wishes for the protocol in all their future endeavors 🫡
+
+{Reactions}
+👍 (4) peperespected (2) flustered 
+
+[07/05/2023 20:28] t1moh
+You guys the best sponsors I interacted with! Every question was answered in clear and fast manner.
+Cheers to you
+
+{Reactions}
+✅ (3) peperespected (2) flustered 
+
+[07/05/2023 20:30] 01xcoder
+:10_10:
+
+{Reactions}
+pepoloveleaf 
+
+[07/05/2023 20:30] cloudellie
+I've replied to your post in #❓questions .
+
+{Reactions}
+👍 
+
+[07/05/2023 21:59] coincoin#7795
+@CloudEllie I have realized our report is not the right one
+
+
+[07/05/2023 22:02] cloudellie
+I'm sorry, but the deadline for this audit passed two hours ago.
+
+
+[07/05/2023 22:16] coincoin#7795
+got it, sorry for the spam I have used the wrong channel.
+
+{Reactions}
+👍 
+
+[07/05/2023 22:27] alexxander
+Good luck everyone, big thanks to @0xbuzzlightyear & @0xBugsy for the in-depth replies 🔥🔥
+
+{Reactions}
+pepehandshake (6) pepoloveleaf (5) 
+
+[07/05/2023 23:41] __melonwater
+Very Interesting code! Good luck to all 🙂 Thanks for your help@0xBugsy @0xbuzzlightyear
+
+{Reactions}
+pepehandshake (4) pepoloveleaf (4) 
+
+[07/06/2023 05:57] chaduke3730
+Good luck to all!
+
+{Reactions}
+code4rena (18) 
+
+[07/13/2023 13:23] block_chomper
+wen results? :kewk:  just wondering if there is a rough timeline
+
+
+[07/13/2023 16:32] ihtishamsudo
+Forget it for 3-4 months xD
+
+{Reactions}
+😂 (6) 
+
+[07/13/2023 18:00] 0x11singh99
+Seems realistic 😕
+
+
+[07/14/2023 03:04] alexxander
+Contest ended 10 days ago, have some patience, sponsors & judge have already made significant progress 🙏
+
+{Reactions}
+👆 (3) kewk 
+
+[07/14/2023 12:38] block_chomper
+Apologies, living in my moms basement trying to move out asap
+
+{Reactions}
+❤️ (2) 
+
+[07/15/2023 06:04] zhaojie
+This project uses Multichain for cross-chain
+
+
+[07/15/2023 06:23] hex_sadeeq
+Move on to the next and forget your worries
+
+
+[07/15/2023 06:23] hex_sadeeq
+😳😳
+
+
+[07/15/2023 14:35] fulum
+The multichain hack have some impacts on the contest ? @0xbuzzlightyear
+
+
+[07/15/2023 14:47] 0xbuzzlightyear
+hey, thx for the bump it is very unfortunate for a lot of reasons, but on the bright side due to the events happening on the week code4rena started we started immediately migrating to layerzero so we already have that done. So these last events didn't really affect us
+
+{Reactions}
+🥲 
+
+[07/15/2023 14:50] 0xbuzzlightyear
+This has no impact on the contest however, especially no impact for wardens. Because layzero handles all gas management unlike anycall, there may be some findings which we just acknowledge and don't address since that part of the code will be deprecated. Other than that, there is no kind of impact
+We were planning on addressing them even with the migration to L0, but if there is no more mpc or anycall, doesn't make sense
+
+{Reactions}
+👍 (5) 
+
+[07/15/2023 14:52] fulum
+Ok, thx for your answer
+
+{Reactions}
+pepoloveleaf pepehandshake 
+
+[07/17/2023 17:48] reentrant
+🤣🤣🤣
+
+
+[07/21/2023 10:02] block_chomper
+:gummy_bear: :C4Keycap: :kewk:
+
+
+[07/30/2023 03:32] 0xstalin
+https://tenor.com/view/sweating-nervous-wreck-gif-24688521
+
+{Embed}
+https://tenor.com/view/sweating-nervous-wreck-gif-24688521
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/sweating-nervous-BFA64.png
+
+
+[07/30/2023 11:51] block_chomper
+https://tenor.com/view/shaq-shaquille-o-neal-wiggle-evil-smile-gif-15358842
+
+{Embed}
+https://tenor.com/view/shaq-shaquille-o-neal-wiggle-evil-smile-gif-15358842
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/shaq-shaquille-o-neal-6AE09.png
+
+{Reactions}
+💜 (2) 👀 
+
+[08/01/2023 11:04] alexxander
+:chefskiss: :chefskiss:
+
+{Reactions}
+👀 
+
+[08/01/2023 11:20] ihtishamsudo
+Maia is on its way to final stages i guess
+
+
+[08/01/2023 11:23] stormreckson
+Been a long wait ..can't wait to see the results 
+I might not have a finding here but still...my first actually auditing competition ..the tension is 😔
+
+
+[08/01/2023 11:26] ihtishamsudo
+you'll get it mate, keep going
+
+{Reactions}
+💯 
+
+[08/01/2023 11:32] 0xthec0der
+The judging process is blazingly fast considering the size of the codebase. :code4rena:
+
+
+[08/01/2023 11:40] ihtishamsudo
+yes, i thought it would take atleast 3-4 months but it's real quick i guess
+
+
+[08/01/2023 12:11] 0xsurena
+It's not possible to see primary results or follow the judgment process? 😅
+
+
+[08/01/2023 12:25] stormreckson
+Thanks 👍
+
+
+[08/01/2023 12:26] ihtishamsudo
+Backstage i guess
+
+{Reactions}
+👍 
+
+[08/01/2023 12:31] 0xsurena
+But really, the sponsor of this project, during the audit process, always answered all the questions well. It was a very good experience.
+
+{Reactions}
+👍 (2) 
+
+[08/01/2023 13:13] t1moh
+It's the best team ever. They answer all questions, and done a lot of work reviewing issues
+
+{Reactions}
+👍 (2) 1_ 
+
+[08/01/2023 20:53] 0xepley
+wennn
+
+
+[08/02/2023 01:15] liveactionllamac4
+🤑 🎉 Awards for **Maia DAO**:
+
+$40,562.00  USDC » @xuwinnie 
+$19,221.87 USDC » @Koolex 
+$18,712.08 USDC » Voyvoda ( @gogo, @deadrosesxyz, & @alexxander )
+$15,783.04 USDC » @bin2chen 
+$13,507.63 USDC » @0xStalin 
+$12,973.45 USDC » @ABA 
+$9,354.39 USDC » @peakbolt 
+$9,223.28 USDC » @T1MOH 
+$9,112.30 USDC » @Emmanuel 
+$6,139.29 USDC » @yellowBirdy 
+$5,802.61 USDC » @minhquanym 
+$5,282.89 USDC » @zzebra83 
+$4,965.94 USDC » @lukejohn 
+$4,852.78 USDC » @ltyu 
+$4,581.46 USDC » ByteBandits ( @Cryptor, @sakshamguruji, & @berlin.101 )
+$4,174.81 USDC » @0xTheC0der 
+$4,051.98 USDC » @said 
+$3,424.34 USDC » @rbserver 
+$3,407.21 USDC » @evokid 
+$3,084.68 USDC » @0xSmartContract 
+$2,992.35 USDC » @AlexCzm 
+$2,666.63 USDC » @kutu 
+$2,572.45 USDC » BPZ ( @Bitcoinfever244, @PrasadLak, & @zinc42 )
+$2,539.07 USDC » 7e1e
+$2,273.10 USDC » @kodyvim 
+$2,070.23 USDC » @Breeje 
+$2,028.13 USDC » @jasonxiale 
+$1,622.97 USDC » @tsvetanovv 
+$1,600.94 USDC » @IllIllI 
+$1,413.76 USDC » @Sathish9098 
+$1,413.76 USDC » @Rolezn 
+$1,355.47 USDC » @Audinarey 
+$1,168.75 USDC » @Noro 
+$1,133.41 USDC » los_chicos ( @vnmrtz.eth & @0xadrii )
+$810.51 USDC » @giovannidisiena 
+$793.42 USDC » @Raihan 
+$778.77 USDC » RED-LOTUS-REACH ( @escrow, @Priyam, @DedOhwale (GMT-7), @BlockChomper (GMT +4), @reentrant, & @cholakov )
+$683.07 USDC » @SpicyMeatball 
+$674.27 USDC » @Udsen 
+$626.99 USDC » @chaduke 
+$610.33 USDC » @0xn006e7 
+$610.33 USDC » @Rageur 
+$610.33 USDC » @hunter_w3b 
+$610.33 USDC » @JCN 
+$592.67 USDC » Verichains ( @lifebow, @nt, @LowK, & @th13vn )
+$546.05 USDC » @Madalad 
+$484.59 USDC » @MohammedRizwan 
+$450.98 USDC » @KupiaSec 
+$447.65 USDC » @shealtielanz 
+$442.41 USDC » @ihtishamsudo 
+$333.30 USDC » @max10afternoon 
+$312.04 USDC » @KingNFT 
+$268.20 USDC » @Fulum 
+$240.03 USDC » @anon 
+$240.03 USDC » @Josiah 
+$220.07 USDC » @peanuts 
+$205.71 USDC » @Qeew 
+$195.31 USDC » @K42 Ψ 
+$195.31 USDC » @pfapostol 
+$185.31 USDC » @0xnev 
+$172.82 USDC » @0xMilenov 
+$172.82 USDC » @btk 
+$168.11 USDC » @lsaudit 
+$136.61 USDC » @matrix_0wl 
+$136.61 USDC » @kaveyjoe 
+$105.36 USDC » @kchmielewski.eth 
+$95.38 USDC » @BLOS 
+$95.38 USDC » @Atree 
+$95.38 USDC » @zzzitron 
+$88.63 USDC » @nadin 
+$86.41 USDC » @its_basu 
+$84.68 USDC » @brgltd 
+$74.27 USDC » @Stormreckson 
+$74.27 USDC » @3kus-iosiro 
+$74.27 USDC » Audit_Avengers ( @0xSmartContractSamurai & @pxng0lin )
+$74.27 USDC » @mgf15 
+$62.33 USDC » David Giladi
+$62.33 USDC » @Jorgect 
+$62.33 USDC » @none
+
+{Reactions}
+🔥 (7) C4Keycap (3) 👽 (2) ❤️ (4) 🎉 
+
+[08/02/2023 01:15] liveactionllamac4
+$62.33 USDC » @larsson 
+$62.33 USDC » @TheSavageTeddy 
+$62.33 USDC » @0x11singh99 
+$62.33 USDC » @Arman123 
+$62.33 USDC » @code-cipher 
+$62.33 USDC » @ReyAdmirado 
+$62.33 USDC » @naman1778 
+$62.33 USDC » @petrichor🦖  
+$62.33 USDC » @SM3_SS 
+$62.33 USDC » @0xAnah 
+$62.33 USDC » @SAQ 
+$24.76 USDC » BugBusters ( @nirlin & @0xepley )
+$23.91 USDC » @Co0nan 
+$23.84 USDC » @adeolu 
+$23.84 USDC » @ubermensch 
+$23.84 USDC » @LokiThe5th 
+$13.99 USDC » @Kaiziron 
+$10.40 USDC » @0xCiphky 
+$5.20 USDC » @8olidity 
+$5.20 USDC » @sha256(Saediek) 
+
+🏁 Findings summary
+--------------------------------------—
+High risk findings: 35 unique (106 total)
+Med risk findings: 44 unique (134 total)
+Gas reports: 27 (Best: Raihan)
+QA reports: 22 (Best: 0xSmartContract)
+Advanced analysis reports: 16 (Best: 7e1e)
+
+Awards will be distributed on Polygon within the next week. Congratulations all!  💸 💸 💸
+
+*Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+{Reactions}
+🎉 
+
+[08/02/2023 01:26] 0xstalin
+https://tenor.com/view/crying-from-happiness-gif-21845734
+
+{Embed}
+https://tenor.com/view/crying-from-happiness-gif-21845734
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/crying-from-happiness-4861F.png
+
+{Reactions}
+💜 (23) hi5 (7) 🔥 (5) 
+
+[08/02/2023 01:28] 0xstalin
+I guess this is my call to finally fully jump into web3 security 🫡
+
+
+[08/02/2023 01:28] fulum
+Good job all wardens ! :chefskiss:
+
+
+[08/02/2023 01:29] ladboy233
+106 high 135 medium？
+
+{Reactions}
+🥵 (6) 
+
+[08/02/2023 01:34] Cryptor#9119
+Is it possible to get the stats on analysis reports as well?
+
+
+[08/02/2023 01:43] deadrosesxyz
+3rd place LFGG
+
+{Reactions}
+🔥 (9) 
+
+[08/02/2023 01:43] sockdrawermoney
+oh good question. we do need to add these to the format! cc @Jay | C4
+
+{Reactions}
+👍 (2) 
+
+[08/02/2023 01:44] ladboy233
+never mind, 35 high, 44 medium
+
+
+[08/02/2023 01:44] ladboy233
+wow
+
+
+[08/02/2023 01:44] sockdrawermoney
+heh yeah I think we probably need to rephrase that line. I originally wrote it that way but it's not very clear as it makes it sound like the _report_ will contain 106 high issues.
+
+
+[08/02/2023 01:45] sockdrawermoney
+Maybe we should do:
+
+High risk findings: 35 unique (106 total)
+Med risk findings: 44 unique (134 total)
+
+{Reactions}
+🔥 
+
+[08/02/2023 01:46] sockdrawermoney
+it's funny because multiple times recently, *I* have misread it that same way
+
+
+[08/02/2023 01:46] sockdrawermoney
+does this 👆 come off clearer than this? 👇
+
+High risk findings: 106 total, 35 unique
+Med risk findings: 134 total, 44 unique
+
+
+[08/02/2023 01:48] sockdrawermoney
+like what it's really saying is "35 high severity issues among 106 satisfactory submissions before deduplications" but lol that's a mouthful
+
+{Reactions}
+✅ (6) 
+
+[08/02/2023 01:48] ladboy233
+yeah this is clear, anyway just small wording lol
+
+
+[08/02/2023 01:58] petrichor0961
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/IMG_20230801_214148_481-087B5.jpg
+
+
+[08/02/2023 02:00] zhaojie
+The questions I submitted were incorrect and did not pass the review😂
+
+
+[08/02/2023 02:26] ihtishamsudo
+Alhamdullilah, congrats to all the wardens who participated ❤️‍🔥
+
+{Reactions}
+🔥 (3) 👏 
+
+[08/02/2023 02:43] ihtishamsudo
+Go for it 👊🏻
+
+{Reactions}
+❤️ 
+
+[08/02/2023 03:02] _3agle
+Amazing work, congratulations 🎉
+
+{Reactions}
+❤️ (2) 
+
+[08/02/2023 03:07] _oceansky
+Congrats to All:10_10:
+
+
+[08/02/2023 03:47] liveactionllamac4
+Updated! 🙂
+
+
+[08/02/2023 03:48] Cryptor#9119
+So 16 reports got an a grade?
+
+
+[08/02/2023 03:50] liveactionllamac4
+There were 16 reports that were either `selected for report`, `grade a`, or `grade b`.
+
+{Reactions}
+👍 
+
+[08/02/2023 04:51] tamayonft
+Damn broooo
+
+
+[08/02/2023 04:51] tamayonft
+How many submits did you do
+
+
+[08/02/2023 04:56] zzebra83
+13th place, awesome! 🎉
+
+{Reactions}
+🔥 (2) 
+
+[08/02/2023 04:58] 0xstalin
+I submitted 3 high and 4 meds
+Got 2 valid solo highs, 1 solo med and 2 meds duplicated 🙂
+
+{Reactions}
+🎉 (10) 
+
+[08/02/2023 04:58] zzebra83
+Nice one @0xStalin !
+
+{Reactions}
+🫡 (2) 
+
+[08/02/2023 05:27] alexxander
+:10_10: :10_10: :4739_Skeletor:
+
+
+[08/02/2023 05:28] alexxander
+Congrats everyone
+
+{Reactions}
+10_10 (4) 👏 (4) 
+
+[08/02/2023 05:41] t1moh
+Wow first 9k
+
+{Reactions}
+🥳 (9) 
+
+[08/02/2023 06:43] Audinarey#1058
+I cant believe this,
+
+Oh my
+
+
+[08/02/2023 07:08] shealtielanz
+literally spent like 30mins on this contest😅 the reward looks bigger than my expectations lol
+
+{Reactions}
+😅 (2) 
+
+[08/02/2023 07:08] shealtielanz
+wishing I put more time rn😬
+
+{Reactions}
+😂 (5) 👍 (4) 
+
+[08/02/2023 07:15] aba1842
+think of the payout if you had dedicated an hour! ha ha 😄
+
+{Reactions}
+😅 (2) 
+
+[08/02/2023 07:16] aba1842
+still, congrats! effort/rewards ratio is as strong as possible ha ha
+
+
+[08/02/2023 07:17] shealtielanz
+😭
+
+
+[08/02/2023 07:17] shealtielanz
+Cool solo ser✅️
+
+
+[08/02/2023 07:24] t1moh
+Congrats @ABA and @0xStalin! I'll try to beat you in the next contests
+
+{Reactions}
+🫡 (2) 
+
+[08/02/2023 07:36] trust90
+This was a very tough one to judge as there were SO many valid findings (I think highest ever in C4?). I appreciate the help during QA. Congrats to all wardens.
+
+{Reactions}
+bolt_discord_emoji (30) 🇹 (13) 🇷 (13) 🇺 (13) 🇸 (13) ⬆️ (15) 🚀 (12) 💜 (2) thankyou (2) 🫡 (2) ✌🏼 👍🏼 ☝🏻 cyberheart hi5 ethereumcolor 👑 🥇 🧿 
+
+[08/02/2023 08:14] 0xthec0der
+I was watching your judging quite closely (not just my own findings 😅) and have to say you did a good job with a good sense of fairness.
+
+{Reactions}
+🔥 (3) 
+
+[08/02/2023 08:30] 0xnevi
+Unbelievable effort judging. And congrats to all wardens!
+
+{Reactions}
+hi5 (3) 
+
+[08/02/2023 08:37] .qeew
+Mehn, looks like a competition of All Stars..Big Congratulations to @xuwinnie
+
+{Reactions}
+hearteyesshark (2) 
+
+[08/02/2023 08:39] __melonwater
+Thanks:hearteyesshark: Congrats to all!
+
+{Reactions}
+hi5 (4) 
+
+[08/02/2023 08:47] evokid
+Congratulations everyone 👏
+
+{Reactions}
+hi5 (3) 
+
+[08/02/2023 09:02] noro9954
+🥹 🥹 🥹 🥹 🥹 🥹 🥹
+
+
+[08/02/2023 09:14] koolexc
+Congrats to all 🎉 🫡
+
+{Reactions}
+🫡 (7) 💜 (5) 👍 (2) 
+
+[08/02/2023 10:18] Audinarey#1058
+I appreciate you and your speed of judging
+
+TapiocaDao may have more findings than MaiaDao
+
+
+[08/02/2023 11:03] block_chomper
+not gonna lie I'm bitterly dissapointed with 778 USD for a months work and 3 confirmed highs and one medium - guess they must have been duplicated the shit out of
+
+
+[08/02/2023 11:03] block_chomper
+thought the config error we found with anyCall was pretty rare but obviously not!
+
+
+[08/02/2023 11:04] block_chomper
+would have been good to be backstage and see the judging process but hopefully in the future this will be possible
+
+
+[08/02/2023 11:26] alexxander
+It was vast codebase 12k sloc naturally it is expected that there will be a lot of issues which ultimately increased the shares so duped highs didn’t earn as much, however, apart from @xuwinnie who killed it with 14 highs, the awards are well distributed, I think there was a lot of opportunity to find unique highs & meds.
+
+{Reactions}
+✅ (3) 
+
+[08/02/2023 11:28] block_chomper
+:McDoomer:
+
+
+[08/02/2023 11:30] block_chomper
+yeah guess my team will find out more when we acutally see the findings repo
+
+
+[08/02/2023 11:31] block_chomper
+bit annoying we didn't even have a chance to respond or query anything in the judging process
+
+
+[08/02/2023 11:31] block_chomper
+just call me pretzel cos im so salty rn
+
+
+[08/02/2023 11:32] alexxander
+Been there fren, on the positive you should be able to apply for backstage & not miss out on future contests 🔥
+
+{Reactions}
+🫡 (4) 
+
+[08/02/2023 11:34] block_chomper
+Ok ser, will keep grinding
+
+
+[08/02/2023 11:48] stormreckson
+First competition for $74 .. I'm glad and motivated!
+
+
+[08/02/2023 11:49] stormreckson
+Congratulations to everyone!
+
+{Reactions}
+hi5 (5) 
+
+[08/02/2023 11:51] 0xsurena
+Was it necessary to send the analysis?
+
+
+[08/02/2023 11:53] koolexc
+Keep it up! You get better over time
+
+
+[08/02/2023 11:54] evokid
+I feel you friend but believe it or not with long term progress you will see a difference after a while. Keep auditing and trust your way everything will accumulate in the end. You're gonna make it later much much more 👍
+
+{Reactions}
+👍 (2) ❤️ (2) 
+
+[08/02/2023 12:00] koolexc
+It's not. Just recommended as far as I know
+
+{Reactions}
+👍 (2) 
+
+[08/02/2023 13:38] block_chomper
+@🧦 sockdrawer | C4 @CloudEllie - Is it possible to apply for backstage status for my team now pls?
+
+
+[08/02/2023 14:27] itsmetechjay
+You can submit a help desk request and we can take a look re: your eligibility. https://code4rena.com/help
+
+{Embed}
+https://code4rena.com/help
+Help | Code4rena
+Need help as a developer looking to secure your project or as a Warden finding vulnerabilities? Contact us via our Help page today.
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/c4-og-banner-C2716.png
+
+{Reactions}
+thankyou (2) 
+
+[08/02/2023 15:31] block_chomper
+my bad - my team is also "7e1e"
+
+
+[08/02/2023 15:31] block_chomper
+so we were actually much further up the leaderboard
+
+
+[08/02/2023 15:31] block_chomper
+what an emotional rollercoaster
+
+
+[08/02/2023 15:31] block_chomper
+LOL
+
+
+[08/02/2023 15:31] block_chomper
+best Analysis Report
+
+{Reactions}
+hi5 (2) 🎉 (3) 
+
+[08/02/2023 15:31] block_chomper
+love that
+
+
+[08/02/2023 15:32] block_chomper
+:TrollDance:
+
+
+[08/02/2023 16:04] block_chomper
+Thank you - will send a request asap
+
+{Reactions}
+thankyou 
+
+[08/02/2023 16:57] aba1842
+good! Competition breeds progress! make us bleed! AHhAhAHAHhhahA 😄
+
+Congrats man regardless! 😄
+
+
+[08/02/2023 17:56] c145h
+Cool, this is!
+
+
+[08/02/2023 18:13] 0xstalin
+see you at the top sir 🚀
+Challenge accepted 🫡
+
+
+[08/03/2023 11:34] alexczm
+Guys, please be aware of 'Address Poisoning' attack vectors.
+After receiving my payout from this contest, my address was subject of this type of attack. There are several versions of this attack, be aware of them.
+
+{Reactions}
+👍🏻 (4) same (4) 
+
+[08/03/2023 13:24] dontonka
+I'm eager to see the final reports.. i had reported 2 Medium and 1 High and I get no rewards 🤔 . All rejected with no values.
+
+{Reactions}
+🫢 
+
+[08/03/2023 15:51] kodak_rome
+Pls can u explain a bit further what u experienced.
+Poisoning how?
+
+
+[08/03/2023 16:07] thekmj
+<https://support.metamask.io/hc/en-us/articles/11967455819035-Address-poisoning-scams>
+
+
+[08/03/2023 16:10] thekmj
+Basically if you `transfer` some USDC from "your address" to "0xsomething", then anyone else can `transferFrom` 0 USDC from "your address" to "0xsometh1ng"
+
+
+[08/03/2023 16:11] thekmj
+Tx doesn't revert, event is still emitted, and shows up on block explorer
+
+
+[08/03/2023 16:11] thekmj
+The only effect is that the next time you transfer funds, you might copy paste the wrong address "0xsometh1ng" instead of your "0xsomething", since on the explorer it only shows "0xso..ng"
+
+
+[08/03/2023 16:12] thekmj
+Double check your target address completely each time before transferring anything and you're fine
+
+{Reactions}
+🤯 
+
+[08/03/2023 16:53] alexczm
+there are many variants of this `poisoning`. See https://twitter.com/tayvano_/status/1605801004141727745
+
+{Reactions}
+🧐 
+
+[08/03/2023 22:35] Hama#9496
+300k and zeros for valid bugs 🤦‍♂️
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - maia-may30 [1110626768223739924].txt_Files/Screenshot_20230803-233355_Chrome-622E7.jpg
+
+
+[08/04/2023 04:49] 0x3b
+@Hama
+What bugs you found?
+
+
+[08/06/2023 19:23] Audinarey#1058
+You got this
+
+{Reactions}
+💜 
+
+[08/07/2023 06:08] 01xcoder
+my mans villan arc starts here
+
+{Reactions}
+😂 (5) 
+
+[08/10/2023 15:42] lsaudit
+hey, will the report for this audit be published, or it will be kept private? If published, any ETA?
+
+
+[08/11/2023 14:07] thebrittfactor
+We are working through the report. No ETA at the moment. We'll also need approval before posting, so stay tuned!
+
+{Reactions}
+👍 👀 
+
+[09/10/2023 10:44] block_chomper
+@Jay | C4 @thebrittfactor | C4 Have sent a helpdesk request as above but have recieved no response, please can you let me know what is the status of my backstage access request?
+
+
+[09/11/2023 13:00] thebrittfactor
+You should now be backstage - #⭐backstage 🙂
+
+{Reactions}
+❤️ 
+
+[09/22/2023 15:51] _oceansky
+Appreciate the speed of report release, too many to learn, but unfortunately there are items not worth to give emphasis, findings related to multichain. I guess no protocol will ever use that again.
+
+
+[10/21/2023 12:42] iceBear#4987
+hello @Trust 
+Is this issue incorrectly classified as invalid? I did notice this problem in the final report.🥲 🥲 
+https://github.com/code-423n4/2023-05-maia-findings/issues/116
+it is not about minOutput
+same issue in final report:
+https://github.com/code-423n4/2023-05-maia-findings/issues/504
+https://github.com/code-423n4/2023-05-maia-findings/issues/261
+
+
+==============================================================
+Exported 378 message(s)
+==============================================================
